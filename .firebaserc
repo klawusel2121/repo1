@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fire1-4849e": {
+      "hosting": {
+        "demo1": [
+          "fire1-4849e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fire1-4849e"
+  }
+}
