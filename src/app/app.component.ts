@@ -1,8 +1,6 @@
 import { Component, inject } from '@angular/core';
-import {Firestore, collection, collectionData, addDoc, doc, deleteDoc} from '@angular/fire/firestore';
+import {Firestore, collection, collectionData, addDoc, doc, deleteDoc, getDoc, setDoc} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import {DocumentReference} from "@angular/fire/compat/firestore";
-import {remove} from "@angular/fire/database";
 
 @Component({
   selector: 'app-root',
@@ -14,21 +12,11 @@ export class AppComponent {
   collection: any
   items$: Observable<any[]>;
 
-  constructor() {
+  constructor(private afs: Firestore) {
     this.collection = collection(this.firestore, 'items')
     this.items$ = collectionData(this.collection, { idField: 'id'});
-    //this.items$.subscribe(items => console.log('items', items))
-    //this.getCamps().subscribe(data => {
-    //  data.forEach(doc => {
-    //    console.log('doc', doc)
-    //  });
-    //})
   }
 
-  getCamps(): Observable<[]> {
-    const collectionRef = collection(this.firestore, 'items');
-    return collectionData(collectionRef, { idField: 'id'}) as Observable<[]>;
-  }
   add() {
     addDoc(this.collection, <any> { desc: 'DESC1', date: new Date() }).then((documentReference: any) => {
       // the documentReference provides access to the newly created document
@@ -38,7 +26,11 @@ export class AppComponent {
 
   remove(item: any) {
     const docItem = doc(this.firestore, `items/${item.id}`);
-    console.log(item, docItem)
     deleteDoc(docItem)
+  };
+
+  update(item: any) {
+    const docItem = doc(this.firestore, `items/${item.id}`);
+    setDoc(docItem, {date: new Date()})
   };
 }

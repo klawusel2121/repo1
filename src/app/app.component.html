@@ -4,6 +4,7 @@
 <ul>
   <li class="text" *ngFor="let item of items$ | async">
     <button (click)="remove(item)">REMOVE</button>
+    <button (click)="update(item)">UPDATE</button>
     {{item | json}}
   </li>
 </ul>
