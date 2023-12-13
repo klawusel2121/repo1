@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
-import {Firestore, collection, collectionData, addDoc, doc, deleteDoc, getDoc, setDoc} from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import {Component} from '@angular/core';
+import {Observable} from 'rxjs';
+import {FirebaseService} from "./firebase.service";
 
 @Component({
   selector: 'app-root',
@@ -8,29 +8,21 @@ import { Observable } from 'rxjs';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  firestore: Firestore = inject(Firestore);
-  collection: any
   items$: Observable<any[]>;
 
-  constructor(private afs: Firestore) {
-    this.collection = collection(this.firestore, 'items')
-    this.items$ = collectionData(this.collection, { idField: 'id'});
+  constructor(private fbs: FirebaseService) {
+    this.items$ = this.fbs.getCollection('items');
   }
 
   add() {
-    addDoc(this.collection, <any> { desc: 'DESC1', date: new Date() }).then((documentReference: any) => {
-      // the documentReference provides access to the newly created document
-      console.log('documentReference', documentReference)
-    });
+    this.fbs.add('items', {desc: 'DESC1', date: new Date()})
   }
 
   remove(item: any) {
-    const docItem = doc(this.firestore, `items/${item.id}`);
-    deleteDoc(docItem)
+    this.fbs.remove('items', item.id);
   };
 
   update(item: any) {
-    const docItem = doc(this.firestore, `items/${item.id}`);
-    setDoc(docItem, {date: new Date()})
+    this.fbs.update('items', item, {date: new Date()});
   };
 }
