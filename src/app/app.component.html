@@ -1,6 +1,9 @@
 <button (click)="add()">ADD</button>
+
+
 <ul>
   <li class="text" *ngFor="let item of items$ | async">
+    <button (click)="remove(item)">REMOVE</button>
     {{item | json}}
   </li>
 </ul>
