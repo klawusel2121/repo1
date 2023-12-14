@@ -1,5 +1,24 @@
-<button (click)="add()">ADD</button>
 
+<form [formGroup]="loginForm">
+
+  <div>
+    <label for="email">
+      Email
+    </label>
+    <input id="email" type="text" formControlName="email">
+  </div>
+
+  <div>
+    <label for="password">
+      Password
+    </label>
+    <input id="password" type="password" formControlName="password">
+  </div>
+
+  <button (click)="createUser()">Create User</button>
+
+</form>
+<button (click)="add()">ADD</button>
 
 <ul>
   <li class="text" *ngFor="let item of items$ | async">

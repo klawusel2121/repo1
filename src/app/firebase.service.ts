@@ -1,20 +1,23 @@
 import {inject, Injectable} from '@angular/core';
 import {addDoc, collection, collectionData, deleteDoc, doc, Firestore, setDoc} from "@angular/fire/firestore";
 import {Observable} from "rxjs";
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
   firestore: Firestore = inject(Firestore);
-  constructor() { }
+
+  constructor() {
+  }
 
   getCollection(collectionName: string): Observable<Array<any>> {
-    return collectionData(collection(this.firestore, collectionName), { idField: 'id'});
+    return collectionData(collection(this.firestore, collectionName), {idField: 'id'});
   }
 
   add<T>(collectionName: string, data: T) {
-    addDoc(collection(this.firestore, collectionName), <any> data).then((documentReference: any) => {
+    addDoc(collection(this.firestore, collectionName), <any>data).then((documentReference: any) => {
       console.log('addDoc', documentReference);
     });
   }
@@ -32,4 +35,38 @@ export class FirebaseService {
       console.log('setDoc', documentReference);
     });
   };
+
+  singUpUser(email: string, password: string) {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        console.log('signed up', userCredential);
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        console.log('error', error);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  }
+
+  singInUser(email: string, password: string) {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log('signed in', userCredential);
+        // Signed in
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        console.log('error', error);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  }
+
 }
