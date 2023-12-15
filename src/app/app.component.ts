@@ -39,7 +39,16 @@ export class AppComponent implements OnInit {
     this.fbs.update('items', item, {date: new Date()});
   };
 
-  createUser() {
+  signIn() {
+    if (!this.loginForm?.get('email')?.value) {
+      return;
+    }
+    if (!this.loginForm.get('password')?.value) {
+      return;
+    }
+    this.fbs.singInUser(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value)
+  }
+  signUp() {
     if (!this.loginForm?.get('email')?.value) {
       return;
     }

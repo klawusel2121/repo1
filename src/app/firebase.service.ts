@@ -48,7 +48,7 @@ export class FirebaseService {
       .catch((error) => {
         console.log('error', error);
         const errorCode = error.code;
-        const errorMessage = error.message;
+        const errorMessage  = error.message;
         // ..
       });
   }
