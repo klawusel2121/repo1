@@ -1,17 +1,13 @@
 
-<form [formGroup]="loginForm">
-  <div>
-    <label for="email">
-      Email
-    </label>
-    <input autocomplete="new-password" id="email" type="text" formControlName="email">
-  </div>
+<form clrForm [formGroup]="loginForm">
+  <div >
+    <div>
+      <input  placeholder="Email" autocomplete="new-password" id="email" type="text" formControlName="email">
+    </div>
 
-  <div>
-    <label for="password">
-      Password
-    </label>
-    <input autocomplete="new-password" id="password" type="password" formControlName="password">
+    <div>
+      <input placeholder="Password" autocomplete="new-password" id="password" type="password" formControlName="password">
+    </div>
   </div>
 
   <button class="btn btn-outline" (click)="signUp()">Sign up</button>
