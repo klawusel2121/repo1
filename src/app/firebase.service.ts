@@ -2,6 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {addDoc, collection, collectionData, deleteDoc, doc, Firestore, setDoc} from "@angular/fire/firestore";
 import {Observable} from "rxjs";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
+import {AuthService} from "./state/auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} fro
 export class FirebaseService {
   firestore: Firestore = inject(Firestore);
 
-  constructor() {
+  constructor(private authState: AuthService) {
   }
 
   getCollection(collectionName: string): Observable<Array<any>> {
@@ -57,6 +58,11 @@ export class FirebaseService {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        this.authState.userCredential = userCredential;
+        this.authState.userCredential$.next(true);
+        setTimeout(() => {
+          this.authState.userCredential$.next(false);
+        }, 4000)
         console.log('signed in', userCredential);
         // Signed in
         const user = userCredential.user;

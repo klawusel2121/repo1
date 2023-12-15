@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {FirebaseService} from "./firebase.service";
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {AuthService} from "./state/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private fbs: FirebaseService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public authState: AuthService,
   ) {
     this.items$ = this.fbs.getCollection('items');
   }

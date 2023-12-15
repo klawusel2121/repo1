@@ -1,19 +1,29 @@
 
-<form clrForm [formGroup]="loginForm">
-  <div >
-    <div>
-      <input  placeholder="Email" autocomplete="new-password" id="email" type="text" formControlName="email">
-    </div>
+<form clrForm clrLayout="horizontal" [formGroup]="loginForm">
 
-    <div>
-      <input placeholder="Password" autocomplete="new-password" id="password" type="password" formControlName="password">
-    </div>
-  </div>
+  <label>Email</label>
+  <input  placeholder="Email" autocomplete="new-password" id="email" type="text" formControlName="email">
+
+  <label>Password</label>
+  <input placeholder="Password" autocomplete="new-password" id="password" type="password" formControlName="password">
+
 
   <button class="btn btn-outline" (click)="signUp()">Sign up</button>
   <button class="btn btn-outline" (click)="signIn()">Sign in</button>
 
+  <div class="alert alert-success" role="alert" *ngIf="authState.userCredential$ | async">
+    <div class="alert-items">
+      <div class="alert-item static">
+        <div class="alert-icon-wrapper">
+          <cds-icon class="alert-icon" shape="check-circle"></cds-icon>
+        </div>
+        <span class="alert-text">Sign in was successful</span>  
+      </div>
+    </div>
+  </div>
 </form>
+
+
 <button class="btn btn-success" (click)="add()">ADD</button>
 
 <div class="text" *ngFor="let item of items$ | async">
