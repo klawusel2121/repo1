@@ -3,6 +3,7 @@ import {addDoc, collection, collectionData, deleteDoc, doc, Firestore, setDoc} f
 import {Observable} from "rxjs";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import {AuthService} from "./state/auth.service";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import {AuthService} from "./state/auth.service";
 export class FirebaseService {
   firestore: Firestore = inject(Firestore);
 
-  constructor(private authState: AuthService) {
+  constructor(private authState: AuthService, private cookieService: CookieService) {
   }
 
   getCollection(collectionName: string): Observable<Array<any>> {
@@ -58,6 +59,7 @@ export class FirebaseService {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        this.cookieService.set('email', email);
         this.authState.userCredential = userCredential;
         this.authState.userCredential$.next(true);
         setTimeout(() => {

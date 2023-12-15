@@ -8,6 +8,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import {ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ClarityModule } from "@clr/angular";
+import { CookieService} from "ngx-cookie-service";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { ClarityModule } from "@clr/angular";
     provideFirestore(() => getFirestore()),
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

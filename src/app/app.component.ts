@@ -4,6 +4,7 @@ import {FirebaseService} from "./firebase.service";
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "./state/auth.service";
+import { CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-root',
@@ -18,13 +19,14 @@ export class AppComponent implements OnInit {
     private fbs: FirebaseService,
     private formBuilder: FormBuilder,
     public authState: AuthService,
+    private cookieService: CookieService
   ) {
     this.items$ = this.fbs.getCollection('items');
   }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      email: '',
+      email: this.cookieService.get('email'),
       password: ''
     });
   }
