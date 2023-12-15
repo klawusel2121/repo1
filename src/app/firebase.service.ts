@@ -44,6 +44,7 @@ export class FirebaseService {
       .then((userCredential) => {
         // Signed up
         console.log('signed up', userCredential);
+        this.cookieService.set('email', email);
         const user = userCredential.user;
         // ...
       })
