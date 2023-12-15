@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import {ReactiveFormsModule} from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ClarityModule } from "@clr/angular";
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import {ReactiveFormsModule} from "@angular/forms";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    ClarityModule,
     provideFirebaseApp(() => initializeApp({
       "projectId": "fire1-4849e",
       "appId": "1:193706716968:web:8e2bbc603253980eaaaa1d",
