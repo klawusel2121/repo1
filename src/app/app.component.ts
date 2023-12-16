@@ -2,9 +2,9 @@
 import {Observable} from 'rxjs';
 import {FirebaseService} from "./services/firebase.service";
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "./services/auth.service";
-import { CookieService} from "ngx-cookie-service";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-root',
@@ -14,9 +14,18 @@ import { CookieService} from "ngx-cookie-service";
 export class AppComponent implements OnInit {
 
   constructor(
-  ) {
-  }
+    public authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  signIn() {
+    this.router.navigate(['sign-in'])
+  }
+
+  items() {
+    this.router.navigate(['items'])
   }
 }
