@@ -1,8 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {addDoc, collection, collectionData, deleteDoc, doc, Firestore, setDoc} from "@angular/fire/firestore";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
-import {AuthService} from "./state/auth.service";
 import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
@@ -11,7 +10,9 @@ import {CookieService} from "ngx-cookie-service";
 export class FirebaseService {
   firestore: Firestore = inject(Firestore);
 
-  constructor(private authState: AuthService, private cookieService: CookieService) {
+  userCredential: any;
+  userCredential$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  constructor(private cookieService: CookieService) {
   }
 
   getCollection(collectionName: string): Observable<Array<any>> {
@@ -61,10 +62,10 @@ export class FirebaseService {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         this.cookieService.set('email', email);
-        this.authState.userCredential = userCredential;
-        this.authState.userCredential$.next(true);
+        this.userCredential = userCredential;
+        this.userCredential$.next(true);
         setTimeout(() => {
-          this.authState.userCredential$.next(false);
+          this.userCredential$.next(false);
         }, 4000)
         console.log('signed in', userCredential);
         // Signed in

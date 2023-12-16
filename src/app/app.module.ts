@@ -9,10 +9,25 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ClarityModule } from "@clr/angular";
 import { CookieService} from "ngx-cookie-service";
+import { ItemsComponent } from './components/items/items.component';
+import { LoginComponent } from './components/login/login.component';
+import {provideAuth} from "@angular/fire/auth";
+import {getAuth} from "firebase/auth";
+import { AuthService } from "./services/auth.service";
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ItemsComponent,
+    LoginComponent,
+    SignInComponent,
+    RegisterUserComponent,
+    DashboardComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -27,10 +42,11 @@ import { CookieService} from "ngx-cookie-service";
       "authDomain": "fire1-4849e.firebaseapp.com",
       "messagingSenderId": "193706716968"
     })),
+    provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     ReactiveFormsModule
   ],
-  providers: [CookieService],
+  providers: [CookieService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
