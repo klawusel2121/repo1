@@ -1,8 +1,19 @@
 import {inject, Injectable} from '@angular/core';
-import {addDoc, collection, collectionData, deleteDoc, doc, Firestore, setDoc, where} from "@angular/fire/firestore";
+import {
+  addDoc,
+  collection,
+  collectionData,
+  deleteDoc,
+  doc,
+  Firestore,
+  query,
+  setDoc,
+  where
+} from "@angular/fire/firestore";
 import {BehaviorSubject, Observable} from "rxjs";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import {CookieService} from "ngx-cookie-service";
+import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +23,11 @@ export class FirebaseService {
 
   userCredential: any;
   userCredential$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  constructor(private cookieService: CookieService) {
+  constructor(private cookieService: CookieService, private authService: AuthService) {
   }
 
   getCollection(collectionName: string): Observable<Array<any>> {
-    return collectionData(collection(this.firestore, collectionName), {idField: 'id'});
+    return collectionData(query(collection(this.firestore, collectionName), where('tenantId', '==', this.authService.TenantId)),{idField: 'id'});
   }
 
   add<T>(collectionName: string, data: T) {
