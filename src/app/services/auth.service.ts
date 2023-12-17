@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-
+  TenantId: string = '';
   UserData : any;
   constructor(private auth: Auth,private router : Router, public ngZone: NgZone){
     onAuthStateChanged(this.auth,(user: any)=>{
@@ -31,6 +31,10 @@ export class AuthService {
     })
   }
 
+  setTenant(tenant: string): void {
+    this.TenantId = tenant;
+    localStorage.setItem('tenant', tenant);
+  }
 
   //get User
   //get Authenticated user from firebase
@@ -54,6 +58,7 @@ export class AuthService {
 
   //Register Method
   Register(email : string, password : string) {
+    this.auth.tenantId = this.TenantId;
     return createUserWithEmailAndPassword(this.auth, email, password)
       .then((result) => {
         this.UserData = result.user;
@@ -71,6 +76,7 @@ export class AuthService {
 
   //Login Method
   Login(email : string, password : string){
+    this.auth.tenantId = this.TenantId;
     console.log('login', email, password)
     return signInWithEmailAndPassword(this.auth, email, password)
       .then((result: any) => {
@@ -86,8 +92,8 @@ export class AuthService {
   }
   //Logout
   Logout() {
+    this.auth.tenantId = this.TenantId;
     signOut(this.auth).then(()=>this.router.navigate(['/sign-in']))
-
   }
 
   //login with Email or Facebook
@@ -105,6 +111,7 @@ export class AuthService {
 
   //Pop Up Provider
   loginWithPopup(provider :any) {
+    this.auth.tenantId = this.TenantId;
     return signInWithPopup(this.auth,provider).then(() => {
       this.router.navigate(['dashboard']);
     });
@@ -112,6 +119,7 @@ export class AuthService {
 
   //Send Password Reset Email
   async sendPasswordResetEmails(email : string){
+    this.auth.tenantId = this.TenantId;
     sendPasswordResetEmail(this.auth,email)
       .then(() => {
         window.alert('Password reset email sent, check your inbox.');

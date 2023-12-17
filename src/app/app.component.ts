@@ -13,10 +13,13 @@ import {Router} from "@angular/router";
 })
 export class AppComponent implements OnInit {
 
+  tenantId: string = '';
   constructor(
     public authService: AuthService,
     private router: Router
-  ) { }
+  ) {
+    this.tenantId = localStorage.getItem('tenant') as string
+  }
 
   ngOnInit(): void {
   }
