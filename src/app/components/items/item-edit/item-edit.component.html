@@ -9,8 +9,6 @@
       </div>
       <div class="modal-body">
         <input [(ngModel)]="item.desc" type="text" class="formControl" placeholder="Description" #desc required>
-        <input [(ngModel)]="item.date" type="date" class="formControl" placeholder="Date" #desc required>
-
       </div>
       <div class="modal-footer">
         <button (click)="onCancel.emit(item)" class="btn btn-outline" type="button">Cancel</button>

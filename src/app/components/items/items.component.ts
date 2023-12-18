@@ -33,7 +33,7 @@ export class ItemsComponent implements OnInit {
   }
 
   add() {
-    this.fbs.add('items', {desc: 'DESC' + (this.itemsCount + 1), date: new Date()})
+    this.fbs.add('items', {desc: 'DESC' + (this.itemsCount + 1), date: new Date().toLocaleString()})
   }
 
   remove(item: Item) {
