@@ -1,0 +1,22 @@
+<div class="modal" *ngIf="show">
+  <div class="modal-dialog" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-label="Close" class="close" type="button">
+          <cds-icon shape="close"></cds-icon>
+        </button>
+        <h3 class="modal-title">I have a nice title</h3>
+      </div>
+      <div class="modal-body">
+        <input [(ngModel)]="item.desc" type="text" class="formControl" placeholder="Description" #desc required>
+        <input [(ngModel)]="item.date" type="date" class="formControl" placeholder="Date" #desc required>
+
+      </div>
+      <div class="modal-footer">
+        <button (click)="onCancel.emit(item)" class="btn btn-outline" type="button">Cancel</button>
+        <button (click)="onApply.emit(item)" class="btn btn-primary" type="button">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop" aria-hidden="true" *ngIf="show"></div>

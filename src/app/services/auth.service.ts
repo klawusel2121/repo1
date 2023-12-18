@@ -82,6 +82,7 @@ export class AuthService {
       .then((result: any) => {
         console.log('login', result)
         this.UserData = result.user;
+        localStorage.setItem('password', password);
         this.ngZone.run(() => {
           this.router.navigate(['/dashboard']);
         });

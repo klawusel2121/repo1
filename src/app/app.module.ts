@@ -18,6 +18,7 @@ import { RegisterUserComponent } from './components/register-user/register-user.
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import {environment} from "./environments/environment";
+import { ItemEditComponent } from './components/items/item-edit/item-edit.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {environment} from "./environments/environment";
     SignInComponent,
     RegisterUserComponent,
     DashboardComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ItemEditComponent
   ],
   imports: [
     BrowserModule,

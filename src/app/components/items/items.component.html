@@ -1,7 +1,22 @@
 <button class="btn btn-success" (click)="add()">ADD</button>
 
+<app-item-edit (onApply)="onApply($event)" (onCancel)="onCancel($event)"></app-item-edit>
 <div class="text" *ngFor="let item of items$ | async">
-  <button class="btn btn-danger" (click)="remove(item)">REMOVE</button>
-  <button class="btn btn-warning" (click)="update(item)">UPDATE</button>
   {{item | json}}
 </div>
+
+<clr-datagrid>
+  <clr-dg-column>Desc</clr-dg-column>
+  <clr-dg-column>Creation date</clr-dg-column>
+
+  <clr-dg-row *ngFor="let item of items$ | async">
+    <clr-dg-cell>{{item.desc}}</clr-dg-cell>
+    <clr-dg-cell>{{item.date}}</clr-dg-cell>
+    <clr-dg-action-overflow>
+      <button class="action-item" (click)="edit(item)">Edit</button>
+      <button class="action-item" (click)="remove(item)">Delete</button>
+    </clr-dg-action-overflow>
+  </clr-dg-row>
+
+  <clr-dg-footer>{{(items$ | async)?.length}} users</clr-dg-footer>
+</clr-datagrid>

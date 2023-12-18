@@ -28,7 +28,9 @@ export class FirebaseService {
   }
 
   getCollection(collectionName: string): Observable<Array<any>> {
-    return collectionData(query(collection(this.firestore, collectionName), where('tenantId', '==', this.authService.TenantId)),{idField: 'id'});
+    return collectionData(
+      query(collection(this.firestore, collectionName),
+        where('tenantId', '==', this.authService.TenantId)),{idField: 'id'});
   }
 
   add(collectionName: string, data: any) {

@@ -22,6 +22,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    const email = this.authService.UserData?.email;
+    const password = localStorage.getItem('password');
+    if (email && password) {
+      this.authService.Login(email, password);
+    }
   }
 
   signIn() {
