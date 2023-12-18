@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, Type} from '@angular/core';
 import {
   addDoc,
   collection,
@@ -14,6 +14,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "./auth.service";
+import {TenantInterface} from "../models/tenant-interface";
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,8 @@ export class FirebaseService {
     return collectionData(query(collection(this.firestore, collectionName), where('tenantId', '==', this.authService.TenantId)),{idField: 'id'});
   }
 
-  add<T>(collectionName: string, data: T) {
+  add(collectionName: string, data: any) {
+    data.tenantId = this.authService.TenantId;
     addDoc(collection(this.firestore, collectionName), <any>data).then((documentReference: any) => {
       console.log('addDoc', documentReference);
     });

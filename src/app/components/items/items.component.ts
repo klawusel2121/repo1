@@ -12,7 +12,6 @@ import {CookieService} from "ngx-cookie-service";
 })
 export class ItemsComponent implements OnInit {
   items$: Observable<any[]> = of([]);
-  items: Array<any> = [];
 
   constructor(
     private fbs: FirebaseService,
@@ -21,18 +20,13 @@ export class ItemsComponent implements OnInit {
     private cookieService: CookieService
   ) {
     this.items$ = this.fbs.getCollection('items');
-
   }
 
   ngOnInit(): void {
-    this.items$.subscribe(items => {
-      this.items = items.filter(i => i.tenantId === this.authService.TenantId);
-      console.log('items', this.items);
-    })
   }
 
   add() {
-    this.fbs.add('items', {desc: 'DESC1', date: new Date(), tenantId: this.authService.TenantId})
+    this.fbs.add('items', {desc: 'DESC1', date: new Date()})
   }
 
   remove(item: any) {

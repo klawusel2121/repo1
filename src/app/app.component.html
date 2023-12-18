@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <input [(ngModel)]="tenantId" type="text" class="formControl" placeholder="Tenant" #tenant required>
+    <select clrSelect name="options" (ngModelChange)="changeTenant($event)" [(ngModel)]="tenantId">
+      <option value="TEST-57f99">TEST</option>
+      <option value="PROD-zs4ha">PROD</option>
+    </select>
+    <input (ngModelChange)="changeTenant($event)" [(ngModel)]="tenantId" type="text" class="formControl" placeholder="Tenant" #tenant required>
     <button class="btn btn-secondary btn-success" (click)="authService.setTenant(tenant.value)">Set Tenant</button>
     <button class="btn btn-secondary btn-danger" *ngIf="authService.isLoggedIn" (click)="authService.Logout()">Logout</button>
     <button class="btn btn-secondary btn-warning" *ngIf="authService.isLoggedIn" (click)="items()">Items</button>

@@ -10,7 +10,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ClarityModule } from "@clr/angular";
 import { CookieService} from "ngx-cookie-service";
 import { ItemsComponent } from './components/items/items.component';
-import { LoginComponent } from './components/login/login.component';
 import {provideAuth} from "@angular/fire/auth";
 import {getAuth} from "firebase/auth";
 import { AuthService } from "./services/auth.service";
@@ -24,7 +23,6 @@ import {environment} from "./environments/environment";
   declarations: [
     AppComponent,
     ItemsComponent,
-    LoginComponent,
     SignInComponent,
     RegisterUserComponent,
     DashboardComponent,

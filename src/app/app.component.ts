@@ -31,4 +31,8 @@ export class AppComponent implements OnInit {
   items() {
     this.router.navigate(['items'])
   }
+
+  changeTenant(event: string) {
+    this.authService.setTenant(event);
+  }
 }
