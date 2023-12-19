@@ -30,11 +30,11 @@ export class FirebaseService {
   getCollection(collectionName: string): Observable<Array<any>> {
     return collectionData(
       query(collection(this.firestore, collectionName),
-        where('tenantId', '==', this.authService.TenantId)),{idField: 'id'});
+        where('tenantId', '==', localStorage.getItem('tenant'))),{idField: 'id'});
   }
 
   add(collectionName: string, data: any) {
-    data.tenantId = this.authService.TenantId;
+    data.tenantId = localStorage.getItem('tenant');
     addDoc(collection(this.firestore, collectionName), <any>data).then((documentReference: any) => {
       console.log('addDoc', documentReference);
     });
