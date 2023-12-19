@@ -1,9 +1,6 @@
 <button class="btn btn-success" (click)="add()">ADD</button>
 
 <app-item-edit (onApply)="onApply($event)" (onCancel)="onCancel($event)"></app-item-edit>
-<div class="text" *ngFor="let item of items$ | async">
-  {{item | json}}
-</div>
 
 <clr-datagrid>
   <clr-dg-column>Desc</clr-dg-column>

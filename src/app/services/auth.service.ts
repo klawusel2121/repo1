@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  TenantId: string = '';
+  TenantId= localStorage.getItem('tenant');
   UserData : any;
   constructor(private auth: Auth,private router : Router, public ngZone: NgZone){
     onAuthStateChanged(this.auth,(user: any)=>{
@@ -82,7 +82,9 @@ export class AuthService {
       .then((result: any) => {
         console.log('login', result)
         this.UserData = result.user;
+        localStorage.setItem('email', email);
         localStorage.setItem('password', password);
+        localStorage.setItem('lastLogin', new Date().toLocaleString());
         this.ngZone.run(() => {
           this.router.navigate(['/dashboard']);
         });
