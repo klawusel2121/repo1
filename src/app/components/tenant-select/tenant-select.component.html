@@ -1,0 +1,7 @@
+<clr-select-container>
+  <label>Select a tenant first from the list</label>
+  <select clr clrSelect name="options" (ngModelChange)="this.authService.setTenant($event)" [(ngModel)]="tenantId">
+    <option [value]="this.authService.Tenants[0].value">{{this.authService.Tenants[0].label}}</option>
+    <option [value]="this.authService.Tenants[1].value">{{this.authService.Tenants[1].label}}</option>
+  </select>
+</clr-select-container>

@@ -19,6 +19,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import {environment} from "./environments/environment";
 import { ItemEditComponent } from './components/items/item-edit/item-edit.component';
+import { TenantSelectComponent } from './components/tenant-select/tenant-select.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ItemEditComponent } from './components/items/item-edit/item-edit.compon
     RegisterUserComponent,
     DashboardComponent,
     ForgotPasswordComponent,
-    ItemEditComponent
+    ItemEditComponent,
+    TenantSelectComponent
   ],
   imports: [
     BrowserModule,

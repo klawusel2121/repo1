@@ -1,8 +1,8 @@
 <section>
   <div class="card-body">
+    <app-tenant-select></app-tenant-select>
     <div class="row justify-content-center">
       <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-3">Sign up </p>
         <!-- Email input -->
         <div class="formGroup">
           <input
@@ -29,14 +29,9 @@
             type="submit"
             color="primary"
             class="btn btn-primary btn-lg btn-block"
-            (click)="authService.Register(userEmail.value, userPwd.value)">
+            (click)="onRegister(userEmail.value, userPwd.value)">
             Register
           </button>
-        </div>
-        <!-- Connect with google -->
-        <div class="divider d-flex align-items-center mb-4">
-          <p class="text-center fw-bold mx-3 mb-0">Or use  </p>
-          <button class="btn btn-danger" type="button" (click)="authService.GoogleAuth()" >Google</button>
         </div>
         <div class="redirectToLogin">
           <span>

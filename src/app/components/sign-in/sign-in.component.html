@@ -1,5 +1,6 @@
 <section>
   <div class="container-fluid h-custom">
+  <app-tenant-select></app-tenant-select>
 
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
@@ -23,7 +24,7 @@
             type="button"
             color="primary"
             class="btn btn-primary btn-lg btn-block"
-            (click)="authService.Login(userName.value, userPassword.value)">
+            (click)="onLogin(userName.value, userPassword.value)">
             Login
           </button>
         </div>
@@ -33,12 +34,6 @@
             <a
               routerLink="/register-user"
               class="link-danger">Register</a></p>
-        </div>
-        <!-- Connect with google -->
-        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-          <p class="lead fw-normal mb-2 me-3">Sign in with</p>
-          <!-- Connect with google -->
-          <button class="btn btn-danger" type="button" (click)="authService.GoogleAuth()">Google</button>
         </div>
       </div>
     </div>

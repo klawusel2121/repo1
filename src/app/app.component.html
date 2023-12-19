@@ -1,13 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <select clrSelect name="options" (ngModelChange)="changeTenant($event)" [(ngModel)]="tenantId">
-      <option value="TEST-57f99">TEST</option>
-      <option value="PROD-zs4ha">PROD</option>
-    </select>
-    <input (ngModelChange)="changeTenant($event)" [(ngModel)]="tenantId" type="text" class="formControl" placeholder="Tenant" #tenant required>
-    <button class="btn btn-secondary btn-success" (click)="authService.setTenant(tenant.value)">Set Tenant</button>
-    <button class="btn btn-secondary btn-danger" *ngIf="authService.isLoggedIn" (click)="authService.Logout()">Logout</button>
-    <button class="btn btn-secondary btn-warning" *ngIf="authService.isLoggedIn" (click)="items()">Items</button>
+<header class="header-6">
+  <div class="branding">
+    <a href="hourglass" (click)="navigate('', $event)" class="nav-link">
+      <span class="title">Hourglass</span>
+    </a>
   </div>
-</nav>
+  <div class="branding">
+    <a href="items" (click)="navigate('items', $event)" class="nav-link">
+      <span class="title">Items</span>
+    </a>
+  </div>
+  <div class="header-actions">
+    <clr-dropdown>
+      <button class="nav-text" clrDropdownTrigger aria-label="open user profile">
+        {{ authService.UserData?.email }} [{{ authService.UserData?.tenantId }}]
+        <cds-icon shape="angle" direction="down"></cds-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a href="logout" (click)="onLogout($event)" clrDropdownItem>Log out</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+  </div>
+</header>
 <router-outlet></router-outlet>

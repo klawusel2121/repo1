@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   tenantId: string = '';
   constructor(
     public authService: AuthService,
-    private router: Router
+    public router: Router
   ) {
     this.tenantId = localStorage.getItem('tenant') as string
   }
@@ -43,13 +43,23 @@ export class AppComponent implements OnInit {
     this.router.navigate(['items'])
   }
 
+  navigate(path: string, event: any) {
+    event.preventDefault();
+    if (!path) {
+      return;
+    }
+    this.router.navigate([path]);
+  }
+
   changeTenant(event: string) {
     this.authService.setTenant(event);
   }
 
-  onClick(event: MouseEvent, route: string) {
-    this.router.navigate([route])
-  }
-
   protected readonly localStorage = localStorage;
+
+  onLogout(event: any) {
+    event.preventDefault();
+    this.authService.Logout();
+    this.router.navigate(['sign-in']);
+  }
 }

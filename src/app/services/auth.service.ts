@@ -17,6 +17,10 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   UserData : any;
+  Tenants = [
+    {value: 'TEST-57f99', label: 'TEST'},
+    {value: 'PROD-zs4ha', label: 'PROD'},
+  ]
   constructor(private auth: Auth,private router : Router, public ngZone: NgZone){
     onAuthStateChanged(this.auth,(user: any)=>{
       if(user){

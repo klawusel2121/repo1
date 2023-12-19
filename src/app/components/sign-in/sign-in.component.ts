@@ -7,8 +7,13 @@ import {AuthService} from "../../services/auth.service";
   styleUrl: './sign-in.component.css'
 })
 export class SignInComponent {
+
+  tenantId: string = '';
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {}
 
+  onLogin(email: string, password: string) {
+    this.authService.Login(email, password)
+  }
 }
