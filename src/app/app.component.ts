@@ -46,4 +46,10 @@ export class AppComponent implements OnInit {
   changeTenant(event: string) {
     this.authService.setTenant(event);
   }
+
+  onClick(event: MouseEvent, route: string) {
+    this.router.navigate([route])
+  }
+
+  protected readonly localStorage = localStorage;
 }
