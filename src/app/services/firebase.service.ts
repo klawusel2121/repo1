@@ -14,7 +14,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "./auth.service";
-import {TenantInterface} from "../models/tenant-interface";
+import {HasTenant} from "../models/has-tenant";
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,8 @@ export class FirebaseService {
   }
 
   add(collectionName: string, data: any) {
-    data.tenantId = localStorage.getItem('tenant');
+    data.tenantId = localStorage.getItem('tenant') ?? '';
+    data.createdAt = new Date().toLocaleString();
     addDoc(collection(this.firestore, collectionName), <any>data).then((documentReference: any) => {
       console.log('addDoc', documentReference);
     });
@@ -48,6 +49,7 @@ export class FirebaseService {
   };
 
   update(collectionName: string, item: any, patchValue: any) {
+    patchValue.changedAt = new Date().toLocaleString();
     const docItem = doc(this.firestore, `${collectionName}/${item.id}`);
     setDoc(docItem, {...item, ...patchValue}).then((documentReference: any) => {
       console.log('setDoc', documentReference);

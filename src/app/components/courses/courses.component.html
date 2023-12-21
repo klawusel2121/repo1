@@ -1,0 +1,20 @@
+<button class="btn btn-success" (click)="add()">ADD</button>
+
+<app-course-edit (onApply)="onApply($event)" (onCancel)="onCancel()"></app-course-edit>
+
+<clr-datagrid>
+  <clr-dg-column>Desc</clr-dg-column>
+  <clr-dg-column>Change date</clr-dg-column>
+  <clr-dg-column>Creation date</clr-dg-column>
+  <clr-dg-row *ngFor="let item of items$ | async" (dblclick)="editItem(item)">
+    <clr-dg-cell>{{item.name}}</clr-dg-cell>
+    <clr-dg-cell>{{item.changedAt}}</clr-dg-cell>
+    <clr-dg-cell>{{item.createdAt}}</clr-dg-cell>
+    <clr-dg-action-overflow>
+      <button class="action-item" (click)="edit(item)">Edit</button>
+      <button class="action-item" (click)="remove(item)">Delete</button>
+    </clr-dg-action-overflow>
+  </clr-dg-row>
+
+  <clr-dg-footer>{{(items$ | async)?.length}} courses</clr-dg-footer>
+</clr-datagrid>

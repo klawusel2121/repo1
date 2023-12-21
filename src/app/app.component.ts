@@ -4,6 +4,7 @@ import {FirebaseService} from "./services/firebase.service";
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "./services/auth.service";
 import {Router} from "@angular/router";
+import {Course} from "./models/course";
 
 
 @Component({
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const user = localStorage.getItem('user');
     if (user) {
+      const c: Course = { name: '1', tenantId: '2'}
       const userData = JSON.parse(user);
       const email = userData?.email;
       const password = localStorage.getItem('password');

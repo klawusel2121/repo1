@@ -10,7 +10,8 @@ export class RegisterUserComponent {
   tenantId: string = '';
   constructor(
     public authService: AuthService
-  ) { }
+  ) {
+  }
 
   onRegister(email: string, password: string) {
     this.authService.Register(email, password);

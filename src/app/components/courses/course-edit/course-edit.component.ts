@@ -1,15 +1,15 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import { Item } from '../item';
+import {Course} from "../../../models/course";
 
 @Component({
-  selector: 'app-item-edit',
-  templateUrl: './item-edit.component.html',
-  styleUrl: './item-edit.component.css'
+  selector: 'app-course-edit',
+  templateUrl: './course-edit.component.html',
+  styleUrl: './course-edit.component.css'
 })
-export class ItemEditComponent {
+export class CourseEditComponent {
   show = false;
 
-  item!: Item;
+  item!: Course;
 
   @Output() onApply: EventEmitter<any> = new EventEmitter<any>();
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
@@ -17,7 +17,7 @@ export class ItemEditComponent {
   constructor() {
   }
 
-  open(item: Item) {
+  open(item: Course) {
     this.item = Object.create(item);
     this.show = true;
   }

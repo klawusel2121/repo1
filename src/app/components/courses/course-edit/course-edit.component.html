@@ -5,13 +5,13 @@
         <button aria-label="Close" class="close" type="button">
           <cds-icon shape="close"></cds-icon>
         </button>
-        <h3 class="modal-title">I have a nice title</h3>
       </div>
+      <h3 class="modal-title">Edit course</h3>
       <div class="modal-body">
-        <input [(ngModel)]="item.desc" type="text" class="formControl" placeholder="Description" #desc required>
+        <input [(ngModel)]="item.name" type="text" class="formControl" placeholder="Description" #desc required>
       </div>
       <div class="modal-footer">
-        <button (click)="onCancel.emit(item)" class="btn btn-outline" type="button">Cancel</button>
+        <button (click)="onCancel.emit()" class="btn btn-outline" type="button">Cancel</button>
         <button (click)="onApply.emit(item)" class="btn btn-primary" type="button">Ok</button>
       </div>
     </div>
