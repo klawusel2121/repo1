@@ -7,7 +7,7 @@
   <clr-dg-column>Level</clr-dg-column>
   <clr-dg-column>Change date</clr-dg-column>
   <clr-dg-column>Creation date</clr-dg-column>
-  <clr-dg-row *ngFor="let item of items$ | async" (dblclick)="editItem(item)">
+  <clr-dg-row *ngFor="let item of items$ | async" (dblclick)="edit(item)">
     <clr-dg-cell>{{item.name}}</clr-dg-cell>
     <clr-dg-cell>{{item.level}}</clr-dg-cell>
     <clr-dg-cell>{{item.changedAt}}</clr-dg-cell>
@@ -18,5 +18,5 @@
     </clr-dg-action-overflow>
   </clr-dg-row>
 
-  <clr-dg-footer>{{(items$ | async)?.length}} courses</clr-dg-footer>
+  <clr-dg-footer>{{(items$ | async)?.length}} grades</clr-dg-footer>
 </clr-datagrid>

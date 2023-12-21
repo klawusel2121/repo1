@@ -43,7 +43,7 @@ export class GradesComponent {
   }
 
   onApply(item: Grade) {
-    this.fbs.update(this.source, this.editItem, {name: item.name});
+    this.fbs.update(this.source, this.editItem, {name: item.name, level: item.level});
     this.modal.show = false;
   }
 
