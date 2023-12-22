@@ -24,6 +24,8 @@ import { CoursesComponent } from './components/courses/courses.component';
 import { CourseEditComponent } from './components/courses/course-edit/course-edit.component';
 import { GradeEditComponent } from './components/grades/grade-edit/grade-edit.component';
 import { TeacherEditComponent } from './components/teachers/teacher-edit/teacher-edit.component';
+import { GroupsComponent } from './components/groups/groups.component';
+import { GroupEditComponent } from './components/groups/group-edit/group-edit.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { TeacherEditComponent } from './components/teachers/teacher-edit/teacher
     CoursesComponent,
     CourseEditComponent,
     GradeEditComponent,
-    TeacherEditComponent
+    TeacherEditComponent,
+    GroupsComponent,
+    GroupEditComponent
   ],
   imports: [
     BrowserModule,
