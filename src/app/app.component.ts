@@ -5,7 +5,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "./services/auth.service";
 import {Router} from "@angular/router";
 import {Course} from "./models/course";
-
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
@@ -17,8 +17,11 @@ export class AppComponent implements OnInit {
   tenantId: string = '';
   constructor(
     public authService: AuthService,
-    public router: Router
+    public router: Router,
+    private translate: TranslateService
   ) {
+    translate.setDefaultLang('en-GB');
+    translate.use('en-GB');
     this.tenantId = localStorage.getItem('tenant') as string
   }
 
