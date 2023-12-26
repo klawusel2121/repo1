@@ -39,6 +39,9 @@ export class RoomsComponent {
   };
 
   edit(item: Partial<Room>) {
+    if (!('isNew' in item)) {
+      item.isNew = false;
+    }
     this.editItem = item;
     this.modal.open(item);
   }

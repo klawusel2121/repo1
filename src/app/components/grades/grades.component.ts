@@ -40,6 +40,9 @@ export class GradesComponent {
   };
 
   edit(item: Partial<Grade>) {
+    if (!('isNew' in item)) {
+      item.isNew = false;
+    }
     this.editItem = item;
     this.modal.open(item);
   }

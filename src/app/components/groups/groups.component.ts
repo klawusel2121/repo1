@@ -39,6 +39,9 @@ export class GroupsComponent {
   };
 
   edit(item: Partial<Group>) {
+    if (!('isNew' in item)) {
+      item.isNew = false;
+    }
     this.editItem = item;
     this.modal.open(item);
   }

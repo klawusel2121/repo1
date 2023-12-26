@@ -39,6 +39,9 @@ export class CoursesComponent {
   };
 
   edit(item: Partial<Course>) {
+    if (!('isNew' in item)) {
+      item.isNew = false;
+    }
     this.editItem = item;
     this.modal.open(item);
   }
