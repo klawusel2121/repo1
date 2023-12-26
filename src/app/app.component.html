@@ -25,6 +25,11 @@
     </a>
   </div>
   <div class="branding">
+    <a href="rooms" (click)="navigate('rooms', $event)" class="nav-link">
+      <span class="title">{{ 'App.Room.Rooms' | translate }}</span>
+    </a>
+  </div>
+  <div class="branding">
     <clr-combobox (ngModelChange)="changeLanguage($event)" [(ngModel)]="country" name="myState" required>
       <clr-options>
         <clr-option *clrOptionItems="let country of countries; field:'name'" [clrValue]="country">

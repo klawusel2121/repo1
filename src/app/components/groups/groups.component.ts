@@ -3,6 +3,7 @@ import {Observable, of} from "rxjs";
 import {FirebaseService} from "../../services/firebase.service";
 import {Group} from "../../models/group";
 import {GroupEditComponent} from "./group-edit/group-edit.component";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-groups',
@@ -19,6 +20,7 @@ export class GroupsComponent {
 
   constructor(
     private fbs: FirebaseService,
+    private translate: TranslateService
   ) {
   }
 
@@ -27,9 +29,9 @@ export class GroupsComponent {
   }
 
   add() {
-    const item = {name: 'GRADE'};
-    this.fbs.add(this.source, item)
-    //setTimeout(() => {this.edit(item);}, 100)
+    const name = this.translate.instant('App.Group.Group')
+    const item = {name: name, isNew: true};
+    setTimeout(() => {this.edit(item);}, 100)
   }
 
   remove(item: Group) {
@@ -42,7 +44,13 @@ export class GroupsComponent {
   }
 
   onApply(item: Group) {
-    this.fbs.update(this.source, this.editItem, {name: item.name, grade: item.grade});
+    const patch = {name: item.name, grade: item.grade};
+    if (this.editItem.isNew) {
+      this.editItem.isNew = false;
+      this.fbs.add(this.source, {...this.editItem, ...patch});
+    } else {
+      this.fbs.update(this.source, this.editItem, patch);
+    }
     this.modal.show = false;
   }
 

@@ -1,23 +1,22 @@
 import {Component, ViewChild} from '@angular/core';
 import {Observable, of} from "rxjs";
 import {FirebaseService} from "../../services/firebase.service";
-import {Course} from "../../models/course";
-import {GradeEditComponent} from "./grade-edit/grade-edit.component";
-import {Grade} from "../../models/grade";
 import {TranslateService} from "@ngx-translate/core";
+import {RoomEditComponent} from "./room-edit/room-edit.component";
+import {Room} from "../../models/room";
 
 @Component({
-  selector: 'app-grades',
-  templateUrl: './grades.component.html',
-  styleUrl: './grades.component.css'
+  selector: 'app-rooms',
+  templateUrl: './rooms.component.html',
+  styleUrl: './rooms.component.css'
 })
-export class GradesComponent {
+export class RoomsComponent {
   items$: Observable<any[]> = of([]);
-  editItem: any;
-  source = 'grades';
+  editItem: Partial<Room> = {};
+  source = 'rooms';
 
-  @ViewChild(GradeEditComponent)
-  modal: GradeEditComponent = new GradeEditComponent;
+  @ViewChild(RoomEditComponent)
+  modal: RoomEditComponent = new RoomEditComponent;
 
   constructor(
     private fbs: FirebaseService,
@@ -30,22 +29,22 @@ export class GradesComponent {
   }
 
   add() {
-    const name = this.translate.instant('App.Grade.Grade')
-    const item = {name: name, isNew: true};
+    const name = this.translate.instant('App.Room.Room')
+    const item = {name: name, isNew: true, size: 20};
     setTimeout(() => {this.edit(item);}, 100)
   }
 
-  remove(item: Grade) {
+  remove(item: Room) {
     this.fbs.remove(this.source, item.id!);
   };
 
-  edit(item: Partial<Grade>) {
+  edit(item: Partial<Room>) {
     this.editItem = item;
     this.modal.open(item);
   }
 
-  onApply(item: Grade) {
-    const patch = {name: item.name, level: item.level};
+  onApply(item: Room) {
+    const patch = {name: item.name, size: item.size};
     if (this.editItem.isNew) {
       this.editItem.isNew = false;
       this.fbs.add(this.source, {...this.editItem, ...patch});
@@ -58,4 +57,5 @@ export class GradesComponent {
   onCancel() {
     this.modal.show = false;
   }
+
 }

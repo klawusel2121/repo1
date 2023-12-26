@@ -1,0 +1,28 @@
+<div class="modal" *ngIf="show">
+  <div class="modal-dialog" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-label="Close" class="close" type="button">
+          <cds-icon shape="close"></cds-icon>
+        </button>
+      </div>
+      <h3 class="modal-title">{{ 'App.Action.Edit' | translate}}: {{ 'App.Group.Group' | translate}}</h3>
+
+      <div class="modal-body">
+        <clr-input-container>
+          <label>{{'App.Fields.Name' | translate}}</label>
+          <input clrInput [(ngModel)]="item.name" type="text" class="formControl" placeholder="Name" #desc required>
+        </clr-input-container>
+        <clr-input-container>
+          <label>{{'App.Fields.Size' | translate}}</label>
+          <input clrInput [(ngModel)]="item.size" type="text" class="formControl" placeholder="Size" #desc required>
+        </clr-input-container>
+      </div>
+      <div class="modal-footer">
+        <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate}}</button>
+        <button (click)="onApply.emit(item)" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop" aria-hidden="true" *ngIf="show"></div>

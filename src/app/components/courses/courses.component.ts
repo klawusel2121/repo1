@@ -3,6 +3,7 @@ import {Observable, of} from "rxjs";
 import {FirebaseService} from "../../services/firebase.service";
 import {Course} from "../../models/course";
 import {CourseEditComponent} from "./course-edit/course-edit.component";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-courses',
@@ -19,6 +20,7 @@ export class CoursesComponent {
 
   constructor(
     private fbs: FirebaseService,
+    private translate: TranslateService
   ) {
   }
 
@@ -27,22 +29,28 @@ export class CoursesComponent {
   }
 
   add() {
-    const item = {name: 'COURSE'};
-    this.fbs.add(this.source, item)
-    setTimeout(() => {this.editItem(item);}, 100)
+    const name = this.translate.instant('App.Course.Course')
+    const item = {name: name, isNew: true};
+    setTimeout(() => {this.edit(item);}, 100)
   }
 
   remove(item: Course) {
     this.fbs.remove(this.source, item.id!);
   };
 
-  edit(item: Course) {
+  edit(item: Partial<Course>) {
     this.editItem = item;
     this.modal.open(item);
   }
 
   onApply(item: Course) {
-    this.fbs.update(this.source, this.editItem, {name: item.name});
+    const patch = {name: item.name};
+    if (this.editItem.isNew) {
+      this.editItem.isNew = false;
+      this.fbs.add(this.source, {...this.editItem, ...patch});
+    } else {
+      this.fbs.update(this.source, this.editItem, patch);
+    }
     this.modal.show = false;
   }
 

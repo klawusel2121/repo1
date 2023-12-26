@@ -6,4 +6,5 @@ import {HasId} from "./has-id";
 export interface Teacher extends HasId, HasTenant, HasTimestamps  {
   name: string;
   subjects: Map<Course, Array<number>>
+  isNew: boolean;
 }

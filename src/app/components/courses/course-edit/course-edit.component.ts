@@ -17,7 +17,7 @@ export class CourseEditComponent {
   constructor() {
   }
 
-  open(item: Course) {
+  open(item: Partial<Course>) {
     this.item = Object.create(item);
     this.show = true;
   }

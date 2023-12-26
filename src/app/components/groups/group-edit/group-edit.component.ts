@@ -21,7 +21,6 @@ export class GroupEditComponent {
   grades!: Array<Grade>;
 
   constructor() {
-
     this.grades$ =  this.fbs.getCollection('grades');
     this.grades$.pipe(takeUntilDestroyed()).subscribe(grades => this.grades = grades)
   }

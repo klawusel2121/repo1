@@ -17,7 +17,7 @@ export class GradeEditComponent {
   constructor() {
   }
 
-  open(item: Grade) {
+  open(item: Partial<Grade>) {
     this.item = Object.create(item);
     this.show = true;
   }
