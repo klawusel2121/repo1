@@ -6,24 +6,34 @@
   </div>
   <div class="branding">
     <a href="courses" (click)="navigate('courses', $event)" class="nav-link">
-      <span class="title">Courses</span>
+      <span class="title">{{ 'App.Course.Courses' | translate }}</span>
     </a>
   </div>
   <div class="branding">
     <a href="grades" (click)="navigate('grades', $event)" class="nav-link">
-      <span class="title">Grades</span>
+      <span class="title">{{ 'App.Grade.Grades' | translate }}</span>
     </a>
   </div>
   <div class="branding">
     <a href="teachers" (click)="navigate('teachers', $event)" class="nav-link">
-      <span class="title">Teachers</span>
+      <span class="title">{{ 'App.Teacher.Teachers' | translate }}</span>
     </a>
   </div>
   <div class="branding">
     <a href="groups" (click)="navigate('groups', $event)" class="nav-link">
-      <span class="title">Groups</span>
+      <span class="title">{{ 'App.Group.Groups' | translate }}</span>
     </a>
   </div>
+  <div class="branding">
+    <clr-combobox (ngModelChange)="changeLanguage($event)" [(ngModel)]="country" name="myState" required>
+      <clr-options>
+        <clr-option *clrOptionItems="let country of countries; field:'name'" [clrValue]="country">
+          <img height="16" [src]="'../assets/flags/' + country.name.toLowerCase() + '.svg'">{{country.name}}
+        </clr-option>
+      </clr-options>
+    </clr-combobox>
+  </div>
+
   <div class="header-actions">
     <clr-dropdown>
       <button class="nav-text" clrDropdownTrigger aria-label="open user profile">

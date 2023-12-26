@@ -1,20 +1,20 @@
-<button class="btn btn-success" (click)="add()">ADD</button>
+<button class="btn btn-success" (click)="add()">{{ 'App.Action.Add' | translate}}</button>
 
 <app-grade-edit (onApply)="onApply($event)" (onCancel)="onCancel()"></app-grade-edit>
 
 <clr-datagrid>
-  <clr-dg-column>Name</clr-dg-column>
-  <clr-dg-column>Level</clr-dg-column>
-  <clr-dg-column>Change date</clr-dg-column>
-  <clr-dg-column>Creation date</clr-dg-column>
+  <clr-dg-column>{{ 'App.Fields.Name' | translate}}</clr-dg-column>
+  <clr-dg-column>{{ 'App.Grade.Level' | translate}}</clr-dg-column>
+  <clr-dg-column>{{ 'App.Fields.Changed' | translate}}</clr-dg-column>
+  <clr-dg-column>{{ 'App.Fields.Created' | translate}}</clr-dg-column>
   <clr-dg-row *ngFor="let item of items$ | async" (dblclick)="edit(item)">
     <clr-dg-cell>{{item.name}}</clr-dg-cell>
     <clr-dg-cell>{{item.level}}</clr-dg-cell>
     <clr-dg-cell>{{item.changedAt}}</clr-dg-cell>
     <clr-dg-cell>{{item.createdAt}}</clr-dg-cell>
     <clr-dg-action-overflow>
-      <button class="action-item" (click)="edit(item)">Edit</button>
-      <button class="action-item" (click)="remove(item)">Delete</button>
+      <button class="action-item" (click)="edit(item)">{{ 'App.Action.Edit' | translate}}</button>
+      <button class="action-item" (click)="remove(item)">{{ 'App.Action.Delete' | translate}}</button>
     </clr-dg-action-overflow>
   </clr-dg-row>
 

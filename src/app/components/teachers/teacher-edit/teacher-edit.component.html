@@ -6,13 +6,14 @@
           <cds-icon shape="close"></cds-icon>
         </button>
       </div>
-      <h3 class="modal-title">Edit teacher</h3>
+      <h3 class="modal-title">{{ 'App.Action.Edit' | translate}}: {{ 'App.Teacher.Teacher' | translate}}</h3>
+
       <div class="modal-body">
         <input [(ngModel)]="item.name" type="text" class="formControl" placeholder="Name" #desc required>
       </div>
       <div class="modal-footer">
-        <button (click)="onCancel.emit()" class="btn btn-outline" type="button">Cancel</button>
-        <button (click)="onApply.emit(item)" class="btn btn-primary" type="button">Ok</button>
+        <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate}}</button>
+        <button (click)="onApply.emit(item)" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate}}</button>
       </div>
     </div>
   </div>
