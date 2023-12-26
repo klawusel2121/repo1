@@ -9,8 +9,20 @@
       <h3 class="modal-title">{{ 'App.Action.Edit' | translate}}: {{ 'App.Group.Group' | translate}}</h3>
 
       <div class="modal-body">
-        <input [(ngModel)]="item.name" type="text" class="formControl" placeholder="Name" #desc required>
-        <input [(ngModel)]="item.grade" type="text" class="formControl" placeholder="Grade" #desc required>
+        <clr-input-container>
+          <label>{{'App.Fields.Name' | translate}}</label>
+          <input clrInput [(ngModel)]="item.name" type="text" class="formControl" placeholder="Name" #desc required>
+        </clr-input-container>
+        <clr-input-container>
+          <label>{{'App.Grade.Grade' | translate}}</label>
+          <clr-combobox clrInput [(ngModel)]="item.grade" name="myState" required>
+            <clr-options>
+              <clr-option *clrOptionItems="let grade of grades; field:'level'" [clrValue]="grade">
+                {{grade.level}}
+              </clr-option>
+            </clr-options>
+          </clr-combobox>‚
+        </clr-input-container>
       </div>
       <div class="modal-footer">
         <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate}}</button>

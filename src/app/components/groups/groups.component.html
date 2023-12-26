@@ -9,7 +9,7 @@
   <clr-dg-column>{{ 'App.Fields.Created' | translate}}</clr-dg-column>
   <clr-dg-row *ngFor="let item of items$ | async" (dblclick)="edit(item)">
     <clr-dg-cell>{{item.name}}</clr-dg-cell>
-    <clr-dg-cell>{{item.grade}}</clr-dg-cell>
+    <clr-dg-cell>{{item.grade?.level}}</clr-dg-cell>
     <clr-dg-cell>{{item.changedAt}}</clr-dg-cell>
     <clr-dg-cell>{{item.createdAt}}</clr-dg-cell>
     <clr-dg-action-overflow>

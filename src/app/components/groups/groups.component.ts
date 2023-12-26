@@ -27,16 +27,16 @@ export class GroupsComponent {
   }
 
   add() {
-    const item = {name: 'GRADE', level: 1};
+    const item = {name: 'GRADE'};
     this.fbs.add(this.source, item)
-    setTimeout(() => {this.editItem(item);}, 100)
+    //setTimeout(() => {this.edit(item);}, 100)
   }
 
   remove(item: Group) {
     this.fbs.remove(this.source, item.id!);
   };
 
-  edit(item: Group) {
+  edit(item: Partial<Group>) {
     this.editItem = item;
     this.modal.open(item);
   }

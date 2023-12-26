@@ -1,5 +1,9 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {Group} from "../../../models/group";
+import {FirebaseService} from "../../../services/firebase.service";
+import {Observable, of} from "rxjs";
+import {Grade} from "../../../models/grade";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-group-edit',
@@ -8,16 +12,21 @@ import {Group} from "../../../models/group";
 })
 export class GroupEditComponent {
   show = false;
-
+  fbs = inject(FirebaseService);
+  grades$: Observable<Grade[]> = of([]);
   item!: Group;
 
   @Output() onApply: EventEmitter<any> = new EventEmitter<any>();
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
+  grades!: Array<Grade>;
 
   constructor() {
+
+    this.grades$ =  this.fbs.getCollection('grades');
+    this.grades$.pipe(takeUntilDestroyed()).subscribe(grades => this.grades = grades)
   }
 
-  open(item: Group) {
+  open(item: Partial<Group>) {
     this.item = Object.create(item);
     this.show = true;
   }
