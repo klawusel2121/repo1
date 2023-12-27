@@ -6,38 +6,28 @@
           <cds-icon shape="close"></cds-icon>
         </button>
       </div>
-      <h3 class="modal-title">{{ 'App.Action.Edit' | translate }}: {{ 'App.Group.Group' | translate }}</h3>
-
+      <h3 class="modal-title">{{ 'App.Action.Edit' | translate}}: {{ 'App.Group.Group' | translate}}</h3>
       <div class="modal-body">
         <form clrForm clrLayout="horizontal">
           <clr-input-container>
-            <label>{{ 'App.Fields.Name' | translate }}</label>
-            <input clrInput [(ngModel)]="item.name" type="text" name="name" class="formControl" placeholder="Name" #desc required>
-          </clr-input-container>
-          <clr-input-container>
-            <label>{{ 'App.Grade.Grade' | translate }}</label>
-            <select [(ngModel)]="item.grade" name="grade">
-              <clr-options>
-                <clr-option *clrOptionItems="let grade of grades; field:'level'" [clrValue]="grade">
-                  {{ grade.level }}
-                </clr-option>
-              </clr-options>
-            </select>
-            <clr-combobox clrInput [(ngModel)]="item.grade" name="grade" required>
-              <clr-options>
-                <clr-option *clrOptionItems="let grade of grades; field:'level'" [clrValue]="grade">
-                  {{ grade.level }}
-                </clr-option>
-              </clr-options>
-            </clr-combobox>
-          </clr-input-container>
+          <label>{{'App.Fields.Name' | translate}}</label>
+          <input clrInput [(ngModel)]="item.name" type="text" class="formControl" #desc required>
+        </clr-input-container>
+        <clr-input-container>
+          <label>{{'App.Grade.Grade' | translate}}</label>
+          <clr-combobox clrInput [(ngModel)]="item.grade" name="myState" required>
+            <clr-options>
+              <clr-option *clrOptionItems="let grade of grades; field:'level'" [clrValue]="grade">
+                {{grade.level}}
+              </clr-option>
+            </clr-options>
+          </clr-combobox>
+        </clr-input-container>
         </form>
       </div>
       <div class="modal-footer">
-        <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate }}
-        </button>
-        <button (click)="onApply.emit(item)" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate }}
-        </button>
+        <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate}}</button>
+        <button (click)="onApply.emit(item)" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate}}</button>
       </div>
     </div>
   </div>

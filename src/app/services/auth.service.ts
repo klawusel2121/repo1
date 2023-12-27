@@ -21,6 +21,8 @@ export class AuthService {
     {value: 'TEST-57f99', label: 'TEST'},
     {value: 'PROD-zs4ha', label: 'PROD'},
   ]
+  TenantDetails: any;
+
   constructor(private auth: Auth,private router : Router, public ngZone: NgZone){
     onAuthStateChanged(this.auth,(user: any)=>{
       if(user){
@@ -97,7 +99,8 @@ export class AuthService {
   }
   //Logout
   Logout() {
-    this.auth.tenantId = localStorage.getItem('tenant');
+    this.auth.tenantId = null; //localStorage.getItem('tenant');
+    localStorage.setItem('tenant', '');
     signOut(this.auth).then(()=>this.router.navigate(['/sign-in']))
   }
 

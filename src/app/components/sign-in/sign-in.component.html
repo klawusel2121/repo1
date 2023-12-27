@@ -1,41 +1,36 @@
 <section>
-  <div class="container-fluid h-custom">
-  <app-tenant-select></app-tenant-select>
-
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <!-- Email input -->
-        <div class="formGroup">
-          <input type="text" class="formControl" placeholder="Username" #userName required>
-        </div>
-        <!-- Password input -->
-        <div class="formGroup">
-          <input type="password" class="formControl" placeholder="Password" #userPassword required>
-        </div>
-        <!--Redirectio to register components -->
-        <div class="text-center text-lg-start mt-4 pt-2">
-          <p class="small mt-2 pt-1 mb-0">Forget Password ?
-            <a  routerLink="/forgot-password"
-                class="link-danger">send email </a></p>
-        </div>
-        <!--Login Button -->
-        <div class="text-center mt-4 pt-2">
-          <button
-            type="button"
-            color="primary"
-            class="btn btn-primary btn-lg btn-block"
-            (click)="onLogin(userName.value, userPassword.value)">
-            Login
-          </button>
-        </div>
-        <!--Redirectio to register components -->
-        <div class="text-center text-lg-start mt-4 pt-2">
-          <p class="small mt-2 pt-1 mb-0">Don't have an account?
-            <a
-              routerLink="/register-user"
-              class="link-danger">Register</a></p>
-        </div>
-      </div>
-    </div>
+  <form clrForm clrLayout="horizontal">
+    <app-tenant-select></app-tenant-select>
+    <clr-input-container>
+      <label>{{ 'App.Authenticate.Username' | translate }}</label>
+      <input clrInput type="email" class="formControl" #userName required>
+    </clr-input-container>
+    <clr-input-container>
+      <label>{{ 'App.Authenticate.Password' | translate }}</label>
+      <input clrInput type="password" class="formControl" #userPassword required>
+    </clr-input-container>
+  </form>
+  <!--Redirectio to register components -->
+  <div class="text-center text-lg-start mt-4 pt-2">
+    <p class="small mt-2 pt-1 mb-0">{{ 'App.Authenticate.ForgotPassword' | translate}}
+      <a routerLink="/forgot-password"
+         class="link-danger">{{ 'App.Authenticate.SendEmail' | translate}}</a></p>
+  </div>
+  <!--Login Button -->
+  <div class="text-center mt-4 pt-2">
+    <button
+      type="button"
+      color="primary"
+      class="btn btn-primary btn-lg btn-block"
+      (click)="onLogin(userName.value, userPassword.value)">
+      {{ 'App.Authenticate.Login' | translate}}
+    </button>
+  </div>
+  <!--Redirectio to register components -->
+  <div class="text-center text-lg-start mt-4 pt-2">
+    <p class="small mt-2 pt-1 mb-0">{{ 'App.Authenticate.NoAccount' | translate}}
+      <a
+        routerLink="/register-user"
+        class="link-danger">{{ 'App.Authenticate.Register' | translate}}</a></p>
   </div>
 </section>

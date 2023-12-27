@@ -16,7 +16,7 @@
     </div>
 
     <div class="header-actions">
-      <clr-dropdown>
+      <clr-dropdown *ngIf="authService.isLoggedIn">
         <button class="nav-text" clrDropdownTrigger aria-label="open user profile">
           {{ authService.UserData?.email }} [{{ authService.UserData?.tenantId }}]
           <cds-icon shape="angle" direction="down"></cds-icon>
@@ -28,7 +28,7 @@
     </div>
   </header>
   <div class="content-container">
-    <clr-vertical-nav>
+    <clr-vertical-nav *ngIf="authService.isLoggedIn">
       <a clrVerticalNavLink routerLink="grades" routerLinkActive="active">{{ 'App.Grade.Grades' | translate }}</a>
       <div class="nav-divider"></div>
       <a clrVerticalNavLink routerLink="courses" routerLinkActive="active">{{ 'App.Course.Courses' | translate }}</a>

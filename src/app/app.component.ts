@@ -15,6 +15,9 @@ export class AppComponent implements OnInit {
   country: any = this.countries[0];
 
   tenantId: string = '';
+
+  protected readonly localStorage = localStorage;
+
   constructor(
     public authService: AuthService,
     public router: Router,
@@ -37,15 +40,10 @@ export class AppComponent implements OnInit {
         this.authService.Login(email, password);
       }
     }
-
   }
 
   signIn() {
     this.router.navigate(['sign-in'])
-  }
-
-  items() {
-    this.router.navigate(['items'])
   }
 
   navigate(path: string, event: any) {
@@ -60,7 +58,6 @@ export class AppComponent implements OnInit {
     this.authService.setTenant(event);
   }
 
-  protected readonly localStorage = localStorage;
 
   onLogout(event: any) {
     event.preventDefault();
