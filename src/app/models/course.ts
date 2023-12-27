@@ -7,3 +7,4 @@ import {IsNew} from "./is-new";
 export interface Course extends HasId, HasTenant, HasTimestamps, IsNew {
   name: string;
 }
+

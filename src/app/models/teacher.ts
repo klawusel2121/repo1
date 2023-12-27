@@ -8,3 +8,4 @@ export interface Teacher extends HasId, HasTenant, HasTimestamps, IsNew {
   name: string;
   subjects: Map<Course, Array<number>>
 }
+

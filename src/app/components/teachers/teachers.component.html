@@ -15,5 +15,5 @@
       <button class="action-item" (click)="remove(item)">{{ 'App.Action.Delete' | translate}}</button>
     </clr-dg-action-overflow>
   </clr-dg-row>
-  <clr-dg-footer>{{(items$ | async)?.length}} teachers</clr-dg-footer>
+  <clr-dg-footer>{{(items$ | async)?.length}}  {{ 'App.Teacher.Teachers' | translate }}</clr-dg-footer>
 </clr-datagrid>
