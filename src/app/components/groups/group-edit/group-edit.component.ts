@@ -26,6 +26,7 @@ export class GroupEditComponent {
   }
 
   open(item: Partial<Group>) {
+    console.log('open', item)
     this.item = Object.create(item);
     this.show = true;
   }

@@ -15,7 +15,6 @@ import { AuthService } from "./services/auth.service";
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import {environment} from "./environments/environment";
 import { TenantSelectComponent } from './components/tenant-select/tenant-select.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
@@ -39,7 +38,6 @@ import { RoomEditComponent } from './components/rooms/room-edit/room-edit.compon
     SignInComponent,
     RegisterUserComponent,
     DashboardComponent,
-    ForgotPasswordComponent,
     TenantSelectComponent,
     TeachersComponent,
     GradesComponent,
