@@ -1,54 +1,43 @@
-<header class="header-6">
-  <div class="branding">
-    <a href="hourglass" (click)="navigate('', $event)" class="nav-link">
-      <span class="title">{{ 'App.Title' | translate}}</span>
-    </a>
-  </div>
-  <div class="branding">
-    <a href="courses" (click)="navigate('courses', $event)" class="nav-link">
-      <span class="title">{{ 'App.Course.Courses' | translate }}</span>
-    </a>
-  </div>
-  <div class="branding">
-    <a href="grades" (click)="navigate('grades', $event)" class="nav-link">
-      <span class="title">{{ 'App.Grade.Grades' | translate }}</span>
-    </a>
-  </div>
-  <div class="branding">
-    <a href="teachers" (click)="navigate('teachers', $event)" class="nav-link">
-      <span class="title">{{ 'App.Teacher.Teachers' | translate }}</span>
-    </a>
-  </div>
-  <div class="branding">
-    <a href="groups" (click)="navigate('groups', $event)" class="nav-link">
-      <span class="title">{{ 'App.Group.Groups' | translate }}</span>
-    </a>
-  </div>
-  <div class="branding">
-    <a href="rooms" (click)="navigate('rooms', $event)" class="nav-link">
-      <span class="title">{{ 'App.Room.Rooms' | translate }}</span>
-    </a>
-  </div>
-  <div class="branding">
-    <clr-combobox (ngModelChange)="changeLanguage($event)" [(ngModel)]="country" name="myState" required>
-      <clr-options>
-        <clr-option *clrOptionItems="let country of countries; field:'name'" [clrValue]="country">
-          <img height="16" [src]="'../assets/flags/' + country.name.toLowerCase() + '.svg'">{{country.name}}
-        </clr-option>
-      </clr-options>
-    </clr-combobox>
-  </div>
+<div class="main-container">
+  <header class="header-6">
+    <div class="branding">
+      <a href="hourglass" (click)="navigate('', $event)" class="nav-link">
+        <span class="title">{{ 'App.Title' | translate }}</span>
+      </a>
+    </div>
+    <div class="branding">
+      <clr-combobox (ngModelChange)="changeLanguage($event)" [(ngModel)]="country" name="myState" required>
+        <clr-options>
+          <clr-option *clrOptionItems="let country of countries; field:'name'" [clrValue]="country">
+            <img height="16" [src]="'../assets/flags/' + country.name.toLowerCase() + '.svg'">{{ country.name }}
+          </clr-option>
+        </clr-options>
+      </clr-combobox>
+    </div>
 
-  <div class="header-actions">
-    <clr-dropdown>
-      <button class="nav-text" clrDropdownTrigger aria-label="open user profile">
-        {{ authService.UserData?.email }} [{{ authService.UserData?.tenantId }}]
-        <cds-icon shape="angle" direction="down"></cds-icon>
-      </button>
-      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-        <a href="logout" (click)="onLogout($event)" clrDropdownItem>Log out</a>
-      </clr-dropdown-menu>
-    </clr-dropdown>
+    <div class="header-actions">
+      <clr-dropdown>
+        <button class="nav-text" clrDropdownTrigger aria-label="open user profile">
+          {{ authService.UserData?.email }} [{{ authService.UserData?.tenantId }}]
+          <cds-icon shape="angle" direction="down"></cds-icon>
+        </button>
+        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+          <a href="logout" (click)="onLogout($event)" clrDropdownItem>Log out</a>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+    </div>
+  </header>
+  <div class="content-container">
+    <clr-vertical-nav>
+      <a clrVerticalNavLink routerLink="grades" routerLinkActive="active">{{ 'App.Grade.Grades' | translate }}</a>
+      <div class="nav-divider"></div>
+      <a clrVerticalNavLink routerLink="courses" routerLinkActive="active">{{ 'App.Course.Courses' | translate }}</a>
+      <a clrVerticalNavLink routerLink="groups" routerLinkActive="active">{{ 'App.Group.Groups' | translate }}</a>
+      <a clrVerticalNavLink routerLink="rooms" routerLinkActive="active">{{ 'App.Room.Rooms' | translate }}</a>
+      <a clrVerticalNavLink routerLink="teachers" routerLinkActive="active">{{ 'App.Teacher.Teachers' | translate }}</a>
+    </clr-vertical-nav>
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-</header>
-<router-outlet></router-outlet>
+</div>
