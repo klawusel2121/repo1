@@ -21,8 +21,9 @@ export class GroupEditComponent {
   grades!: Array<Grade>;
 
   constructor() {
-    this.grades$ =  this.fbs.getCollection('grades');
-    this.grades$.pipe(takeUntilDestroyed()).subscribe(grades => this.grades = grades)
+    this.grades$ = this.fbs.getCollection('grades');
+    this.grades$.pipe(takeUntilDestroyed()).subscribe(
+      grades => this.grades = grades.sort((a, b) => a.level - b.level))
   }
 
   open(item: Partial<Group>) {

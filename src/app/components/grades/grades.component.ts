@@ -1,10 +1,10 @@
 import {Component, ViewChild} from '@angular/core';
-import {Observable, of} from "rxjs";
+import {Observable, of, tap} from "rxjs";
 import {FirebaseService} from "../../services/firebase.service";
-import {Course} from "../../models/course";
 import {GradeEditComponent} from "./grade-edit/grade-edit.component";
 import {Grade} from "../../models/grade";
 import {TranslateService} from "@ngx-translate/core";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-grades',
@@ -12,7 +12,8 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrl: './grades.component.css'
 })
 export class GradesComponent {
-  items$: Observable<any[]> = of([]);
+  items$: Observable<Array<Grade>> = of([]);
+  items: Array<Grade> = [];
   editItem: any;
   source = 'grades';
 
@@ -27,12 +28,16 @@ export class GradesComponent {
 
   ngOnInit(): void {
     this.items$ = this.fbs.getCollection(this.source);
+    this.items$.pipe().subscribe(items =>
+      this.items = items.sort((a, b) => a.level - b.level))
   }
 
   add() {
     const name = this.translate.instant('App.Grade.Grade')
     const item = {name: name, isNew: true};
-    setTimeout(() => {this.edit(item);}, 100)
+    setTimeout(() => {
+      this.edit(item);
+    }, 100)
   }
 
   remove(item: Grade) {
