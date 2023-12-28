@@ -5,6 +5,7 @@ import {GradeEditComponent} from "./grade-edit/grade-edit.component";
 import {Grade} from "../../models/grade";
 import {TranslateService} from "@ngx-translate/core";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {StateService} from "../../services/state.service";
 
 @Component({
   selector: 'app-grades',
@@ -22,14 +23,22 @@ export class GradesComponent {
 
   constructor(
     private fbs: FirebaseService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    public stateService: StateService
   ) {
+
   }
 
   ngOnInit(): void {
-    this.items$ = this.fbs.getCollection(this.source);
-    this.items$.pipe().subscribe(items =>
-      this.items = items.sort((a, b) => a.level - b.level))
+    if (this.stateService.grades.length === 0) {
+      this.items$ = this.fbs.getCollection(this.source);
+      this.items$.pipe().subscribe(items => {
+        this.stateService.grades = items.sort((a, b) => a.level - b.level);
+        this.stateService.grades$.next(this.stateService.grades);
+      })
+    }
+    this.items = this.stateService.grades;
+    console.log('ghrades', this.stateService)
   }
 
   add() {

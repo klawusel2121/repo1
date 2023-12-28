@@ -4,7 +4,8 @@ import {HasTimestamps} from "./has-timestamps";
 import {Grade} from "./grade";
 import {IsNew} from "./is-new";
 
-export interface Group  extends HasId, HasTenant, HasTimestamps, IsNew {
+export interface Group extends HasId, HasTenant, HasTimestamps, IsNew {
   name: string;
+  level: number;
   grade: Grade;
 }

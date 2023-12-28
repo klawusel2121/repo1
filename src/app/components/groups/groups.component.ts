@@ -47,7 +47,8 @@ export class GroupsComponent {
   }
 
   onApply(item: Group) {
-    const patch = {name: item.name, grade: item.grade};
+    console.log('onApply', item);
+    const patch = {name: item.name, level: item.level};
     if (this.editItem.isNew) {
       this.editItem.isNew = false;
       this.fbs.add(this.source, {...this.editItem, ...patch});
