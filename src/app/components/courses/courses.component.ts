@@ -68,6 +68,7 @@ export class CoursesComponent {
       })
       item.weeklyHours.forEach(weeklyHour => {
         if (weeklyHour.isNew) {
+          weeklyHour.courseId = item.id;
           weeklyHour.isNew = false;
           this.fbs.add('coursesPerWeek', weeklyHour);
         } else {
