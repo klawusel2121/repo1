@@ -35,12 +35,10 @@ export class FirebaseService {
         where('tenantId', '==', localStorage.getItem('tenant'))),{idField: 'id'});
   }
 
-  add(collectionName: string, data: any) {
+  add(collectionName: string, data: any): Promise<any> {
     data.tenantId = localStorage.getItem('tenant') ?? '';
     data.createdAt = new Date().toLocaleString();
-    addDoc(collection(this.firestore, collectionName), <any>data).then((documentReference: any) => {
-      console.log('addDoc', documentReference);
-    });
+    return addDoc(collection(this.firestore, collectionName), <any>data);
   }
 
   remove(collectionName: string, id: string) {

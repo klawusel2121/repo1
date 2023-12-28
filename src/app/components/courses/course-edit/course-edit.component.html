@@ -6,18 +6,43 @@
           <cds-icon shape="close"></cds-icon>
         </button>
       </div>
-      <h3 class="modal-title">{{ 'App.Action.Edit' | translate}}: {{ 'App.Course.Course' | translate}}</h3>
+      <h3 class="modal-title">{{ 'App.Action.Edit' | translate }}: {{ 'App.Course.Course' | translate }}</h3>
       <div class="modal-body">
         <form clrForm clrLayout="horizontal">
           <clr-input-container>
             <label>{{ 'App.Fields.Name' | translate }}</label>
             <input clrInput [(ngModel)]="item.name" type="text" name="name" class="formControl" #desc required>
           </clr-input-container>
+          <button class="btn btn-primary" (click)="add()">{{ 'App.Action.Add' | translate }}</button>
         </form>
+        <clr-datagrid>
+          <clr-dg-column>{{ 'App.Fields.Level' | translate}}</clr-dg-column>
+          <clr-dg-column>{{ 'App.Fields.Hours' | translate}}</clr-dg-column>
+          <clr-dg-row class="compact-grid" *ngFor="let courseWeek of item.weeklyHours">
+            <clr-dg-cell>
+              <clr-combobox [(ngModel)]="courseWeek.level" name="level" required>
+                <clr-options>
+                  <clr-option *clrOptionItems="let grade of stateService.grades" [clrValue]="grade.level">
+                    {{ grade.level }}
+                  </clr-option>
+                </clr-options>
+              </clr-combobox>
+            </clr-dg-cell>
+            <clr-dg-cell>
+              <input clrInput [(ngModel)]="courseWeek.hours" type="number" class="formControl" #name name="name"
+                     required>
+            </clr-dg-cell>
+            <clr-dg-action-overflow>
+              <button class="action-item" (click)="remove(courseWeek)">{{ 'App.Action.Delete' | translate}}</button>
+            </clr-dg-action-overflow>
+          </clr-dg-row>
+        </clr-datagrid>
       </div>
       <div class="modal-footer">
-        <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate}}</button>
-        <button (click)="onApply.emit(item)" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate}}</button>
+        <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate }}
+        </button>
+        <button (click)="onApply.emit(item)" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate }}
+        </button>
       </div>
     </div>
   </div>

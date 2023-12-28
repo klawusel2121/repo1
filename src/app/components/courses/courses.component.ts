@@ -47,11 +47,33 @@ export class CoursesComponent {
   }
 
   onApply(item: Course) {
+    console.log('onApply', item)
     const patch = {name: item.name};
     if (this.editItem.isNew) {
       this.editItem.isNew = false;
-      this.fbs.add(this.source, {...this.editItem, ...patch});
+      this.fbs.add(this.source, {...this.editItem, ...patch}).then(
+        course => {
+          item.weeklyHours.forEach(weeklyHour => {
+            if (weeklyHour.isNew) {
+              weeklyHour.courseId = course.id;
+              weeklyHour.isNew = false;
+              this.fbs.add('coursesPerWeek', weeklyHour);
+            }
+          })
+        }
+      )
     } else {
+      item.deleteHours.forEach(id => {
+        this.fbs.remove('coursesPerWeek', id);
+      })
+      item.weeklyHours.forEach(weeklyHour => {
+        if (weeklyHour.isNew) {
+          weeklyHour.isNew = false;
+          this.fbs.add('coursesPerWeek', weeklyHour);
+        } else {
+          this.fbs.update('coursesPerWeek', weeklyHour, {});
+        }
+      })
       this.fbs.update(this.source, this.editItem, patch);
     }
     this.modal.show = false;

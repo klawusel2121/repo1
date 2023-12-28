@@ -6,7 +6,7 @@ import {Course} from "./course";
 import {Teacher} from "./teacher";
 
 export interface TeacherCourse extends HasId, HasTenant, HasTimestamps, IsNew {
-  teacher: Teacher;
-  course: Course;
+  teacherId: string;
+  courseId: string;
   levels: Array<number>;
 }

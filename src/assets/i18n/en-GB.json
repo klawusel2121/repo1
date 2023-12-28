@@ -18,6 +18,8 @@
 	"App.Course.Level": "Level",
 	"App.Fields.Changed": "Changed",
 	"App.Fields.Created": "Created",
+	"App.Fields.Hours": "Hours",
+	"App.Fields.Level": "Level",
 	"App.Fields.Name": "Name",
 	"App.Fields.Size": "Size",
 	"App.Grade.Grade": "Grade",
