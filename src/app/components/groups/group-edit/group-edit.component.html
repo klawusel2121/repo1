@@ -17,8 +17,8 @@
             <label>{{ 'App.Grade.Grade' | translate }}</label>
             <clr-combobox [(ngModel)]="item.level" name="level" required>
               <clr-options>
-                <clr-option *clrOptionItems="let level of levels" [clrValue]="level">
-                  {{ level }}
+                <clr-option *clrOptionItems="let grade of stateService.grades" [clrValue]="grade.level">
+                  {{ grade.level }}
                 </clr-option>
               </clr-options>
             </clr-combobox>
