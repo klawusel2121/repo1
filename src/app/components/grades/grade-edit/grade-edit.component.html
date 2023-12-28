@@ -15,8 +15,8 @@
             <input clrInput [(ngModel)]="item.name" type="text" name="name" class="formControl" #desc required>
           </clr-input-container>
           <clr-input-container>
-            <label>{{ 'App.Fields.Name' | translate }}</label>
-            <input clrInput [(ngModel)]="item.level" type="text" name="level" class="formControl" #level required>
+            <label>{{ 'App.Grade.Level' | translate }}</label>
+            <input clrInput [(ngModel)]="item.level" type="number" name="level" class="formControl" #level required>
           </clr-input-container>
         </form>
       </div>
