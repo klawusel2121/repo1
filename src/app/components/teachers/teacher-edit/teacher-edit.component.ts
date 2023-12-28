@@ -39,7 +39,8 @@ export class TeacherEditComponent {
   }
 
   removeCourse(teacherCourse: Partial<TeacherCourse>) {
-    const index = this.item.courses.findIndex(i => (i.id == teacherCourse.courseId));
+    const index = this.item.courses.findIndex(i => (i.courseId == teacherCourse.courseId));
+    console.log('removeCourse', index, this.item, teacherCourse)
     if (index !== -1) {
       this.item.deleteCourses.push(<string>teacherCourse.courseId);
       this.item.courses.splice(index,1);
