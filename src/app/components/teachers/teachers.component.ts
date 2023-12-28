@@ -50,8 +50,30 @@ export class TeachersComponent {
     const patch = {name: item.name};
     if (this.editItem.isNew) {
       this.editItem.isNew = false;
-      this.fbs.add(this.source, {...this.editItem, ...patch});
+      this.fbs.add(this.source, {...this.editItem, ...patch}).then(
+        teacher => {
+          item.courses.forEach(t => {
+            if (t.isNew) {
+              t.teacherId = teacher.id;
+              t.isNew = false;
+              this.fbs.add('teacherCourse', t);
+            }
+          })
+        }
+      );
     } else {
+      item.deleteCourses.forEach(id => {
+        this.fbs.remove('teacherCourse', id);
+      });
+      item.courses.forEach(course => {
+        if (course.isNew) {
+          course.courseId = item.id;
+          course.isNew = false;
+          this.fbs.add('teacherCourse', course);
+        } else {
+          this.fbs.update('teacherCourse', course, {});
+        }
+      })
       this.fbs.update(this.source, this.editItem, patch);
     }
     this.modal.show = false;

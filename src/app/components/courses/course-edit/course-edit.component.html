@@ -13,7 +13,7 @@
             <label>{{ 'App.Fields.Name' | translate }}</label>
             <input clrInput [(ngModel)]="item.name" type="text" name="name" class="formControl" #desc required>
           </clr-input-container>
-          <button class="btn btn-primary" (click)="add()">{{ 'App.Action.Add' | translate }}</button>
+          <button class="btn btn-primary" (click)="addHour()">{{ 'App.Action.Add' | translate }}</button>
         </form>
         <clr-datagrid>
           <clr-dg-column>{{ 'App.Fields.Level' | translate}}</clr-dg-column>
@@ -33,7 +33,7 @@
                      required>
             </clr-dg-cell>
             <clr-dg-action-overflow>
-              <button class="action-item" (click)="remove(courseWeek)">{{ 'App.Action.Delete' | translate}}</button>
+              <button class="action-item" (click)="removeHour(courseWeek)">{{ 'App.Action.Delete' | translate}}</button>
             </clr-dg-action-overflow>
           </clr-dg-row>
         </clr-datagrid>

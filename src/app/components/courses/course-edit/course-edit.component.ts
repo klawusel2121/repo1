@@ -28,12 +28,12 @@ export class CourseEditComponent {
     console.log('openitem', item, list)
   }
 
-  add() {
+  addHour() {
     const newItem: Partial<CoursePerWeek> = {courseId: this.item.id, hours: 1, isNew: true, id: Guid.create().toString()}
     this.item.weeklyHours.push(newItem);
   }
 
-  remove(item: Partial<CoursePerWeek>): void {
+  removeHour(item: Partial<CoursePerWeek>): void {
     const index = this.item.weeklyHours.findIndex(i => (i.id == item.id));
     if (index !== -1) {
       this.item.deleteHours.push(<string>item.id);

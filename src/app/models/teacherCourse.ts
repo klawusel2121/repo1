@@ -8,5 +8,6 @@ import {Teacher} from "./teacher";
 export interface TeacherCourse extends HasId, HasTenant, HasTimestamps, IsNew {
   teacherId: string;
   courseId: string;
+  courseName: string;
   levels: Array<number>;
 }

@@ -6,6 +6,7 @@ import {Teacher} from "../models/teacher";
 import {Group} from "../models/group";
 import {BehaviorSubject} from "rxjs";
 import {CoursePerWeek} from "../models/coursePerWeek";
+import {TeacherCourse} from "../models/teacherCourse";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class StateService {
   teachers: Array<Teacher> = [];
   groups: Array<Group> = [];
   coursesPerWeek: Array<CoursePerWeek> = [];
+  teacherCourses: Array<TeacherCourse> = [];
 
   grades$: BehaviorSubject<Array<Grade>> = new BehaviorSubject<Array<Grade>>(this.grades);
   courses$: BehaviorSubject<Array<Course>> = new BehaviorSubject<Array<Course>>(this.courses);
@@ -25,5 +27,6 @@ export class StateService {
   teachers$: BehaviorSubject<Array<Teacher>> = new BehaviorSubject<Array<Teacher>>(this.teachers);
   groups$: BehaviorSubject<Array<Group>> = new BehaviorSubject<Array<Group>>(this.groups);
   coursesPerWeek$: BehaviorSubject<Array<CoursePerWeek>> = new BehaviorSubject<Array<CoursePerWeek>>(this.coursesPerWeek);
+  teacherCourses$: BehaviorSubject<Array<TeacherCourse>> = new BehaviorSubject<Array<TeacherCourse>>(this.teacherCourses);
   constructor() { }
 }
