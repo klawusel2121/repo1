@@ -4,6 +4,7 @@ import {FirebaseService} from "../../services/firebase.service";
 import {Course} from "../../models/course";
 import {CourseEditComponent} from "./course-edit/course-edit.component";
 import {TranslateService} from "@ngx-translate/core";
+import {StateService} from "../../services/state.service";
 
 @Component({
   selector: 'app-courses',
@@ -11,7 +12,6 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrl: './courses.component.css'
 })
 export class CoursesComponent {
-  items$: Observable<any[]> = of([]);
   editItem: any;
   source = 'courses';
 
@@ -20,12 +20,12 @@ export class CoursesComponent {
 
   constructor(
     private fbs: FirebaseService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    public stateService: StateService,
   ) {
   }
 
   ngOnInit(): void {
-    this.items$ = this.fbs.getCollection(this.source);
   }
 
   add() {

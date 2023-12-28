@@ -2,12 +2,12 @@
 
 <app-grade-edit (onApply)="onApply($event)" (onCancel)="onCancel()"></app-grade-edit>
 
-<clr-datagrid>
+<clr-datagrid *ngIf="stateService.grades$ | async as grades">
   <clr-dg-column>{{ 'App.Fields.Name' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Grade.Level' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.Changed' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.Created' | translate}}</clr-dg-column>
-  <clr-dg-row *ngFor="let item of stateService.grades$ | async" (dblclick)="edit(item)">
+  <clr-dg-row *ngFor="let item of grades" (dblclick)="edit(item)">
     <clr-dg-cell>{{item.name}}</clr-dg-cell>
     <clr-dg-cell>{{item.level}}</clr-dg-cell>
     <clr-dg-cell>{{item.changedAt}}</clr-dg-cell>
@@ -18,5 +18,5 @@
     </clr-dg-action-overflow>
   </clr-dg-row>
 
-  <clr-dg-footer>{{(items$ | async)?.length}}  {{ 'App.Grade.Grades' | translate }}</clr-dg-footer>
+  <clr-dg-footer>{{grades.length}}  {{ 'App.Grade.Grades' | translate }}</clr-dg-footer>
 </clr-datagrid>

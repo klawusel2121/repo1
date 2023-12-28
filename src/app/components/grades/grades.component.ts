@@ -30,15 +30,7 @@ export class GradesComponent {
   }
 
   ngOnInit(): void {
-    if (this.stateService.grades.length === 0) {
-      this.items$ = this.fbs.getCollection(this.source);
-      this.items$.pipe().subscribe(items => {
-        this.stateService.grades = items.sort((a, b) => a.level - b.level);
-        this.stateService.grades$.next(this.stateService.grades);
-      })
-    }
     this.items = this.stateService.grades;
-    console.log('ghrades', this.stateService)
   }
 
   add() {

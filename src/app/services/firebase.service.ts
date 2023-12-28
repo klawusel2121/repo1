@@ -21,10 +21,12 @@ import {HasTenant} from "../models/has-tenant";
 })
 export class FirebaseService {
   firestore: Firestore = inject(Firestore);
+  authService: AuthService = inject(AuthService);
+
 
   userCredential: any;
   userCredential$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  constructor(private cookieService: CookieService, private authService: AuthService) {
+  constructor(private cookieService: CookieService) {
   }
 
   getCollection(collectionName: string): Observable<Array<any>> {

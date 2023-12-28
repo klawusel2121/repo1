@@ -1,4 +1,4 @@
-import { Injectable,NgZone } from '@angular/core';
+import {inject, Injectable, NgZone} from '@angular/core';
 import {
   Auth,
   createUserWithEmailAndPassword,
@@ -12,6 +12,8 @@ import {
   User
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import {StateService} from "./state.service";
+import {FirebaseService} from "./firebase.service";
 @Injectable({
   providedIn: 'root'
 })
@@ -97,6 +99,7 @@ export class AuthService {
         window.alert(error.message);
       });
   }
+
   //Logout
   Logout() {
     this.auth.tenantId = null; //localStorage.getItem('tenant');

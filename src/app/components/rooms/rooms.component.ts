@@ -4,6 +4,7 @@ import {FirebaseService} from "../../services/firebase.service";
 import {TranslateService} from "@ngx-translate/core";
 import {RoomEditComponent} from "./room-edit/room-edit.component";
 import {Room} from "../../models/room";
+import {StateService} from "../../services/state.service";
 
 @Component({
   selector: 'app-rooms',
@@ -11,7 +12,6 @@ import {Room} from "../../models/room";
   styleUrl: './rooms.component.css'
 })
 export class RoomsComponent {
-  items$: Observable<any[]> = of([]);
   editItem: Partial<Room> = {};
   source = 'rooms';
 
@@ -20,12 +20,12 @@ export class RoomsComponent {
 
   constructor(
     private fbs: FirebaseService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    public stateService: StateService
   ) {
   }
 
   ngOnInit(): void {
-    this.items$ = this.fbs.getCollection(this.source);
   }
 
   add() {

@@ -2,12 +2,12 @@
 
 <app-room-edit (onApply)="onApply($event)" (onCancel)="onCancel()"></app-room-edit>
 
-<clr-datagrid>
+<clr-datagrid *ngIf="stateService.rooms$ | async as rooms">
   <clr-dg-column>{{ 'App.Fields.Name' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.Size' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.Changed' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.Created' | translate}}</clr-dg-column>
-  <clr-dg-row *ngFor="let item of items$ | async" (dblclick)="edit(item)">
+  <clr-dg-row *ngFor="let item of rooms" (dblclick)="edit(item)">
     <clr-dg-cell>{{item.name}}</clr-dg-cell>
     <clr-dg-cell>{{item.size}}</clr-dg-cell>
     <clr-dg-cell>{{item.changedAt}}</clr-dg-cell>
@@ -18,5 +18,5 @@
     </clr-dg-action-overflow>
   </clr-dg-row>
 
-  <clr-dg-footer>{{(items$ | async)?.length}} {{ 'App.Room.Rooms' | translate }}</clr-dg-footer>
+  <clr-dg-footer>{{rooms.length}} {{ 'App.Room.Rooms' | translate }}</clr-dg-footer>
 </clr-datagrid>

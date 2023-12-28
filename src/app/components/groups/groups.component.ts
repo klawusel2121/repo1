@@ -4,6 +4,7 @@ import {FirebaseService} from "../../services/firebase.service";
 import {Group} from "../../models/group";
 import {GroupEditComponent} from "./group-edit/group-edit.component";
 import {TranslateService} from "@ngx-translate/core";
+import {StateService} from "../../services/state.service";
 
 @Component({
   selector: 'app-groups',
@@ -11,7 +12,6 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrl: './groups.component.css'
 })
 export class GroupsComponent {
-  items$: Observable<any[]> = of([]);
   editItem: any;
   source = 'groups';
 
@@ -20,12 +20,12 @@ export class GroupsComponent {
 
   constructor(
     private fbs: FirebaseService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    public stateService: StateService,
   ) {
   }
 
   ngOnInit(): void {
-    this.items$ = this.fbs.getCollection(this.source);
   }
 
   add() {

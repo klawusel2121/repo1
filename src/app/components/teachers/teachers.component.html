@@ -2,11 +2,11 @@
 
 <app-teacher-edit (onApply)="onApply($event)" (onCancel)="onCancel()"></app-teacher-edit>
 
-<clr-datagrid>
+<clr-datagrid *ngIf="stateService.teachers$ | async as teachers">
   <clr-dg-column>{{ 'App.Fields.Name' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.Changed' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.Created' | translate}}</clr-dg-column>
-  <clr-dg-row *ngFor="let item of items$ | async" (dblclick)="edit(item)">
+  <clr-dg-row *ngFor="let item of teachers" (dblclick)="edit(item)">
     <clr-dg-cell>{{item.name}}</clr-dg-cell>
     <clr-dg-cell>{{item.changedAt}}</clr-dg-cell>
     <clr-dg-cell>{{item.createdAt}}</clr-dg-cell>
@@ -15,5 +15,5 @@
       <button class="action-item" (click)="remove(item)">{{ 'App.Action.Delete' | translate}}</button>
     </clr-dg-action-overflow>
   </clr-dg-row>
-  <clr-dg-footer>{{(items$ | async)?.length}}  {{ 'App.Teacher.Teachers' | translate }}</clr-dg-footer>
+  <clr-dg-footer>{{teachers.length}}  {{ 'App.Teacher.Teachers' | translate }}</clr-dg-footer>
 </clr-datagrid>
