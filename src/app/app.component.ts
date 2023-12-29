@@ -63,7 +63,6 @@ export class AppComponent implements OnInit {
     this.authService.setTenant(event);
   }
 
-
   onLogout(event: any) {
     event.preventDefault();
     this.authService.Logout();
@@ -118,8 +117,20 @@ export class AppComponent implements OnInit {
 
     items$ = this.fbs.getCollection('lessons');
     items$.pipe().subscribe(items => {
-      this.stateService.lessons = items;
+      this.stateService.lessons = items.sort((a, b) => a.position - b.position);
       this.stateService.lessons$.next(this.stateService.lessons);
+    })
+
+    items$ = this.fbs.getCollection('plans');
+    items$.pipe().subscribe(items => {
+      this.stateService.plans = items;
+      this.stateService.plans$.next(this.stateService.plans);
+    })
+
+    items$ = this.fbs.getCollection('days');
+    items$.pipe().subscribe(items => {
+      this.stateService.days = items;
+      this.stateService.days$.next(this.stateService.days);
     })
   }
 }

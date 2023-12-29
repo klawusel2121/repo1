@@ -33,6 +33,9 @@ import { RoomsComponent } from './components/rooms/rooms.component';
 import { RoomEditComponent } from './components/rooms/room-edit/room-edit.component';
 import { LessonsComponent } from './components/lessons/lessons.component';
 import { LessonEditComponent } from './components/lessons/lesson-edit/lesson-edit.component';
+import { PlansComponent } from './components/plans/plans.component';
+import { PlanEditComponent } from './components/plans/plan-edit/plan-edit.component';
+import { DaysComponent } from './components/days/days.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { LessonEditComponent } from './components/lessons/lesson-edit/lesson-edi
     RoomsComponent,
     RoomEditComponent,
     LessonsComponent,
-    LessonEditComponent
+    LessonEditComponent,
+    PlansComponent,
+    PlanEditComponent,
+    DaysComponent
   ],
   imports: [
     BrowserModule,

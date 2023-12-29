@@ -1,19 +1,13 @@
 <button class="btn btn-primary" (click)="add()">{{ 'App.Action.Add' | translate}}</button>
 
-<app-lesson-edit (onApply)="onApply($event)" (onCancel)="onCancel()"></app-lesson-edit>
+<app-plan-edit (onApply)="onApply($event)" (onCancel)="onCancel()"></app-plan-edit>
 
-<clr-datagrid *ngIf="stateService.lessons as lessons">
-  <clr-dg-column>{{ 'App.Fields.Position' | translate}}</clr-dg-column>
+<clr-datagrid *ngIf="stateService.plans as plans">
   <clr-dg-column>{{ 'App.Fields.Name' | translate}}</clr-dg-column>
-  <clr-dg-column>{{ 'App.Fields.From' | translate}}</clr-dg-column>
-  <clr-dg-column>{{ 'App.Fields.To' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.Changed' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.Created' | translate}}</clr-dg-column>
-  <clr-dg-row *ngFor="let item of lessons" (dblclick)="edit(item)">
-    <clr-dg-cell>{{item.position}}</clr-dg-cell>
+  <clr-dg-row *ngFor="let item of plans" (dblclick)="edit(item)">
     <clr-dg-cell>{{item.name}}</clr-dg-cell>
-    <clr-dg-cell>{{item.from}}</clr-dg-cell>
-    <clr-dg-cell>{{item.to}}</clr-dg-cell>
     <clr-dg-cell>{{item.changedAt}}</clr-dg-cell>
     <clr-dg-cell>{{item.createdAt}}</clr-dg-cell>
     <clr-dg-action-overflow>
@@ -22,5 +16,5 @@
     </clr-dg-action-overflow>
   </clr-dg-row>
 
-  <clr-dg-footer>{{lessons.length}}  {{ 'App.Lesson.Lessons' | translate }}</clr-dg-footer>
+  <clr-dg-footer>{{plans.length}}  {{ 'App.Plan.Plans' | translate }}</clr-dg-footer>
 </clr-datagrid>

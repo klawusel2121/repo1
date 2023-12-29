@@ -31,11 +31,13 @@
     <clr-vertical-nav *ngIf="authService.isLoggedIn">
       <a clrVerticalNavLink routerLink="grades" routerLinkActive="active">{{ 'App.Grade.Grades' | translate }}</a>
       <a clrVerticalNavLink routerLink="rooms" routerLinkActive="active">{{ 'App.Room.Rooms' | translate }}</a>
+      <a clrVerticalNavLink routerLink="days" routerLinkActive="active">{{ 'App.Days.Days' | translate }}</a>
       <a clrVerticalNavLink routerLink="lessons" routerLinkActive="active">{{ 'App.Lesson.Lessons' | translate }}</a>
       <div class="nav-divider"></div>
       <a clrVerticalNavLink routerLink="courses" routerLinkActive="active">{{ 'App.Course.Courses' | translate }}</a>
       <a clrVerticalNavLink routerLink="groups" routerLinkActive="active">{{ 'App.Group.Groups' | translate }}</a>
       <a clrVerticalNavLink routerLink="teachers" routerLinkActive="active">{{ 'App.Teacher.Teachers' | translate }}</a>
+      <a clrVerticalNavLink routerLink="plans" routerLinkActive="active">{{ 'App.Plan.Plans' | translate }}</a>
     </clr-vertical-nav>
     <div class="content-area">
       <router-outlet></router-outlet>
