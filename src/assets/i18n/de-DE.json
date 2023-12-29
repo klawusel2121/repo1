@@ -47,5 +47,5 @@
 	"App.Teacher.Teacher": "Lehrer",
 	"App.Teacher.Teachers": "Lehrer",
 	"App.Title": "Stundenplaner",
-	"App.Valiadation.FieldIsRequired": "Feld ist erforderlich"
+	"App.Validation.FieldIsRequired": "Feld ist erforderlich"
 }

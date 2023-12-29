@@ -803,7 +803,7 @@
 								</translations>
 							</concept_node>
 							<folder_node>
-								<name>Valiadation</name>
+								<name>Validation</name>
 								<children>
 									<concept_node>
 										<name>FieldIsRequired</name>

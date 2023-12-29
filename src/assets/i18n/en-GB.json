@@ -47,5 +47,5 @@
 	"App.Teacher.Teacher": "Teacher",
 	"App.Teacher.Teachers": "Teachers",
 	"App.Title": "Course planner",
-	"App.Valiadation.FieldIsRequired": "Field is required"
+	"App.Validation.FieldIsRequired": "Field is required"
 }

@@ -14,7 +14,7 @@
             <label>{{ 'App.Fields.Name' | translate }}</label>
             <input clrInput [(ngModel)]="item.name" type="text" name="name" class="formControl" #desc required>
             <clr-control-error *clrIfError="'required'">
-              {{ 'App.Valiadation.FieldIsRequired' | translate}}
+              {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
           </clr-input-container>
           <button class="btn btn-primary" (click)="addCourse()">{{ 'App.Action.Add' | translate }}</button>

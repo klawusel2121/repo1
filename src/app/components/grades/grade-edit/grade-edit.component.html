@@ -14,14 +14,14 @@
             <label class="clr-required-mark">{{ 'App.Fields.Name' | translate }}</label>
             <input clrInput [(ngModel)]="item.name" type="text" name="name" class="formControl" #desc required>
             <clr-control-error *clrIfError="'required'">
-              {{ 'App.Valiadation.FieldIsRequired' | translate}}
+              {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
           </clr-input-container>
           <clr-input-container>
             <label class="clr-required-mark">{{ 'App.Grade.Level' | translate }}</label>
             <input clrInput [(ngModel)]="item.level" type="number" name="level" class="formControl" #level required>
             <clr-control-error *clrIfError="'required'">
-              {{ 'App.Valiadation.FieldIsRequired' | translate}}
+              {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
           </clr-input-container>
         </form>

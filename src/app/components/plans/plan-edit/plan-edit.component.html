@@ -1,5 +1,5 @@
 <div class="modal" *ngIf="show">
-  <div class="modal-dialog" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
     <div class="modal-content">
       <div class="modal-header">
         <button aria-label="Close" class="close" type="button">
@@ -13,10 +13,18 @@
             <label>{{ 'App.Fields.Name' | translate }}</label>
             <input clrInput [(ngModel)]="item.name" type="text" class="formControl" #name name="name" required>
             <clr-control-error *clrIfError="'required'">
-              {{ 'App.Valiadation.FieldIsRequired' | translate}}
+              {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
           </clr-input-container>
+          <clr-combobox [(ngModel)]="item.groupId" name="group" required>
+            <clr-options>
+              <clr-option *clrOptionItems="let group of stateService.groups" [clrValue]="group.name">
+                {{ group.name }}
+              </clr-option>
+            </clr-options>
+          </clr-combobox>
         </form>
+        <app-plan-lines-edit></app-plan-lines-edit>
       </div>
       <div class="modal-footer">
         <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate }}
