@@ -8,17 +8,22 @@ import {Grade} from "../../../models/grade";
 })
 export class GradeEditComponent {
   show = false;
-
   item!: Grade;
 
   @Output() onApply: EventEmitter<any> = new EventEmitter<any>();
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() {
-  }
+  constructor() {}
 
   open(item: Partial<Grade>) {
     this.item = Object.create(item);
     this.show = true;
+  }
+
+  apply() {
+    if (this.item.name.length === 0) {
+      return;
+    }
+    this.onApply.emit(this.item);
   }
 }

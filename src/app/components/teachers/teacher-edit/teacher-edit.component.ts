@@ -46,4 +46,11 @@ export class TeacherEditComponent {
       this.item.courses.splice(index,1);
     }
   }
+
+  apply() {
+    if (this.item.name.length === 0) {
+      return;
+    }
+    this.onApply.emit(this.item);
+  }
 }

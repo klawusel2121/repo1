@@ -21,4 +21,20 @@ export class LessonEditComponent {
     this.item = Object.create(item);
     this.show = true;
   }
+
+  apply() {
+    if (this.item.name.length === 0) {
+      return;
+    }
+    if (!this.item.position) {
+      return;
+    }
+    if (!this.item.from) {
+      return;
+    }
+    if (!this.item.to) {
+      return;
+    }
+    this.onApply.emit(this.item);
+  }
 }

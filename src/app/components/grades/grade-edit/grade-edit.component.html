@@ -11,18 +11,24 @@
       <div class="modal-body">
         <form clrForm clrLayout="horizontal">
           <clr-input-container>
-            <label>{{ 'App.Fields.Name' | translate }}</label>
+            <label class="clr-required-mark">{{ 'App.Fields.Name' | translate }}</label>
             <input clrInput [(ngModel)]="item.name" type="text" name="name" class="formControl" #desc required>
+            <clr-control-error *clrIfError="'required'">
+              {{ 'App.Valiadation.FieldIsRequired' | translate}}
+            </clr-control-error>
           </clr-input-container>
           <clr-input-container>
-            <label>{{ 'App.Grade.Level' | translate }}</label>
+            <label class="clr-required-mark">{{ 'App.Grade.Level' | translate }}</label>
             <input clrInput [(ngModel)]="item.level" type="number" name="level" class="formControl" #level required>
+            <clr-control-error *clrIfError="'required'">
+              {{ 'App.Valiadation.FieldIsRequired' | translate}}
+            </clr-control-error>
           </clr-input-container>
         </form>
       </div>
       <div class="modal-footer">
         <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate}}</button>
-        <button (click)="onApply.emit(item)" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate}}</button>
+        <button (click)="apply()" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate}}</button>
       </div>
     </div>
   </div>

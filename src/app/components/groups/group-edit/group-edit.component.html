@@ -12,6 +12,9 @@
           <clr-input-container>
             <label>{{ 'App.Fields.Name' | translate }}</label>
             <input clrInput [(ngModel)]="item.name" type="text" class="formControl" #name name="name" required>
+            <clr-control-error *clrIfError="'required'">
+              {{ 'App.Valiadation.FieldIsRequired' | translate}}
+            </clr-control-error>
           </clr-input-container>
           <clr-combobox-container>
             <label>{{ 'App.Grade.Grade' | translate }}</label>
@@ -28,7 +31,7 @@
       <div class="modal-footer">
         <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate }}
         </button>
-        <button (click)="onApply.emit(item)" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate }}
+        <button (click)="apply()" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate }}
         </button>
       </div>
     </div>

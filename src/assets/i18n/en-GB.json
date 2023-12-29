@@ -36,5 +36,6 @@
 	"App.Room.Rooms": "Rooms",
 	"App.Teacher.Teacher": "Teacher",
 	"App.Teacher.Teachers": "Teachers",
-	"App.Title": "Course planner"
+	"App.Title": "Course planner",
+	"App.Valiadation.FieldIsRequired": "Field is required"
 }

@@ -21,4 +21,14 @@ export class RoomEditComponent {
     this.item = Object.create(item);
     this.show = true;
   }
+
+  apply() {
+    if (this.item.name.length === 0) {
+      return;
+    }
+    if (!this.item.size) {
+      return;
+    }
+    this.onApply.emit(this.item);
+  }
 }

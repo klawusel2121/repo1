@@ -3,6 +3,7 @@ import {Course} from "../../../models/course";
 import {CoursePerWeek} from "../../../models/coursePerWeek";
 import {StateService} from "../../../services/state.service";
 import { Guid } from 'guid-typescript';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-course-edit',
@@ -13,11 +14,17 @@ export class CourseEditComponent {
   show = false;
   item!: Course;
   stateService = inject(StateService);
+  // @ts-ignore
+  form: FormGroup = null;
 
   @Output() onApply: EventEmitter<any> = new EventEmitter<any>();
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() { }
+  constructor( ) {
+    this.form = new FormGroup({
+      name: new FormControl('', Validators.required),
+    })
+  }
 
   open(item: Partial<Course>) {
     this.item = Object.create(item);
@@ -39,5 +46,12 @@ export class CourseEditComponent {
       this.item.deleteHours.push(<string>item.id);
       this.item.weeklyHours.splice(index,1);
     }
+  }
+
+  apply() {
+    if (this.item.name.length === 0) {
+      return;
+    }
+    this.onApply.emit(this.item);
   }
 }

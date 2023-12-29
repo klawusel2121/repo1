@@ -2,13 +2,13 @@
   <form clrForm clrLayout="horizontal">
     <app-tenant-select></app-tenant-select>
     <clr-input-container>
-      <label>{{ 'App.Authenticate.Username' | translate }}</label>
+      <label class="clr-required-mark">{{ 'App.Authenticate.Username' | translate }}</label>
       <input clrInput type="email" class="formControl" #userName required>
     </clr-input-container>
-    <clr-input-container>
-      <label>{{ 'App.Authenticate.Password' | translate }}</label>
-      <input clrInput type="password" class="formControl" #userPassword required>
-    </clr-input-container>
+    <clr-password-container>
+      <label class="clr-required-mark">{{ 'App.Authenticate.Password' | translate }}</label>
+      <input clrPassword type="password" class="formControl" #userPassword required>
+    </clr-password-container>
   </form>
   <!--Redirectio to register components -->
   <div class="text-center text-lg-start mt-4 pt-2">

@@ -21,4 +21,14 @@ export class GroupEditComponent {
     this.item = Object.create(item);
     this.show = true;
   }
+
+  apply() {
+    if (this.item.name.length === 0) {
+      return;
+    }
+    if (!this.item.level) {
+      return;
+    }
+    this.onApply.emit(this.item);
+  }
 }

@@ -36,5 +36,6 @@
 	"App.Room.Rooms": "Räume",
 	"App.Teacher.Teacher": "Lehrer",
 	"App.Teacher.Teachers": "Lehrer",
-	"App.Title": "Stundenplaner"
+	"App.Title": "Stundenplaner",
+	"App.Valiadation.FieldIsRequired": "Feld ist erforderlich"
 }
