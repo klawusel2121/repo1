@@ -1,23 +1,21 @@
 import {Component, ViewChild} from '@angular/core';
-import {Observable, of, tap} from "rxjs";
 import {FirebaseService} from "../../services/firebase.service";
-import {GradeEditComponent} from "./grade-edit/grade-edit.component";
-import {Grade} from "../../models/grade";
 import {TranslateService} from "@ngx-translate/core";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {LessonEditComponent} from "./lesson-edit/lesson-edit.component";
+import {Lesson} from "../../models/lesson";
 import {StateService} from "../../services/state.service";
 
 @Component({
-  selector: 'app-grades',
-  templateUrl: './grades.component.html',
-  styleUrl: './grades.component.css'
+  selector: 'app-lessons',
+  templateUrl: './lessons.component.html',
+  styleUrl: './lessons.component.css'
 })
-export class GradesComponent {
+export class LessonsComponent {
   editItem: any;
-  source = 'grades';
+  source = 'lessons';
 
-  @ViewChild(GradeEditComponent)
-  modal: GradeEditComponent = new GradeEditComponent;
+  @ViewChild(LessonEditComponent)
+  modal: LessonEditComponent = new LessonEditComponent;
 
   constructor(
     private fbs: FirebaseService,
@@ -28,18 +26,19 @@ export class GradesComponent {
   }
 
   add() {
-    const name = this.translate.instant('App.Grade.Grade')
-    const item = {name: name, isNew: true};
+    const maxPosition = Math.max(...this.stateService.lessons.map(i => i.position)) ?? 0;
+    const name = this.translate.instant('App.Lesson.Lesson')
+    const item = {position: maxPosition +1, name: name, isNew: true};
     setTimeout(() => {
       this.edit(item);
     }, 100)
   }
 
-  remove(item: Grade) {
+  remove(item: Lesson) {
     this.fbs.remove(this.source, item.id!);
   };
 
-  edit(item: Partial<Grade>) {
+  edit(item: Partial<Lesson>) {
     if (!('isNew' in item)) {
       item.isNew = false;
     }
@@ -47,8 +46,8 @@ export class GradesComponent {
     this.modal.open(item);
   }
 
-  onApply(item: Grade) {
-    const patch = {name: item.name, level: item.level};
+  onApply(item: Lesson) {
+    const patch = {position: item.position, name: item.name, from: item.from, to: item.to};
     if (this.editItem.isNew) {
       this.editItem.isNew = false;
       this.fbs.add(this.source, {...this.editItem, ...patch});
@@ -61,4 +60,5 @@ export class GradesComponent {
   onCancel() {
     this.modal.show = false;
   }
+
 }

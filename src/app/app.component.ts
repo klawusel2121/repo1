@@ -115,5 +115,11 @@ export class AppComponent implements OnInit {
       this.stateService.teacherCourses = items;
       this.stateService.teacherCourses$.next(this.stateService.teacherCourses);
     })
+
+    items$ = this.fbs.getCollection('lessons');
+    items$.pipe().subscribe(items => {
+      this.stateService.lessons = items;
+      this.stateService.lessons$.next(this.stateService.lessons);
+    })
   }
 }

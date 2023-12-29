@@ -9,6 +9,8 @@ import {CoursesComponent} from "./components/courses/courses.component";
 import {TeachersComponent} from "./components/teachers/teachers.component";
 import {GroupsComponent} from "./components/groups/groups.component";
 import {RoomsComponent} from "./components/rooms/rooms.component";
+import {LessonEditComponent} from "./components/lessons/lesson-edit/lesson-edit.component";
+import {LessonsComponent} from "./components/lessons/lessons.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
@@ -20,6 +22,7 @@ const routes: Routes = [
   { path: 'teachers', component: TeachersComponent },
   { path: 'groups', component: GroupsComponent },
   { path: 'rooms', component: RoomsComponent },
+  { path: 'lessons', component: LessonsComponent },
 ];
 
 @NgModule({

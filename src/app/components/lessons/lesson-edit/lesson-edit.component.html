@@ -1,0 +1,41 @@
+<div class="modal" *ngIf="show">
+  <div class="modal-dialog" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-label="Close" class="close" type="button">
+          <cds-icon shape="close"></cds-icon>
+        </button>
+      </div>
+      <h3 class="modal-title">{{ 'App.Action.Edit' | translate }}: {{ 'App.Group.Group' | translate }}</h3>
+      <div class="modal-body">
+        <form clrForm clrLayout="horizontal">
+          <clr-input-container>
+            <label>{{ 'App.Fields.Position' | translate }}</label>
+            <input clrInput [(ngModel)]="item.position" type="number" class="formControl" #position name="position" required>
+          </clr-input-container>
+          <clr-input-container>
+            <label>{{ 'App.Fields.Name' | translate }}</label>
+            <input clrInput [(ngModel)]="item.name" type="text" class="formControl" #name name="name" required>
+          </clr-input-container>
+        </form>
+        <form clrForm clrLayout="horizontal">
+          <clr-input-container>
+            <label>{{ 'App.Fields.From' | translate }}</label>
+            <input clrInput [(ngModel)]="item.from" type="text" class="formControl" #from name="from" required>
+          </clr-input-container>
+          <clr-input-container>
+            <label>{{ 'App.Fields.To' | translate }}</label>
+            <input clrInput [(ngModel)]="item.to" type="text" class="formControl" #to name="to" required>
+          </clr-input-container>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate }}
+        </button>
+        <button (click)="onApply.emit(item)" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop" aria-hidden="true" *ngIf="show"></div>

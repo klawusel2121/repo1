@@ -31,6 +31,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { RoomsComponent } from './components/rooms/rooms.component';
 import { RoomEditComponent } from './components/rooms/room-edit/room-edit.component';
+import { LessonsComponent } from './components/lessons/lessons.component';
+import { LessonEditComponent } from './components/lessons/lesson-edit/lesson-edit.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { RoomEditComponent } from './components/rooms/room-edit/room-edit.compon
     GroupsComponent,
     GroupEditComponent,
     RoomsComponent,
-    RoomEditComponent
+    RoomEditComponent,
+    LessonsComponent,
+    LessonEditComponent
   ],
   imports: [
     BrowserModule,

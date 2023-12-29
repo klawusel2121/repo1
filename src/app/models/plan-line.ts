@@ -4,7 +4,7 @@ import {Course} from "./course";
 
 export interface PlanLine {
   day: number;
-  slot: number;
+  lesson: number;
   group: Group;
   course: Course;
   teacher: Teacher;
