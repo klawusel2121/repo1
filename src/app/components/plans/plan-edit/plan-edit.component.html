@@ -11,7 +11,7 @@
         <form class="clr-flex clr-flex-row"
           [formGroup]="form">
           <clr-input-container>
-            <label>{{ 'App.Fields.Name' | translate }}</label>
+            <label class="clr-required-mark">{{ 'App.Fields.Name' | translate }}</label>
             <input clrInput formControlName="name" type="text" class="formControl" required>
             <clr-control-error *clrIfError="'required'">
               {{ 'App.Validation.FieldIsRequired' | translate}}
@@ -19,7 +19,7 @@
           </clr-input-container>
 
           <clr-select-container>
-            <label>{{ 'App.Group.Group' | translate }}</label>
+            <label class="clr-required-mark">{{ 'App.Group.Group' | translate }}</label>
             <select clrSelect formControlName="groupId">
               <option
                 *ngFor="let group of stateService.groups; let i = index"

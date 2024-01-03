@@ -33,7 +33,7 @@
             </clr-dg-cell>
             <clr-dg-cell>
               <clr-input-container>
-                <input clrInput [(ngModel)]="courseWeek.hours" type="number" class="formControl" #name name="name"
+                <input clrInput [(ngModel)]="courseWeek.hours" type="number" min="1" class="formControl" #name name="name"
                        required>
 
                 <clr-control-error *clrIfError="'required'">

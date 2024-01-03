@@ -10,14 +10,14 @@
       <div class="modal-body">
         <form clrForm clrLayout="horizontal">
           <clr-input-container>
-            <label>{{ 'App.Fields.Position' | translate }}</label>
-            <input clrInput [(ngModel)]="item.position" type="number" class="formControl" #position name="position" required>
+            <label class="clr-required-mark">{{ 'App.Fields.Position' | translate }}</label>
+            <input clrInput [(ngModel)]="item.position" min="1" type="number" class="formControl" #position name="position" required>
             <clr-control-error *clrIfError="'required'">
               {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
           </clr-input-container>
           <clr-input-container>
-            <label>{{ 'App.Fields.Name' | translate }}</label>
+            <label class="clr-required-mark">{{ 'App.Fields.Name' | translate }}</label>
             <input clrInput [(ngModel)]="item.name" type="text" class="formControl" #name name="name" required>
             <clr-control-error *clrIfError="'required'">
               {{ 'App.Validation.FieldIsRequired' | translate}}
@@ -26,14 +26,14 @@
         </form>
         <form clrForm clrLayout="horizontal">
           <clr-input-container>
-            <label>{{ 'App.Fields.From' | translate }}</label>
+            <label class="clr-required-mark">{{ 'App.Fields.From' | translate }}</label>
             <input clrInput [(ngModel)]="item.from" type="text" class="formControl" #from name="from" required>
             <clr-control-error *clrIfError="'required'">
               {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
           </clr-input-container>
           <clr-input-container>
-            <label>{{ 'App.Fields.To' | translate }}</label>
+            <label class="clr-required-mark">{{ 'App.Fields.To' | translate }}</label>
             <input clrInput [(ngModel)]="item.to" type="text" class="formControl" #to name="to" required>
             <clr-control-error *clrIfError="'required'">
               {{ 'App.Validation.FieldIsRequired' | translate}}

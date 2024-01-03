@@ -19,7 +19,7 @@
           </clr-input-container>
           <clr-input-container>
             <label class="clr-required-mark">{{ 'App.Grade.Level' | translate }}</label>
-            <input clrInput [(ngModel)]="item.level" type="number" name="level" class="formControl" #level required>
+            <input clrInput [(ngModel)]="item.level" type="number" min="1" name="level" class="formControl" #level required>
             <clr-control-error *clrIfError="'required'">
               {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
