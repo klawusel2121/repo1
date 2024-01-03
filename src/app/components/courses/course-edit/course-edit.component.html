@@ -8,10 +8,10 @@
       </div>
       <h3 class="modal-title">{{ 'App.Action.Edit' | translate }}: {{ 'App.Course.Course' | translate }}</h3>
       <div class="modal-body">
-        <form clrForm clrLayout="horizontal">
+        <form clrForm clrLayout="horizontal" [formGroup]="form">
           <clr-input-container>
             <label>{{ 'App.Fields.Name' | translate }}</label>
-            <input clrInput [(ngModel)]="item.name" type="text" name="name" class="formControl" #name required>
+            <input clrInput formControlName="name" type="text" class="formControl" required>
             <clr-control-error *clrIfError="'required'">
               {{ 'App.Validation.FieldIsRequired' | translate }}
             </clr-control-error>
@@ -25,7 +25,7 @@
             <clr-dg-cell>
               <clr-combobox [(ngModel)]="courseWeek.level" name="level" required>
                 <clr-options>
-                  <clr-option *clrOptionItems="let grade of stateService.grades" [clrValue]="grade.level">
+                  <clr-option *clrOptionItems="let grade of grades(courseWeek)" [clrValue]="grade.level">
                     {{ grade.level }}
                   </clr-option>
                 </clr-options>
