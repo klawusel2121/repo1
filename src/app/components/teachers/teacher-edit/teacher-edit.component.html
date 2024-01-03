@@ -24,13 +24,16 @@
           <clr-dg-column>{{ 'App.Grade.Grades' | translate}}</clr-dg-column>
           <clr-dg-row class="compact-grid" *ngFor="let teacherCourse of item.courses">
             <clr-dg-cell>
-              <clr-combobox [(ngModel)]="teacherCourse.courseName" name="course" required>
-                <clr-options>
-                  <clr-option *clrOptionItems="let course of courses" [clrValue]="course.name">
-                    {{ course.name }}
-                  </clr-option>
-                </clr-options>
-              </clr-combobox>
+              <clr-select-container>
+                <select clrSelect [(ngModel)]="teacherCourse.courseId" name="groupId">
+                  <option
+                    *ngFor="let course of stateService.courses"
+                    [value]="course.id"
+                  >
+                    {{course.name}}
+                  </option>
+                </select>
+              </clr-select-container>
             </clr-dg-cell>
             <clr-dg-cell>
               <clr-combobox [(ngModel)]="teacherCourse.levels" name="multiSelect" clrMulti="true" required>

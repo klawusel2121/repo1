@@ -25,7 +25,7 @@
             <clr-dg-cell>
               <clr-combobox [(ngModel)]="courseWeek.level" name="level" required>
                 <clr-options>
-                  <clr-option *clrOptionItems="let grade of grades(courseWeek)" [clrValue]="grade.level">
+                  <clr-option *clrOptionItems="let grade of availableGrades()" [clrValue]="grade.level">
                     {{ grade.level }}
                   </clr-option>
                 </clr-options>

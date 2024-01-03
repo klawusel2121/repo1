@@ -63,11 +63,13 @@ export class TeachersComponent {
       );
     } else {
       item.deleteCourses.forEach(id => {
-        this.fbs.remove('teacherCourse', id);
+        const teacherCourse = this.stateService.teacherCourses.find(t => t.courseId === id);
+        if (teacherCourse?.id != null) {
+          this.fbs.remove('teacherCourse', teacherCourse?.id);
+        }
       });
       item.courses.forEach(course => {
         if (course.isNew) {
-          course.courseId = item.id;
           course.isNew = false;
           this.fbs.add('teacherCourse', course);
         } else {

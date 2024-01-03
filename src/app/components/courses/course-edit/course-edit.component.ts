@@ -66,8 +66,8 @@ export class CourseEditComponent implements OnInit {
     this.onApply.emit(item);
   }
 
-  grades(courseWeek: Partial<CoursePerWeek>) {
-    const grades = this.stateService.grades;
+  availableGrades() {
+    const grades = _.cloneDeep(this.stateService.grades);
     this.item.weeklyHours?.forEach(h => {
       const index = grades.findIndex(g => g.level == h.level);
       if (index !== -1) {
