@@ -36,7 +36,8 @@ import { LessonEditComponent } from './components/lessons/lesson-edit/lesson-edi
 import { PlansComponent } from './components/plans/plans.component';
 import { PlanEditComponent } from './components/plans/plan-edit/plan-edit.component';
 import { DaysComponent } from './components/days/days.component';
-import { PlanLinesEditComponent } from './components/plans/plan-lines-edit/plan-lines-edit.component';
+import { PlanCellsEditComponent } from './components/plans/plan-cells-edit/plan-cells-edit.component';
+import { PlanCellEditComponent } from './components/plans/plan-cell-edit/plan-cell-edit.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { PlanLinesEditComponent } from './components/plans/plan-lines-edit/plan-
     PlansComponent,
     PlanEditComponent,
     DaysComponent,
-    PlanLinesEditComponent
+    PlanCellsEditComponent,
+    PlanCellEditComponent
   ],
   imports: [
     BrowserModule,

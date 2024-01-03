@@ -4,6 +4,7 @@ import {Plan} from "../../../models/plan";
 import _ from "lodash";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {FormHelperService} from "../../../services/form-helper.service";
+import {Cell} from "../plan-cell-edit/plan-cell-edit.component";
 
 @Component({
   selector: 'app-plan-edit',
@@ -20,6 +21,7 @@ export class PlanEditComponent implements OnInit {
 
   @Output() onApply: EventEmitter<any> = new EventEmitter<any>();
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
+  cell!: Partial<Cell>;
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -48,5 +50,9 @@ export class PlanEditComponent implements OnInit {
       this.form.get('groupName')?.setValue(group.name) ;
     }
     this.onApply.emit(item);
+  }
+
+  onEditCell(cell: Partial<Cell>) {
+    this.cell = cell;
   }
 }

@@ -1,0 +1,31 @@
+<div class="plan-cell-edit">
+  <div>
+    <select clrSelect (ngModelChange)="onEditCell.emit(cell)" [(ngModel)]="cell.courseId" name="courseId">
+      <option
+        *ngFor="let course of stateService.courses"
+        [value]="course.id"
+      >
+        {{course.name}}
+      </option>
+    </select>
+  </div>
+  <div class="clr-flex-row">
+    <select clrSelect (ngModelChange)="onEditCell.emit(cell)" [(ngModel)]="cell.teacherId" name="teacherId">
+      <option
+        *ngFor="let teacher of stateService.teachers"
+        [value]="teacher.id"
+      >
+        {{teacher.name}}
+      </option>
+    </select>
+    <select clrSelect (ngModelChange)="onEditCell.emit(cell)" [(ngModel)]="cell.roomId" name="roomId">
+      <option
+        *ngFor="let room of stateService.rooms"
+        [value]="room.id"
+      >
+        {{room.name}}
+      </option>
+    </select>
+  </div>
+</div>
+
