@@ -7,5 +7,8 @@ import {PlanItem} from "./plan-item";
 export interface Plan extends HasId, HasTenant, HasTimestamps, IsNew {
   name: string;
   groupId: string;
+  groupName: string;
+  from: Date;
+  to: Date;
   items: Array<PlanItem>;
 }

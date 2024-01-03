@@ -8,21 +8,37 @@
       </div>
       <h3 class="modal-title">{{ 'App.Action.Edit' | translate }}: {{ 'App.Plan.Plan' | translate }}</h3>
       <div class="modal-body">
-        <form clrForm clrLayout="horizontal">
+        <form class="clr-flex clr-flex-row"
+          [formGroup]="form">
           <clr-input-container>
             <label>{{ 'App.Fields.Name' | translate }}</label>
-            <input clrInput [(ngModel)]="item.name" type="text" class="formControl" #name name="name" required>
+            <input clrInput formControlName="name" type="text" class="formControl" required>
             <clr-control-error *clrIfError="'required'">
               {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
           </clr-input-container>
-          <clr-combobox [(ngModel)]="item.groupId" name="group" required>
-            <clr-options>
-              <clr-option *clrOptionItems="let group of stateService.groups" [clrValue]="group.name">
-                {{ group.name }}
-              </clr-option>
-            </clr-options>
-          </clr-combobox>
+
+          <clr-select-container>
+            <label>{{ 'App.Group.Group' | translate }}</label>
+            <select clrSelect formControlName="groupId">
+              <option
+                *ngFor="let group of stateService.groups; let i = index"
+                [value]="group.id"
+              >
+                {{group.name}}
+              </option>
+            </select>
+          </clr-select-container>
+
+          <clr-input-container>
+            <label>{{ 'App.Fields.From' | translate }}</label>
+            <input clrInput formControlName="from" type="date" class="formControl">
+          </clr-input-container>
+
+          <clr-input-container>
+            <label>{{ 'App.Fields.To' | translate }}</label>
+            <input clrInput formControlName="to" type="date" class="formControl">
+          </clr-input-container>
         </form>
         <app-plan-lines-edit></app-plan-lines-edit>
       </div>

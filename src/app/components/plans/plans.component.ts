@@ -29,8 +29,9 @@ export class PlansComponent {
 
   add() {
     const name = this.translate.instant('App.Plan.Plan')
-    const item = { name: name, isNew: true};
+    const item = {name: name, isNew: true};
     setTimeout(() => {
+      // @ts-ignore
       this.edit(item);
     }, 100)
   }
@@ -48,7 +49,9 @@ export class PlansComponent {
   }
 
   onApply(item: Plan) {
-    const patch = {name: item.name};
+    console.log('onApply', item)
+    const patch = {
+      name: item.name, groupName: item.groupName, groupId: item.groupId, from: item.from, to: item.to};
     if (this.editItem.isNew) {
       this.editItem.isNew = false;
       this.fbs.add(this.source, {...this.editItem, ...patch});
