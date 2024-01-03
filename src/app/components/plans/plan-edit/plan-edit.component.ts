@@ -38,14 +38,15 @@ export class PlanEditComponent implements OnInit {
   }
 
   apply() {
-    if (this.form.getRawValue().name?.length === 0) {
+    const item = this.form.getRawValue();
+    if (item.name?.length === 0) {
       return;
     }
-    const group = this.stateService.groups.find(g => g.id === this.form.get('groupId')?.value);
+    const group = this.stateService.groups.find(g => g.id === item.groupId);
     if (group) {
       this.form.get('groupId')?.setValue(group.id) ;
       this.form.get('groupName')?.setValue(group.name) ;
     }
-    this.onApply.emit(this.form.getRawValue());
+    this.onApply.emit(item);
   }
 }

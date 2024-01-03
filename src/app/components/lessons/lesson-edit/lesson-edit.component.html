@@ -8,33 +8,33 @@
       </div>
       <h3 class="modal-title">{{ 'App.Action.Edit' | translate }}: {{ 'App.Lesson.Lesson' | translate }}</h3>
       <div class="modal-body">
-        <form clrForm clrLayout="horizontal">
+        <form clrForm clrLayout="horizontal" [formGroup]="form">
           <clr-input-container>
             <label class="clr-required-mark">{{ 'App.Fields.Position' | translate }}</label>
-            <input clrInput [(ngModel)]="item.position" min="1" type="number" class="formControl" #position name="position" required>
+            <input clrInput formControlName="position" min="1" type="number" class="formControl" required>
             <clr-control-error *clrIfError="'required'">
               {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
           </clr-input-container>
           <clr-input-container>
             <label class="clr-required-mark">{{ 'App.Fields.Name' | translate }}</label>
-            <input clrInput [(ngModel)]="item.name" type="text" class="formControl" #name name="name" required>
+            <input clrInput formControlName="name" type="text" class="formControl" required>
             <clr-control-error *clrIfError="'required'">
               {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
           </clr-input-container>
         </form>
-        <form clrForm clrLayout="horizontal">
+        <form clrForm clrLayout="horizontal" [formGroup]="form">
           <clr-input-container>
             <label class="clr-required-mark">{{ 'App.Fields.From' | translate }}</label>
-            <input clrInput [(ngModel)]="item.from" type="text" class="formControl" #from name="from" required>
+            <input clrInput formControlName="from" type="text" class="formControl" required>
             <clr-control-error *clrIfError="'required'">
               {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
           </clr-input-container>
           <clr-input-container>
             <label class="clr-required-mark">{{ 'App.Fields.To' | translate }}</label>
-            <input clrInput [(ngModel)]="item.to" type="text" class="formControl" #to name="to" required>
+            <input clrInput formControlName="to" type="text" class="formControl" required>
             <clr-control-error *clrIfError="'required'">
               {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>

@@ -1,34 +1,45 @@
-import {Component, EventEmitter, inject, Output} from '@angular/core';
-import {FirebaseService} from "../../../services/firebase.service";
+import {Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
 import {Room} from "../../../models/room";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormHelperService} from "../../../services/form-helper.service";
+import _ from "lodash";
 
 @Component({
   selector: 'app-room-edit',
   templateUrl: './room-edit.component.html',
   styleUrl: './room-edit.component.css'
 })
-export class RoomEditComponent {
+export class RoomEditComponent implements OnInit {
+  formBuilder = inject(FormBuilder);
+  formHelper = inject(FormHelperService);
+
   show = false;
-  fbs = inject(FirebaseService);
-  item!: Room;
+  form!: FormGroup;
 
   @Output() onApply: EventEmitter<any> = new EventEmitter<any>();
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() {}
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      name: this.formBuilder.control(undefined),
+      size: this.formBuilder.control(undefined),
+    })
+    this.formHelper.addDefaultControls(this.form, this.formBuilder);
+  }
 
   open(item: Partial<Room>) {
-    this.item = Object.create(item);
+    this.form.patchValue(_.cloneDeep(item));
     this.show = true;
   }
 
   apply() {
-    if (this.item.name.length === 0) {
+    const item = this.form.getRawValue();
+    if (item.name.length === 0) {
       return;
     }
-    if (!this.item.size) {
+    if (!item.size) {
       return;
     }
-    this.onApply.emit(this.item);
+    this.onApply.emit(item);
   }
 }

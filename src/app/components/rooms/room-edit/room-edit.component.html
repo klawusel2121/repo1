@@ -9,17 +9,17 @@
       <h3 class="modal-title">{{ 'App.Action.Edit' | translate}}: {{ 'App.Room.Room' | translate}}</h3>
 
       <div class="modal-body">
-        <form clrForm clrLayout="horizontal">
+        <form clrForm clrLayout="horizontal" [formGroup]="form">
           <clr-input-container>
             <label class="clr-required-mark">{{'App.Fields.Name' | translate}}</label>
-            <input clrInput [(ngModel)]="item.name" type="text" class="formControl" name="name" #desc required>
+            <input clrInput formControlName="name" type="text" class="formControl" required>
             <clr-control-error *clrIfError="'required'">
               {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
           </clr-input-container>
           <clr-input-container>
             <label class="clr-required-mark">{{'App.Fields.Size' | translate}}</label>
-            <input clrInput [(ngModel)]="item.size" type="number" min="1" class="formControl" name="size" #desc required>
+            <input clrInput formControlName="size" type="number" min="1" class="formControl" required>
             <clr-control-error *clrIfError="'required'">
               {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
