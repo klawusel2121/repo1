@@ -16,16 +16,17 @@
               {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
           </clr-input-container>
-          <clr-combobox-container>
+          <clr-select-container>
             <label>{{ 'App.Grade.Grade' | translate }}</label>
-            <clr-combobox [(ngModel)]="item.level" name="level" required>
-              <clr-options>
-                <clr-option *clrOptionItems="let grade of stateService.grades" [clrValue]="grade.level">
-                  {{ grade.level }}
-                </clr-option>
-              </clr-options>
-            </clr-combobox>
-          </clr-combobox-container>
+            <select clrSelect [(ngModel)]="item.level" name="level">
+              <option
+                *ngFor="let item of stateService.grades"
+                [value]="item.level"
+              >
+                {{item.level}}
+              </option>
+            </select>
+          </clr-select-container>
         </form>
       </div>
       <div class="modal-footer">
