@@ -39,7 +39,10 @@ export class PlanEditComponent implements OnInit {
       to: this.formBuilder.control(undefined),
     })
     this.formHelper.addDefaultControls(this.form, this.formBuilder);
-    this.form.valueChanges.pipe().subscribe(data => console.log('plan data', data))
+    this.form.get('groupId')?.valueChanges.pipe().subscribe(id => {
+      this.form.get('groupName')?.setValue(this.stateService.groups
+        .find(g => g.id === id)?.name);
+    })
   }
 
   open(item: Partial<Plan>) {
@@ -105,5 +108,9 @@ export class PlanEditComponent implements OnInit {
   onActiveChange(active: boolean) {
     this.form.get('active')?.setValue(active);
     this.active$.next(active);
+  }
+
+  groupName(): string {
+    return this.form.get('groupName')?.value ?? '';
   }
 }

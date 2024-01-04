@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button aria-label="Close" class="close" type="button" (click)="onCancel.emit()">
-          <cds-icon shape="close"></cds-icon>
+          <cds-icon class="no-print" shape="close"></cds-icon>
         </button>
       </div>
       <h3 class="modal-title">{{ 'App.Action.Edit' | translate }}: {{ 'App.Plan.Plan' | translate }}</h3>
@@ -20,6 +20,7 @@
 
           <clr-select-container>
             <label class="clr-required-mark">{{ 'App.Group.Group' | translate }}</label>
+            <div class="no-screen">{{ groupName() }}</div>
             <select clrSelect formControlName="groupId">
               <option
                 *ngFor="let group of stateService.groups; let i = index"
@@ -39,7 +40,7 @@
             <input style="display:none" clrInput formControlName="active" type="boolean" class="formControl">
           </clr-input-container>
 
-          <div class="btn-group" >
+          <div class="btn-group" class="no-print">
             <div class="radio btn">
               <input type="radio" [checked]="inactive" (change)="onActiveChange(false)" name="active" id="active-1" />
               <label for="active-1">{{ 'App.Status.Inactive' | translate }}</label>
@@ -50,6 +51,10 @@
             </div>
           </div>
 
+          <div class="btn-group no-screen" >
+            {{ (active ? 'App.Status.Active' : 'App.Status.Inactive') | translate }}
+          </div>
+
         </form>
         <app-plan-cells-edit
           (onEditCell)="onEditCell($event)"
@@ -58,7 +63,7 @@
           [planEditComponent]="this">
         </app-plan-cells-edit>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer no-print">
         <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate }}
         </button>
         <button (click)="apply()" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate }}

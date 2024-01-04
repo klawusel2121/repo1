@@ -7,8 +7,11 @@ export interface Cell {
   day: number;
   lesson: number;
   teacherId: string;
+  teacherShort?: string;
   courseId: string;
+  courseName?: string;
   roomId: string;
+  roomName?: string;
   invalidRoom: boolean;
   invalidTeacher: boolean;
 }
@@ -40,8 +43,11 @@ export class PlanCellEditComponent implements OnInit {
       day: this.c,
       lesson: this.r,
       roomId: item?.roomId,
+      roomName: this.stateService.rooms.find(r => r.id === item?.roomId)?.name,
       courseId: item?.courseId,
+      courseName: this.stateService.courses.find(r => r.id === item?.courseId)?.name,
       teacherId: item?.teacherId,
+      teacherShort: this.stateService.teachers.find(r => r.id === item?.teacherId)?.short,
       invalidRoom: false,
       invalidTeacher: false,
     }
