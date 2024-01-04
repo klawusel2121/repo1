@@ -1,8 +1,8 @@
 <div class="modal" *ngIf="show">
-  <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-xl clrModalClosable" role="dialog" aria-hidden="true">
     <div class="modal-content">
       <div class="modal-header">
-        <button aria-label="Close" class="close" type="button">
+        <button aria-label="Close" class="close" type="button" (click)="onCancel.emit()">
           <cds-icon shape="close"></cds-icon>
         </button>
       </div>
