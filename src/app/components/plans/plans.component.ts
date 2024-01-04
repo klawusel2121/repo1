@@ -65,7 +65,6 @@ export class PlansComponent {
   }
 
   onCancel() {
-    console.table(this.stateService.plans)
     this.modal.show = false;
   }
 
