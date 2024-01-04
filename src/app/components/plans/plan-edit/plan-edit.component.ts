@@ -115,4 +115,10 @@ export class PlanEditComponent implements OnInit {
   groupName(): string {
     return this.form.get('groupName')?.value ?? '';
   }
+
+  schoolInfo(): string {
+    const tenant = this.stateService.tenants[0];
+    return `${tenant.name} : ${tenant.street}, ${tenant.country}-${tenant.zip} ${tenant.city}`
+
+  }
 }

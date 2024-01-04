@@ -9,4 +9,5 @@ export interface Tenant extends HasId, HasTenant, HasTimestamps {
   country: string;
   zip: string;
   street: string;
+  city: string;
 }
