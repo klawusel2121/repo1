@@ -36,9 +36,20 @@
           </clr-input-container>
 
           <clr-input-container>
-            <label>{{ 'App.Fields.To' | translate }}</label>
-            <input clrInput formControlName="to" type="date" class="formControl">
+            <input style="display:none" clrInput formControlName="active" type="boolean" class="formControl">
           </clr-input-container>
+
+          <div class="btn-group" >
+            <div class="radio btn">
+              <input type="radio" [checked]="inactive" (change)="onActiveChange(false)" name="active" id="active-1" />
+              <label for="active-1">{{ 'App.Status.Inactive' | translate }}</label>
+            </div>
+            <div class="radio btn">
+              <input type="radio" [checked]="active" (change)="onActiveChange(true)" name="active" id="active-2" />
+              <label for="active-2">{{ 'App.Status.Active' | translate }}</label>
+            </div>
+          </div>
+
         </form>
         <app-plan-cells-edit
           (onEditCell)="onEditCell($event)"

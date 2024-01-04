@@ -426,6 +426,21 @@
 								<name>Fields</name>
 								<children>
 									<concept_node>
+										<name>Active</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-GB</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
 										<name>Changed</name>
 										<description/>
 										<comment/>
@@ -547,6 +562,21 @@
 									</concept_node>
 									<concept_node>
 										<name>Size</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-GB</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>Status</name>
 										<description/>
 										<comment/>
 										<translations>
@@ -752,6 +782,41 @@
 									</concept_node>
 									<concept_node>
 										<name>Rooms</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-GB</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+								</children>
+							</folder_node>
+							<folder_node>
+								<name>Status</name>
+								<children>
+									<concept_node>
+										<name>Active</name>
+										<description/>
+										<comment/>
+										<translations>
+											<translation>
+												<language>de-DE</language>
+												<approved>false</approved>
+											</translation>
+											<translation>
+												<language>en-GB</language>
+												<approved>false</approved>
+											</translation>
+										</translations>
+									</concept_node>
+									<concept_node>
+										<name>Inactive</name>
 										<description/>
 										<comment/>
 										<translations>

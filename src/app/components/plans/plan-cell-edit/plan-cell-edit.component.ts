@@ -45,6 +45,9 @@ export class PlanCellEditComponent implements OnInit {
       invalidRoom: false,
       invalidTeacher: false,
     }
+
+    this.planEditComponent.active$
+      .subscribe(active => this.checkValidity(this.cell))
   }
 
   editCell(param: { courseId?: string, roomId?: string, teacherId?: string }) {
@@ -63,6 +66,7 @@ export class PlanCellEditComponent implements OnInit {
         this.cell.roomId = this.stateService.groups.find(g => g.id === this.planEditComponent.form.get('groupId')?.value)?.roomId;
       }
     }
+    const active = this.planEditComponent.form.get('active')?.value ?? false;
     this.checkValidity(this.cell);
     this.onEditCell.emit(this.cell);
   }
@@ -75,23 +79,35 @@ export class PlanCellEditComponent implements OnInit {
   }
 
   private checkValidity(cell: Partial<Cell>) {
+    if (!cell) {
+      return;
+    }
     const planId = this.planEditComponent.form.get('id')?.value;
+    const active = this.planEditComponent.form.get('active')?.value;
+    console.log('checkValidity', active)
     cell.invalidRoom = false;
     cell.invalidTeacher = false;
+    this.onEditCell.emit(cell);
+    if (!active) {
+      return;
+    }
     this.stateService.plans
-      .filter(plan => planId ? plan.id !== planId : true)
+      .filter(plan => (planId ? plan.id !== planId : true) && plan.active)
       .forEach(plan => {
         plan.items
           .filter(item => item.day === cell.day && item.lesson === cell.lesson)
           .forEach(item => {
             if (item.roomId == cell.roomId) {
+              console.warn('invalid room')
               cell.invalidRoom = true;
+              this.onEditCell.emit(cell);
             }
             if (item.teacherId == cell.teacherId) {
+              console.warn('invalid teacher')
               cell.invalidTeacher = true;
+              this.onEditCell.emit(cell);
             }
         });
     });
-    return false;
   }
 }

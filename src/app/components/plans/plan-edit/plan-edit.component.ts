@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {FormHelperService} from "../../../services/form-helper.service";
 import {Cell} from "../plan-cell-edit/plan-cell-edit.component";
 import {PlanItem} from "../../../models/plan-item";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-plan-edit',
@@ -24,19 +25,32 @@ export class PlanEditComponent implements OnInit {
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
   cell!: Partial<Cell>;
   items: Array<Partial<PlanItem>> = [];
+  active: any;
+  inactive: any;
+  active$ = new BehaviorSubject<boolean>(false)
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: this.formBuilder.control(undefined),
+      active: this.formBuilder.control(undefined),
       groupId: this.formBuilder.control(undefined),
       groupName: this.formBuilder.control(undefined),
       from: this.formBuilder.control(undefined),
       to: this.formBuilder.control(undefined),
     })
     this.formHelper.addDefaultControls(this.form, this.formBuilder);
+    this.form.valueChanges.pipe().subscribe(data => console.log('plan data', data))
   }
 
   open(item: Partial<Plan>) {
+    if (!('active' in item)) {
+      item.active = false;
+    }
+    this.inactive = !item.active;
+    this.active = item.active;
+    if (item.active) {
+      this.active$.next(true);
+    }
     this.form.patchValue(_.cloneDeep(item));
     this.items = _.cloneDeep(this.stateService.plans.find(p => p.id == item.id)?.items) ?? [];
     this.show = true;
@@ -47,7 +61,11 @@ export class PlanEditComponent implements OnInit {
     if (this.items.filter(item => item.invalidTeacher || item.invalidRoom).length > 0) {
       return;
     }
-    item.items = this.items;
+    item.items = this.items.filter(item => item.roomId && item.courseId && item.teacherId);
+    item.items.forEach((item: any) => {
+      delete item.invalidRoom;
+      delete item.invalidTeacher;
+    })
     console.log('edit apply', item)
 
     if (item.name?.length === 0) {
@@ -63,6 +81,7 @@ export class PlanEditComponent implements OnInit {
   }
 
   onEditCell(cell: Partial<Cell>) {
+    console.log('cell', cell)
     this.cell = cell;
     let item = this.items.find(i => i.day == cell.day && i.lesson == cell.lesson);
     if (!item) {
@@ -81,5 +100,10 @@ export class PlanEditComponent implements OnInit {
     if (index !== -1) {
       this.items.splice(index, 1);
     }
+  }
+
+  onActiveChange(active: boolean) {
+    this.form.get('active')?.setValue(active);
+    this.active$.next(active);
   }
 }
