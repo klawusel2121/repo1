@@ -5,6 +5,7 @@
 <clr-datagrid *ngIf="stateService.plans as plans">
   <clr-dg-column>{{ 'App.Fields.Name' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Group.Group' | translate}}</clr-dg-column>
+  <clr-dg-column>{{ 'App.Lesson.Lessons' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.From' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.To' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.Changed' | translate}}</clr-dg-column>
@@ -12,6 +13,7 @@
   <clr-dg-row *ngFor="let item of plans" (dblclick)="edit(item)">
     <clr-dg-cell>{{item.name}}</clr-dg-cell>
     <clr-dg-cell>{{item.groupName}}</clr-dg-cell>
+    <clr-dg-cell>{{item.items.length}}</clr-dg-cell>
     <clr-dg-cell>{{item.from | date: 'dd.MM.YYYY'}}</clr-dg-cell>
     <clr-dg-cell>{{item.to | date: 'dd.MM.YYYY'}}</clr-dg-cell>
     <clr-dg-cell>{{item.changedAt}}</clr-dg-cell>
