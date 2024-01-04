@@ -107,6 +107,8 @@ export class PlanEditComponent implements OnInit {
 
   onActiveChange(active: boolean) {
     this.form.get('active')?.setValue(active);
+    this.active = active;
+    this.inactive = !active;
     this.active$.next(active);
   }
 
