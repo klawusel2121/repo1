@@ -18,7 +18,7 @@
     <div class="header-actions">
       <clr-dropdown *ngIf="authService.isLoggedIn">
         <button class="nav-text" clrDropdownTrigger aria-label="open user profile">
-          {{ authService.UserData?.email }} [{{ stateService.tenants[0].name }}]
+          {{ authService.UserData?.email }} [{{ stateService.tenants[0]?.name }}]
           <cds-icon shape="angle" direction="down"></cds-icon>
         </button>
         <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
