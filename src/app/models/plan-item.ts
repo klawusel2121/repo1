@@ -12,4 +12,6 @@ export interface PlanItem extends IsNew {
   courseId: string;
   teacherId: string;
   roomId: string;
+  invalidRoom: boolean;
+  invalidTeacher: boolean;
 }

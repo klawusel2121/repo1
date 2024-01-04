@@ -38,12 +38,15 @@ export class PlanEditComponent implements OnInit {
 
   open(item: Partial<Plan>) {
     this.form.patchValue(_.cloneDeep(item));
-    this.items = item.items ?? [];
+    this.items = _.cloneDeep(this.stateService.plans.find(p => p.id == item.id)?.items) ?? [];
     this.show = true;
   }
 
   apply() {
     const item = this.form.getRawValue();
+    if (this.items.filter(item => item.invalidTeacher || item.invalidRoom).length > 0) {
+      return;
+    }
     item.items = this.items;
     console.log('edit apply', item)
 
@@ -55,6 +58,7 @@ export class PlanEditComponent implements OnInit {
       this.form.get('groupId')?.setValue(group.id) ;
       this.form.get('groupName')?.setValue(group.name) ;
     }
+
     this.onApply.emit(item);
   }
 
@@ -68,6 +72,8 @@ export class PlanEditComponent implements OnInit {
     item.courseId = cell.courseId;
     item.roomId = cell.roomId;
     item.teacherId = cell.teacherId;
+    item.invalidRoom = cell.invalidRoom;
+    item.invalidTeacher = cell.invalidTeacher;
   }
 
   onRemoveCell(cell: Partial<Cell>) {

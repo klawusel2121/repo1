@@ -50,7 +50,7 @@
 	"App.Tenant.City": "Stadt",
 	"App.Tenant.Country": "Land",
 	"App.Tenant.Id": "Schlüssel",
-	"App.Tenant.Name": "Name",
+	"App.Tenant.Name": "Schule",
 	"App.Tenant.Street": "Straße",
 	"App.Tenant.Tenant": "Mandant",
 	"App.Tenant.Zip": "PLZ",

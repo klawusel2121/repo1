@@ -9,5 +9,9 @@
     justify-items: stretch;
     gap: 8px;
   }
+
+  .invalid {
+    background: lightsalmon !important;
+  }
 }
 

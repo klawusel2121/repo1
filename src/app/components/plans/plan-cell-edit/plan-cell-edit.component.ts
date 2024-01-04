@@ -9,6 +9,8 @@ export interface Cell {
   teacherId: string;
   courseId: string;
   roomId: string;
+  invalidRoom: boolean;
+  invalidTeacher: boolean;
 }
 
 @Component({
@@ -21,11 +23,13 @@ export class PlanCellEditComponent implements OnInit {
   stateService = inject(StateService);
   @Input() c!: number;
   @Input() r!: number;
-  @Input()  items!: Array<Partial<PlanItem>>;
+  @Input() items!: Array<Partial<PlanItem>>;
   @Input() planEditComponent!: PlanEditComponent;
   @Output() onEditCell: EventEmitter<Partial<Cell>> = new EventEmitter<Partial<Cell>>();
   @Output() onRemoveCell = new EventEmitter<Partial<Cell>>();
   cell!: Partial<Cell>;
+  invalid = false;
+  invalidText = '';
 
   ngOnInit(): void {
     const room = this.stateService.rooms
@@ -38,19 +42,28 @@ export class PlanCellEditComponent implements OnInit {
       roomId: item?.roomId,
       courseId: item?.courseId,
       teacherId: item?.teacherId,
+      invalidRoom: false,
+      invalidTeacher: false,
     }
   }
 
   editCell(param: { courseId?: string, roomId?: string, teacherId?: string }) {
     if (param.courseId) {
       this.cell.courseId = param.courseId;
+      if (!this.cell.roomId) {
+        this.cell.roomId = this.stateService.groups.find(g => g.id === this.planEditComponent.form.get('groupId')?.value)?.roomId;
+      }
     }
     if (param.roomId) {
       this.cell.roomId = param.roomId;
     }
     if (param.teacherId) {
       this.cell.teacherId = param.teacherId;
+      if (!this.cell.roomId) {
+        this.cell.roomId = this.stateService.groups.find(g => g.id === this.planEditComponent.form.get('groupId')?.value)?.roomId;
+      }
     }
+    this.checkValidity(this.cell);
     this.onEditCell.emit(this.cell);
   }
 
@@ -59,5 +72,26 @@ export class PlanCellEditComponent implements OnInit {
     this.cell.roomId = undefined;
     this.cell.teacherId = undefined;
     this.onRemoveCell.emit(cell);
+  }
+
+  private checkValidity(cell: Partial<Cell>) {
+    const planId = this.planEditComponent.form.get('id')?.value;
+    cell.invalidRoom = false;
+    cell.invalidTeacher = false;
+    this.stateService.plans
+      .filter(plan => planId ? plan.id !== planId : true)
+      .forEach(plan => {
+        plan.items
+          .filter(item => item.day === cell.day && item.lesson === cell.lesson)
+          .forEach(item => {
+            if (item.roomId == cell.roomId) {
+              cell.invalidRoom = true;
+            }
+            if (item.teacherId == cell.teacherId) {
+              cell.invalidTeacher = true;
+            }
+        });
+    });
+    return false;
   }
 }

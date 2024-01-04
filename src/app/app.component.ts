@@ -40,6 +40,7 @@ export class AppComponent implements OnInit {
       console.log('app-init', user, userData, email, password);
       if (email && password) {
         this.authService.Login(email, password).then(() => {
+          console.warn('logged in')
           this.readData()
         });
       }

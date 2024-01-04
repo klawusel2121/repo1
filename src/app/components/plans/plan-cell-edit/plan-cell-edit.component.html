@@ -1,4 +1,4 @@
-<div class="plan-cell-edit">
+<div class="plan-cell-edit" >
   <div class="clr-flex-row">
     <select clrSelect (ngModelChange)="editCell({courseId: $event})" [(ngModel)]="cell.courseId" name="courseId">
       <option
@@ -11,7 +11,7 @@
     <cds-icon *ngIf="cell.teacherId || cell.courseId || cell.roomId" shape="times" (click)="removeCell(cell)"></cds-icon>
   </div>
   <div class="clr-flex-row">
-    <select clrSelect (ngModelChange)="editCell({teacherId: $event})" [(ngModel)]="cell.teacherId" name="teacherId">
+    <select [ngClass]="{'invalid': cell.invalidTeacher}" clrSelect (ngModelChange)="editCell({teacherId: $event})" [(ngModel)]="cell.teacherId" name="teacherId">
       <option
         *ngFor="let teacher of stateService.teachers"
         [value]="teacher.id"
@@ -19,7 +19,7 @@
         {{teacher.short}}
       </option>
     </select>
-    <select clrSelect (ngModelChange)="editCell({roomId: $event})" [(ngModel)]="cell.roomId" name="roomId">
+    <select [ngClass]="{'invalid': cell.invalidRoom}" clrSelect (ngModelChange)="editCell({roomId: $event})" [(ngModel)]="cell.roomId" name="roomId">
       <option
         *ngFor="let room of stateService.rooms"
         [value]="room.id"

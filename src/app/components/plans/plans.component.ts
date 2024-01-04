@@ -1,11 +1,10 @@
 import {Component, ViewChild} from '@angular/core';
-import {LessonEditComponent} from "../lessons/lesson-edit/lesson-edit.component";
 import {FirebaseService} from "../../services/firebase.service";
 import {TranslateService} from "@ngx-translate/core";
 import {StateService} from "../../services/state.service";
-import {Lesson} from "../../models/lesson";
 import {PlanEditComponent} from "./plan-edit/plan-edit.component";
 import {Plan} from "../../models/plan";
+import _ from "lodash";
 
 @Component({
   selector: 'app-plans',
@@ -43,8 +42,10 @@ export class PlansComponent {
   edit(item: Partial<Plan>) {
     if (!('isNew' in item)) {
       item.isNew = false;
+      // @ts-ignore
+      item = this.stateService.plans.find(p => p.id == item.id);
     }
-    this.editItem = item;
+    this.editItem = _.cloneDeep(item);
     this.modal.open(item);
   }
 
@@ -52,7 +53,7 @@ export class PlansComponent {
     console.log('onApply', item)
     const patch = {
       name: item.name, groupName: item.groupName,
-      groupId: item.groupId, from: item.from, to: item.to
+      groupId: item.groupId, from: item.from, to: item.to, items: item.items
     };
     if (this.editItem.isNew) {
       this.editItem.isNew = false;
@@ -64,6 +65,7 @@ export class PlansComponent {
   }
 
   onCancel() {
+    console.table(this.stateService.plans)
     this.modal.show = false;
   }
 

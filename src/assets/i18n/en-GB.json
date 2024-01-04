@@ -50,7 +50,7 @@
 	"App.Tenant.City": "City",
 	"App.Tenant.Country": "Country",
 	"App.Tenant.Id": "Key",
-	"App.Tenant.Name": "Name",
+	"App.Tenant.Name": "School",
 	"App.Tenant.Street": "Street",
 	"App.Tenant.Tenant": "Tenant",
 	"App.Tenant.Zip": "ZIP",
