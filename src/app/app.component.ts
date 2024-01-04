@@ -25,8 +25,8 @@ export class AppComponent implements OnInit {
     public router: Router,
     private translate: TranslateService
   ) {
-    translate.setDefaultLang('en-GB');
-    translate.use('en-GB');
+    translate.setDefaultLang(this.stateService.countries[0].lang);
+    translate.use(this.stateService.countries[0].lang);
     this.tenantId = localStorage.getItem('tenant') as string
     this.changeLanguage(this.stateService.countries[0]);
   }

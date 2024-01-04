@@ -12,7 +12,7 @@
 	"App.Authenticate.Register": "Benutzerkonto anlegen",
 	"App.Authenticate.SendEmail": "Email senden",
 	"App.Authenticate.Tenant": "Schule",
-	"App.Authenticate.Username": "Benutzername",
+	"App.Authenticate.Username": "Benutzername (Email)",
 	"App.Course.Course": "Kurs",
 	"App.Course.Courses": "Kurse",
 	"App.Course.Level": "Stufe",
