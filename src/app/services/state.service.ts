@@ -10,11 +10,14 @@ import {TeacherCourse} from "../models/teacherCourse";
 import {Lesson} from "../models/lesson";
 import {Plan} from "../models/plan";
 import {Days} from "../models/day";
+import {Tenant} from "../models/tenant";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StateService {
+
+  countries = [{name: 'DE', lang: 'de-DE'}, {name:'GB', lang: 'en-GB'}]
 
   grades: Array<Grade> = [];
   courses: Array<Course> = [];
@@ -26,6 +29,7 @@ export class StateService {
   lessons: Array<Lesson> = [];
   plans: Array<Plan> = [];
   days: Array<Days> = [];
+  tenants: Array<Tenant> = [];
 
   grades$: BehaviorSubject<Array<Grade>> = new BehaviorSubject<Array<Grade>>(this.grades);
   courses$: BehaviorSubject<Array<Course>> = new BehaviorSubject<Array<Course>>(this.courses);
@@ -37,6 +41,7 @@ export class StateService {
   lessons$: BehaviorSubject<Array<Lesson>> = new BehaviorSubject<Array<Lesson>>(this.lessons);
   plans$: BehaviorSubject<Array<Plan>> = new BehaviorSubject<Array<Plan>>(this.plans);
   days$: BehaviorSubject<Array<Days>> = new BehaviorSubject<Array<Days>>(this.days);
+  tenants$: BehaviorSubject<Array<Tenant>> = new BehaviorSubject<Array<Tenant>>(this.tenants);
 
   constructor() { }
 }

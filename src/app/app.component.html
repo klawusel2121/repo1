@@ -8,7 +8,7 @@
     <div class="branding">
       <clr-combobox (ngModelChange)="changeLanguage($event)" [(ngModel)]="country" name="myState" required>
         <clr-options>
-          <clr-option *clrOptionItems="let country of countries; field:'name'" [clrValue]="country">
+          <clr-option *clrOptionItems="let country of stateService.countries; field:'name'" [clrValue]="country">
             <img height="16" [src]="'../assets/flags/' + country.name.toLowerCase() + '.svg'">{{ country.name }}
           </clr-option>
         </clr-options>
@@ -18,7 +18,7 @@
     <div class="header-actions">
       <clr-dropdown *ngIf="authService.isLoggedIn">
         <button class="nav-text" clrDropdownTrigger aria-label="open user profile">
-          {{ authService.UserData?.email }} [{{ authService.UserData?.tenantId }}]
+          {{ authService.UserData?.email }} [{{ stateService.tenants[0].name }}]
           <cds-icon shape="angle" direction="down"></cds-icon>
         </button>
         <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
@@ -29,6 +29,7 @@
   </header>
   <div class="content-container">
     <clr-vertical-nav *ngIf="authService.isLoggedIn">
+      <a clrVerticalNavLink routerLink="tenant" routerLinkActive="active">{{ 'App.Tenant.Tenant' | translate }}</a>
       <a clrVerticalNavLink routerLink="grades" routerLinkActive="active">{{ 'App.Grade.Grades' | translate }}</a>
       <a clrVerticalNavLink routerLink="rooms" routerLinkActive="active">{{ 'App.Room.Rooms' | translate }}</a>
       <a clrVerticalNavLink routerLink="days" routerLinkActive="active">{{ 'App.Days.Days' | translate }}</a>

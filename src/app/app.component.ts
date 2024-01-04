@@ -15,8 +15,7 @@ export class AppComponent implements OnInit {
   authService: AuthService = inject(AuthService);
   stateService: StateService = inject(StateService);
   fbs: FirebaseService = inject(FirebaseService);
-  countries = [{name: 'DE', lang: 'de-DE'}, {name:'GB', lang: 'en-GB'}]
-  country: any = this.countries[0];
+  country: any = this.stateService.countries[0];
 
   tenantId: string = '';
 
@@ -29,7 +28,7 @@ export class AppComponent implements OnInit {
     translate.setDefaultLang('en-GB');
     translate.use('en-GB');
     this.tenantId = localStorage.getItem('tenant') as string
-    this.changeLanguage(this.countries[0]);
+    this.changeLanguage(this.stateService.countries[0]);
   }
 
   ngOnInit(): void {
@@ -131,6 +130,12 @@ export class AppComponent implements OnInit {
     items$.pipe().subscribe(items => {
       this.stateService.days = items;
       this.stateService.days$.next(this.stateService.days);
+    })
+
+    items$ = this.fbs.getCollection('tenants');
+    items$.pipe().subscribe(items => {
+      this.stateService.tenants = items;
+      this.stateService.tenants$.next(this.stateService.tenants);
     })
   }
 }

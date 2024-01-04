@@ -1,12 +1,12 @@
 import {HasId} from "./has-id";
 import {HasTenant} from "./has-tenant";
 import {HasTimestamps} from "./has-timestamps";
-import {Grade} from "./grade";
 import {IsNew} from "./is-new";
+import {TeacherCourse} from "./teacherCourse";
 
-export interface Group extends HasId, HasTenant, HasTimestamps, IsNew {
+export interface Tenant extends HasId, HasTenant, HasTimestamps {
   name: string;
-  level: number;
-  grade: Grade;
-  roomId: string;
+  country: string;
+  zip: string;
+  street: string;
 }

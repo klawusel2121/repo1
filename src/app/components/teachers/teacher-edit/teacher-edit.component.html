@@ -17,8 +17,15 @@
               {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
           </clr-input-container>
-          <button class="btn btn-primary" (click)="addCourse()">{{ 'App.Action.Add' | translate }}</button>
+          <clr-input-container>
+            <label class="clr-required-mark">{{ 'App.Fields.Short' | translate }}</label>
+            <input clrInput [(ngModel)]="item.short" type="text" name="short" class="formControl" required>
+            <clr-control-error *clrIfError="'required'">
+              {{ 'App.Validation.FieldIsRequired' | translate}}
+            </clr-control-error>
+          </clr-input-container>
         </form>
+        <button class="btn btn-primary" (click)="addCourse()">{{ 'App.Action.Add' | translate }}</button>
         <clr-datagrid>
           <clr-dg-column>{{ 'App.Course.Course' | translate}}</clr-dg-column>
           <clr-dg-column>{{ 'App.Grade.Grades' | translate}}</clr-dg-column>

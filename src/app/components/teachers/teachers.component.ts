@@ -47,7 +47,7 @@ export class TeachersComponent {
   }
 
   onApply(item: Teacher) {
-    const patch = {name: item.name};
+    const patch = {name: item.name, short: item.short};
     if (this.editItem.isNew) {
       this.editItem.isNew = false;
       this.fbs.add(this.source, {...this.editItem, ...patch}).then(

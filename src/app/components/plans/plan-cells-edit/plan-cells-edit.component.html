@@ -9,7 +9,9 @@
     <clr-dg-cell *clrDgItems="let day of openDays; let c = index">
       <app-plan-cell-edit
         [planEditComponent]="planEditComponent"
+        [items]="items"
         (onEditCell)="onEditCell.emit($event)"
+        (onRemoveCell)="onRemoveCell.emit($event)"
         [c]="c" [r]="r">
       </app-plan-cell-edit>
     </clr-dg-cell>

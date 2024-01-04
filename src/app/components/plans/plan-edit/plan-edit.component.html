@@ -8,7 +8,6 @@
       </div>
       <h3 class="modal-title">{{ 'App.Action.Edit' | translate }}: {{ 'App.Plan.Plan' | translate }}</h3>
       <div class="modal-body">
-        Cell changed: {{ cell | json }}
         <form class="clr-flex clr-flex-row"
           [formGroup]="form">
           <clr-input-container>
@@ -43,6 +42,8 @@
         </form>
         <app-plan-cells-edit
           (onEditCell)="onEditCell($event)"
+          (onRemoveCell)="onRemoveCell($event)"
+          [items]="items"
           [planEditComponent]="this">
         </app-plan-cells-edit>
       </div>

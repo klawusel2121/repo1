@@ -31,6 +31,7 @@
 	"App.Fields.Level": "Level",
 	"App.Fields.Name": "Name",
 	"App.Fields.Position": "Position",
+	"App.Fields.Short": "Shortcut",
 	"App.Fields.Size": "Size",
 	"App.Fields.To": "To",
 	"App.Grade.Grade": "Grade",
@@ -46,6 +47,13 @@
 	"App.Room.Rooms": "Rooms",
 	"App.Teacher.Teacher": "Teacher",
 	"App.Teacher.Teachers": "Teachers",
+	"App.Tenant.City": "City",
+	"App.Tenant.Country": "Country",
+	"App.Tenant.Id": "Key",
+	"App.Tenant.Name": "Name",
+	"App.Tenant.Street": "Street",
+	"App.Tenant.Tenant": "Tenant",
+	"App.Tenant.Zip": "ZIP",
 	"App.Title": "Course planner",
 	"App.Validation.FieldIsRequired": "Field is required"
 }

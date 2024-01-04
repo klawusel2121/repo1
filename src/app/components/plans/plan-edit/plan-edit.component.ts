@@ -5,6 +5,7 @@ import _ from "lodash";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {FormHelperService} from "../../../services/form-helper.service";
 import {Cell} from "../plan-cell-edit/plan-cell-edit.component";
+import {PlanItem} from "../../../models/plan-item";
 
 @Component({
   selector: 'app-plan-edit',
@@ -22,6 +23,7 @@ export class PlanEditComponent implements OnInit {
   @Output() onApply: EventEmitter<any> = new EventEmitter<any>();
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
   cell!: Partial<Cell>;
+  items: Array<Partial<PlanItem>> = [];
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -36,11 +38,15 @@ export class PlanEditComponent implements OnInit {
 
   open(item: Partial<Plan>) {
     this.form.patchValue(_.cloneDeep(item));
+    this.items = item.items ?? [];
     this.show = true;
   }
 
   apply() {
     const item = this.form.getRawValue();
+    item.items = this.items;
+    console.log('edit apply', item)
+
     if (item.name?.length === 0) {
       return;
     }
@@ -54,5 +60,20 @@ export class PlanEditComponent implements OnInit {
 
   onEditCell(cell: Partial<Cell>) {
     this.cell = cell;
+    let item = this.items.find(i => i.day == cell.day && i.lesson == cell.lesson);
+    if (!item) {
+      item = { day: cell.day, lesson: cell.lesson};
+      this.items.push(item);
+    }
+    item.courseId = cell.courseId;
+    item.roomId = cell.roomId;
+    item.teacherId = cell.teacherId;
+  }
+
+  onRemoveCell(cell: Partial<Cell>) {
+    const index = this.items.findIndex(i => i.day == cell.day && i.lesson == cell.lesson);
+    if (index !== -1) {
+      this.items.splice(index, 1);
+    }
   }
 }

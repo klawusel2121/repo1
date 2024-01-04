@@ -13,6 +13,7 @@ import {LessonEditComponent} from "./components/lessons/lesson-edit/lesson-edit.
 import {LessonsComponent} from "./components/lessons/lessons.component";
 import {PlansComponent} from "./components/plans/plans.component";
 import {DaysComponent} from "./components/days/days.component";
+import {TenantEditComponent} from "./components/tenant-edit/tenant-edit.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'lessons', component: LessonsComponent },
   { path: 'plans', component: PlansComponent },
   { path: 'days', component: DaysComponent },
+  { path: 'tenant', component: TenantEditComponent },
 ];
 
 @NgModule({

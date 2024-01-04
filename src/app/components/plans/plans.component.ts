@@ -51,7 +51,9 @@ export class PlansComponent {
   onApply(item: Plan) {
     console.log('onApply', item)
     const patch = {
-      name: item.name, groupName: item.groupName, groupId: item.groupId, from: item.from, to: item.to};
+      name: item.name, groupName: item.groupName,
+      groupId: item.groupId, from: item.from, to: item.to
+    };
     if (this.editItem.isNew) {
       this.editItem.isNew = false;
       this.fbs.add(this.source, {...this.editItem, ...patch});

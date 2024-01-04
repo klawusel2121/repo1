@@ -10,5 +10,5 @@ export interface Plan extends HasId, HasTenant, HasTimestamps, IsNew {
   groupName: string;
   from: Date;
   to: Date;
-  items: Array<PlanItem>;
+  items: Array<Partial<PlanItem>>;
 }

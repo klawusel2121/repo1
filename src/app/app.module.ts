@@ -38,6 +38,7 @@ import { PlanEditComponent } from './components/plans/plan-edit/plan-edit.compon
 import { DaysComponent } from './components/days/days.component';
 import { PlanCellsEditComponent } from './components/plans/plan-cells-edit/plan-cells-edit.component';
 import { PlanCellEditComponent } from './components/plans/plan-cell-edit/plan-cell-edit.component';
+import { TenantEditComponent } from './components/tenant-edit/tenant-edit.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { PlanCellEditComponent } from './components/plans/plan-cell-edit/plan-ce
     PlanEditComponent,
     DaysComponent,
     PlanCellsEditComponent,
-    PlanCellEditComponent
+    PlanCellEditComponent,
+    TenantEditComponent
   ],
   imports: [
     BrowserModule,

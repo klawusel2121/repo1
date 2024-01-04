@@ -7,6 +7,7 @@ import {TeacherCourse} from "./teacherCourse";
 
 export interface Teacher extends HasId, HasTenant, HasTimestamps, IsNew {
   name: string;
+  short: string;
   courses: Array<Partial<TeacherCourse>>;
   deleteCourses: Array<string>;
 }

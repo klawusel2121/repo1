@@ -48,6 +48,9 @@ export class TeacherEditComponent {
     if (this.item.name?.length === 0) {
       return;
     }
+    if (this.item.short?.length === 0) {
+      return;
+    }
     this.onApply.emit(this.item);
   }
 

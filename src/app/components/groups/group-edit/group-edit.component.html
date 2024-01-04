@@ -27,6 +27,17 @@
               </option>
             </select>
           </clr-select-container>
+          <clr-select-container>
+            <label>{{ 'App.Room.Room' | translate }}</label>
+            <select clrSelect [(ngModel)]="item.roomId" name="roomId">
+              <option
+                *ngFor="let item of stateService.rooms"
+                [value]="item.id"
+              >
+                {{item.name}}
+              </option>
+            </select>
+          </clr-select-container>
         </form>
       </div>
       <div class="modal-footer">
