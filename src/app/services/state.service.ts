@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Grade} from "../models/grade";
 import {Course} from "../models/course";
 import {Room} from "../models/room";
 import {Teacher} from "../models/teacher";
@@ -19,7 +18,6 @@ export class StateService {
 
   countries = [{name: 'DE', lang: 'de-DE'}, {name:'GB', lang: 'en-GB'}]
 
-  grades: Array<Grade> = [];
   courses: Array<Course> = [];
   rooms: Array<Room> = [];
   teachers: Array<Teacher> = [];
@@ -31,7 +29,6 @@ export class StateService {
   days: Array<Days> = [];
   tenants: Array<Tenant> = [];
 
-  grades$: BehaviorSubject<Array<Grade>> = new BehaviorSubject<Array<Grade>>(this.grades);
   courses$: BehaviorSubject<Array<Course>> = new BehaviorSubject<Array<Course>>(this.courses);
   rooms$: BehaviorSubject<Array<Room>> = new BehaviorSubject<Array<Room>>(this.rooms);
   teachers$: BehaviorSubject<Array<Teacher>> = new BehaviorSubject<Array<Teacher>>(this.teachers);

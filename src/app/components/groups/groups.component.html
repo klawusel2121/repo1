@@ -5,11 +5,15 @@
 <clr-datagrid *ngIf="stateService.groups$ | async as groups">
   <clr-dg-column>{{ 'App.Fields.Name' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Grade.Grade' | translate}}</clr-dg-column>
+  <clr-dg-column>{{ 'App.Teacher.Teacher' | translate}}</clr-dg-column>
+  <clr-dg-column>{{ 'App.Room.Room' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.Changed' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.Created' | translate}}</clr-dg-column>
   <clr-dg-row *ngFor="let item of groups" (dblclick)="edit(item)">
     <clr-dg-cell>{{item.name}}</clr-dg-cell>
     <clr-dg-cell>{{item.level}}</clr-dg-cell>
+    <clr-dg-cell>{{teacherShort(item)}}</clr-dg-cell>
+    <clr-dg-cell>{{roomName(item)}}</clr-dg-cell>
     <clr-dg-cell>{{item.changedAt}}</clr-dg-cell>
     <clr-dg-cell>{{item.createdAt}}</clr-dg-cell>
     <clr-dg-action-overflow>

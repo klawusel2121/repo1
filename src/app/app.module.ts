@@ -18,10 +18,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {environment} from "./environments/environment";
 import { TenantSelectComponent } from './components/tenant-select/tenant-select.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
-import { GradesComponent } from './components/grades/grades.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { CourseEditComponent } from './components/courses/course-edit/course-edit.component';
-import { GradeEditComponent } from './components/grades/grade-edit/grade-edit.component';
 import { TeacherEditComponent } from './components/teachers/teacher-edit/teacher-edit.component';
 import { GroupsComponent } from './components/groups/groups.component';
 import { GroupEditComponent } from './components/groups/group-edit/group-edit.component';
@@ -48,10 +46,8 @@ import { TenantEditComponent } from './components/tenant-edit/tenant-edit.compon
     DashboardComponent,
     TenantSelectComponent,
     TeachersComponent,
-    GradesComponent,
     CoursesComponent,
     CourseEditComponent,
-    GradeEditComponent,
     TeacherEditComponent,
     GroupsComponent,
     GroupEditComponent,

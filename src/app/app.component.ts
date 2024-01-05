@@ -1,7 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {AuthService} from "./services/auth.service";
 import {Router} from "@angular/router";
-import {Course} from "./models/course";
 import {TranslateService} from "@ngx-translate/core";
 import {StateService} from "./services/state.service";
 import {FirebaseService} from "./services/firebase.service";
@@ -73,13 +72,8 @@ export class AppComponent implements OnInit {
     this.translate.use(country.lang)
   }
   readData(): void {
-    let items$ = this.fbs.getCollection('grades');
-    items$.pipe().subscribe(items => {
-      this.stateService.grades = items.sort((a, b) => a.level - b.level);
-      this.stateService.grades$.next(this.stateService.grades);
-    })
 
-    items$ = this.fbs.getCollection('courses');
+    let items$ = this.fbs.getCollection('courses');
     items$.pipe().subscribe(items => {
       this.stateService.courses = items;
       this.stateService.courses$.next(this.stateService.courses);

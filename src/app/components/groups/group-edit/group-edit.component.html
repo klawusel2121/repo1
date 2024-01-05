@@ -16,14 +16,18 @@
               {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
           </clr-input-container>
-          <clr-select-container>
+          <clr-input-container>
             <label>{{ 'App.Grade.Grade' | translate }}</label>
-            <select clrSelect [(ngModel)]="item.level" name="level">
+            <input clrInput [(ngModel)]="item.level" type="number" class="formControl" name="level" required>
+          </clr-input-container>
+          <clr-select-container>
+            <label>{{ 'App.Teacher.Teacher' | translate }}</label>
+            <select clrSelect [(ngModel)]="item.teacherId" name="teacherId">
               <option
-                *ngFor="let item of stateService.grades"
-                [value]="item.level"
+                *ngFor="let item of stateService.teachers"
+                [value]="item.id"
               >
-                {{item.level}}
+                {{item.short}}
               </option>
             </select>
           </clr-select-container>

@@ -9,5 +9,5 @@ export interface TeacherCourse extends HasId, HasTenant, HasTimestamps, IsNew {
   teacherId: string;
   courseId: string;
   courseName: string;
-  levels: Array<number>;
+  groupIds: Array<string>;
 }

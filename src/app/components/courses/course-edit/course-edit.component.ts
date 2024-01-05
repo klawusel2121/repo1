@@ -65,16 +65,4 @@ export class CourseEditComponent implements OnInit {
     item.weeklyHours = this.item.weeklyHours;
     this.onApply.emit(item);
   }
-
-  availableGrades() {
-    const grades = _.cloneDeep(this.stateService.grades);
-    this.item.weeklyHours?.forEach(h => {
-      const index = grades.findIndex(g => g.level == h.level);
-      if (index !== -1) {
-        grades.splice(index, 1);
-      }
-    });
-
-    return grades;
-  }
 }

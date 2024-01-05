@@ -48,7 +48,7 @@ export class GroupsComponent {
 
   onApply(item: Group) {
     console.log('onApply', item);
-    const patch = {name: item.name, level: item.level, roomId: item.roomId};
+    const patch = {name: item.name, level: item.level, teacherId: item.teacherId, roomId: item.roomId};
     if (this.editItem.isNew) {
       this.editItem.isNew = false;
       this.fbs.add(this.source, {...this.editItem, ...patch});
@@ -60,5 +60,13 @@ export class GroupsComponent {
 
   onCancel() {
     this.modal.show = false;
+  }
+
+  teacherShort(item: Group) {
+    return this.stateService.teachers.find(t => t.id === item.teacherId)?.short ?? '';
+  }
+
+  roomName(item: Group) {
+    return this.stateService.rooms.find(r => r.id === item.roomId)?.name ?? '';
   }
 }

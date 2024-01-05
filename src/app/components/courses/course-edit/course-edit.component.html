@@ -23,16 +23,7 @@
           <clr-dg-column>{{ 'App.Fields.Hours' | translate }}</clr-dg-column>
           <clr-dg-row class="compact-grid" *ngFor="let courseWeek of item.weeklyHours">
             <clr-dg-cell>
-              <clr-select-container>
-                <select clrSelect [(ngModel)]="courseWeek.level" name="level">
-                  <option
-                    *ngFor="let item of stateService.grades"
-                    [value]="item.level"
-                  >
-                    {{item.name}}
-                  </option>
-                </select>
-              </clr-select-container>
+              <input clrInput [(ngModel)]="courseWeek.level" name="level" type="number" class="formControl">
             </clr-dg-cell>
             <clr-dg-cell>
               <clr-input-container>
