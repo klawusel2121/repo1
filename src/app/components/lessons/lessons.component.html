@@ -7,6 +7,7 @@
   <clr-dg-column>{{ 'App.Fields.Name' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.From' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.To' | translate}}</clr-dg-column>
+  <clr-dg-column>{{ 'App.Fields.Type' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.Changed' | translate}}</clr-dg-column>
   <clr-dg-column>{{ 'App.Fields.Created' | translate}}</clr-dg-column>
   <clr-dg-row *ngFor="let item of lessons" (dblclick)="edit(item)">
@@ -14,6 +15,7 @@
     <clr-dg-cell>{{item.name}}</clr-dg-cell>
     <clr-dg-cell>{{item.from}}</clr-dg-cell>
     <clr-dg-cell>{{item.to}}</clr-dg-cell>
+    <clr-dg-cell>{{ 'App.Lesson.Types.' + item.type | translate }}</clr-dg-cell>
     <clr-dg-cell>{{item.changedAt}}</clr-dg-cell>
     <clr-dg-cell>{{item.createdAt}}</clr-dg-cell>
     <clr-dg-action-overflow>

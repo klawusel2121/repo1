@@ -4,6 +4,8 @@ import {Lesson} from "../../../models/lesson";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {FormHelperService} from "../../../services/form-helper.service";
 import _ from "lodash";
+import {LessonType} from "../../../models/lesson-type";
+import {object} from "@angular/fire/database";
 
 @Component({
   selector: 'app-lesson-edit',
@@ -27,6 +29,7 @@ export class LessonEditComponent implements OnInit {
       name: this.formBuilder.control(undefined),
       from: this.formBuilder.control(undefined),
       to: this.formBuilder.control(undefined),
+      type: this.formBuilder.control(undefined),
     })
     this.formHelper.addDefaultControls(this.form, this.formBuilder);
   }
@@ -50,6 +53,12 @@ export class LessonEditComponent implements OnInit {
     if (!item.to) {
       return;
     }
+    if (!item.type) {
+      return;
+    }
     this.onApply.emit(item);
   }
+
+  protected readonly LessonType = LessonType;
+  protected readonly object = object;
 }

@@ -23,6 +23,16 @@
               {{ 'App.Validation.FieldIsRequired' | translate}}
             </clr-control-error>
           </clr-input-container>
+          <clr-select-container>
+            <label class="clr-required-mark">{{ 'App.Fields.Type' | translate }}</label>
+            <select clrSelect formControlName="type" required>
+              <option [value]="LessonType.normal">{{ 'App.Lesson.Types.normal' | translate }}</option>
+              <option [value]="LessonType.break">{{ 'App.Lesson.Types.break' | translate }}</option>
+            </select>
+            <clr-control-error *clrIfError="'required'">
+              {{ 'App.Validation.FieldIsRequired' | translate}}
+            </clr-control-error>
+          </clr-select-container>
         </form>
         <form clrForm clrLayout="horizontal" [formGroup]="form">
           <clr-input-container>

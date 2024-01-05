@@ -47,7 +47,8 @@ export class LessonsComponent {
   }
 
   onApply(item: Lesson) {
-    const patch = {position: item.position, name: item.name, from: item.from, to: item.to};
+    const patch = {
+      position: item.position, name: item.name, from: item.from, to: item.to, type: item.type};
     if (this.editItem.isNew) {
       this.editItem.isNew = false;
       this.fbs.add(this.source, {...this.editItem, ...patch});
