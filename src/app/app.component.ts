@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
 import {StateService} from "./services/state.service";
 import {FirebaseService} from "./services/firebase.service";
+import _ from "lodash";
 
 @Component({
   selector: 'app-root',
@@ -75,25 +76,25 @@ export class AppComponent implements OnInit {
 
     let items$ = this.fbs.getCollection('courses');
     items$.pipe().subscribe(items => {
-      this.stateService.courses = items;
+      this.stateService.courses = _.sortBy(items, 'name');
       this.stateService.courses$.next(this.stateService.courses);
     })
 
     items$ = this.fbs.getCollection('groups');
     items$.pipe().subscribe(items => {
-      this.stateService.groups = items;
+      this.stateService.groups = _.sortBy(items, 'name');
       this.stateService.groups$.next(this.stateService.groups);
     })
 
     items$ = this.fbs.getCollection('rooms');
     items$.pipe().subscribe(items => {
-      this.stateService.rooms = items;
+      this.stateService.rooms = _.sortBy(items, 'name');
       this.stateService.rooms$.next(this.stateService.rooms);
     })
 
     items$ = this.fbs.getCollection('teachers');
     items$.pipe().subscribe(items => {
-      this.stateService.teachers = items;
+      this.stateService.teachers = _.sortBy(items, 'short');
       this.stateService.teachers$.next(this.stateService.teachers);
     })
 
