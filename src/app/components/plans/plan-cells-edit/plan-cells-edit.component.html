@@ -2,10 +2,21 @@
 <clr-datagrid>
   <clr-dg-column></clr-dg-column>
 
-  <clr-dg-column *clrDgItems="let day of openDays; let c = index">{{ 'App.Day.' + day.number | translate }}</clr-dg-column>
+  <clr-dg-column *clrDgItems="let day of openDays; let c = index">
+    {{ 'App.Day.' + day.number | translate }}
+  </clr-dg-column>
 
   <clr-dg-row *ngFor="let lesson of lessons; let r = index">
-    <clr-dg-cell>{{ lesson.from }}-{{ lesson.to}}</clr-dg-cell>
+    <clr-dg-cell>
+      <div>
+        <div>
+          {{ lesson.name }}
+        </div>
+        <div>
+          {{ lesson.from }}-{{ lesson.to}}
+        </div>
+      </div>
+    </clr-dg-cell>
     <clr-dg-cell *clrDgItems="let day of openDays; let c = index">
       <app-plan-cell-edit id="{{ day.number }}-{{ lesson.position }}"
         [planEditComponent]="planEditComponent"
