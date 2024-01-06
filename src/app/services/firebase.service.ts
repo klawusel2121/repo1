@@ -51,7 +51,7 @@ export class FirebaseService {
   update(collectionName: string, item: any, patchValue: any) {
     patchValue.changedAt = new Date().toLocaleString();
     const docItem = doc(this.firestore, `${collectionName}/${item.id}`);
-    setDoc(docItem, {...item, ...patchValue}).then((documentReference: any) => {
+    return setDoc(docItem, {...item, ...patchValue}).then((documentReference: any) => {
       console.log('setDoc', documentReference);
     });
   };

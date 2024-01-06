@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {FormHelperService} from "../../services/form-helper.service";
 import {StateService} from "../../services/state.service";
 import {FirebaseService} from "../../services/firebase.service";
+import {NzMessageService} from "ng-zorro-antd/message";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-tenant-edit',
@@ -14,6 +16,8 @@ export class TenantEditComponent implements OnInit {
   formBuilder = inject(FormBuilder);
   formHelper = inject(FormHelperService);
   stateService = inject(StateService);
+  translate = inject(TranslateService);
+  message = inject(NzMessageService);
 
   show = false;
   form!: FormGroup;
@@ -33,9 +37,10 @@ export class TenantEditComponent implements OnInit {
     this.form.patchValue(tenant);
   }
 
-
   apply() {
     const tenant = this.form.getRawValue();
-    this.fbs.update('tenants', this.stateService.tenants[0], tenant);
+    this.fbs.update('tenants', this.stateService.tenants[0], tenant).then(data => {
+      this.message.success(this.translate.instant('App.Message.SuccessSave'))
+    });
   }
 }

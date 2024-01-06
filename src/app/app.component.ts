@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   stateService: StateService = inject(StateService);
   fbs: FirebaseService = inject(FirebaseService);
   country: any = this.stateService.countries[0];
-
+  isCollapsed = false;
   tenantId: string = '';
 
   protected readonly localStorage = localStorage;
@@ -57,10 +57,6 @@ export class AppComponent implements OnInit {
       return;
     }
     this.router.navigate([path]);
-  }
-
-  changeTenant(event: string) {
-    this.authService.setTenant(event);
   }
 
   onLogout(event: any) {

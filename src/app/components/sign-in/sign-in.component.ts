@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormHelperService} from "../../services/form-helper.service";
 
 @Component({
   selector: 'app-sign-in',
@@ -7,13 +9,25 @@ import {AuthService} from "../../services/auth.service";
   styleUrl: './sign-in.component.css'
 })
 export class SignInComponent {
+  passwordVisible = false;
+  formBuilder = inject(FormBuilder);
+  formHelper = inject(FormHelperService);
 
-  tenantId: string = '';
   constructor(public authService: AuthService) { }
 
-  ngOnInit(): void {}
+  form!: FormGroup;
 
-  onLogin(email: string, password: string) {
-    this.authService.Login(email, password)
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      userName: this.formBuilder.control(undefined),
+      password: this.formBuilder.control(undefined),
+      tenantId: this.formBuilder.control(undefined),
+    })
+  }
+
+  onLogin() {
+
+    this.authService.setTenant(this.form.get('tenantId')?.value);
+    this.authService.Login(this.form.get('userName')?.value, this.form.get('password')?.value)
   }
 }

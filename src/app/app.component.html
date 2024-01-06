@@ -1,4 +1,89 @@
-<div class="main-container">
+<nz-layout class="app-layout" *ngIf="true">
+  <nz-sider class="menu-sidebar"
+            nzCollapsible
+            nzWidth="256px"
+            nzBreakpoint="md"
+            [(nzCollapsed)]="isCollapsed"
+            [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <h1>Ant Design Of Angular</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed" *ngIf="authService.isLoggedIn">
+      <li nz-submenu nzOpen nzTitle="{{ 'App.Menu.MasterData' | translate}}" nzIcon="dashboard">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="tenant">{{ 'App.Tenant.Name' | translate }}</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="rooms">{{ 'App.Room.Rooms' | translate }}</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="days">{{ 'App.Days.Days' | translate }}</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="lessons">{{ 'App.Lesson.Lessons' | translate }}</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="courses">{{ 'App.Course.Courses' | translate }}</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="groups">{{ 'App.Group.Groups' | translate }}</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="teachers">{{ 'App.Teacher.Teachers' | translate }}</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="{{ 'App.Menu.Plans' | translate}}" nzIcon="dashboard">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="plans">{{ 'App.Menu.Plans.Maintenance' | translate }}</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <button nzSize="large" class="logout btn btn-warning-outline" (click)="onLogout($event)">
+            <div>
+<!--              <div>-->
+<!--                {{ authService.UserData?.email }}-->
+<!--              </div>-->
+<!--              <div>-->
+<!--                {{ stateService.tenants[0].name }}-->
+<!--              </div>-->
+              <div>
+                {{ 	'App.Authenticate.Logout' | translate }}
+              </div>
+            </div>
+          </button>
+        </ul>
+      </li>
+
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <span class="trigger"
+                  nz-icon
+                  [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></span>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+
+<div class="main-container" *ngIf="false">
   <header class="header-6">
     <div class="branding">
       <a href="hourglass" (click)="navigate('', $event)" class="nav-link">
@@ -16,15 +101,7 @@
     </div>
 
     <div class="header-actions">
-      <clr-dropdown *ngIf="authService.isLoggedIn">
-        <button class="nav-text" clrDropdownTrigger aria-label="open user profile">
-          {{ authService.UserData?.email }} [{{ stateService.tenants[0].name }}]
-          <cds-icon shape="angle" direction="down"></cds-icon>
-        </button>
-        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-          <a href="logout" (click)="onLogout($event)" clrDropdownItem>Log out</a>
-        </clr-dropdown-menu>
-      </clr-dropdown>
+
     </div>
   </header>
   <div class="content-container">

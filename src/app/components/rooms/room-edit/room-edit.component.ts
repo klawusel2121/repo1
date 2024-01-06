@@ -42,4 +42,8 @@ export class RoomEditComponent implements OnInit {
     }
     this.onApply.emit(item);
   }
+
+  cancel() {
+    this.onCancel.emit();
+  }
 }

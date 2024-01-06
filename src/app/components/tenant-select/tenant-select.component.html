@@ -1,11 +1,8 @@
-<clr-select-container>
-  <label>{{ 'App.Authenticate.Tenant' | translate }}</label>
-  <select clr clrSelect name="options" (ngModelChange)="this.authService.setTenant($event)" [(ngModel)]="tenantId">
-    <option
-      *ngFor="let tenant of authService.Tenants"
-      [value]="tenant.value"
-    >
-      {{tenant.value}}
-    </option>
-  </select>
-</clr-select-container>
+<nz-form-item>
+  <nz-form-label [nzSpan]="4">{{ 'App.Authenticate.Tenant' | translate }}</nz-form-label>
+  <nz-form-control [nzSpan]="6">
+    <nz-select (ngModelChange)="authService.setTenant(tenantId)" [(ngModel)]="tenantId">
+      <nz-option *ngFor="let tenant of authService.Tenants" [nzValue]="tenant.value" [nzLabel]="tenant.value"></nz-option>
+    </nz-select>
+  </nz-form-control>
+</nz-form-item>

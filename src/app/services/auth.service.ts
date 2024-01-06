@@ -39,6 +39,7 @@ export class AuthService {
   }
 
   setTenant(tenant: string): void {
+    console.log('setTenant', tenant)
     localStorage.setItem('tenant', tenant);
   }
 
@@ -83,7 +84,7 @@ export class AuthService {
   //Login Method
   Login(email : string, password : string){
     this.auth.tenantId = localStorage.getItem('tenant');;
-    console.log('login', email, password)
+    console.log('login', email, password, this.auth.tenantId)
     return signInWithEmailAndPassword(this.auth, email, password)
       .then((result: any) => {
         console.log('login', result)

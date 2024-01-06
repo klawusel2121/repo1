@@ -1,40 +1,41 @@
-<form clrForm clrLayout="horizontal" [formGroup]="form">
-  <clr-input-container>
-    <label class="clr-required-mark">{{ 'App.Tenant.Id' | translate }}</label>
-    <input clrInput formControlName="tenantId" type="text" class="formControl">
-  </clr-input-container>
-  <clr-input-container>
-    <label class="clr-required-mark">{{ 'App.Tenant.Name' | translate }}</label>
-    <input clrInput formControlName="name" type="text" class="formControl" required>
-    <clr-control-error *clrIfError="'required'">
-      {{ 'App.Validation.FieldIsRequired' | translate}}
-    </clr-control-error>
-  </clr-input-container>
-  <clr-input-container>
-    <label class="clr-required-mark">{{ 'App.Tenant.Country' | translate }}</label>
-    <input clrInput formControlName="country" type="text" class="formControl">
-  </clr-input-container>
-  <clr-input-container>
-    <label class="clr-required-mark">{{ 'App.Tenant.Zip' | translate }}</label>
-    <input clrInput formControlName="zip" type="text" class="formControl" required>
-    <clr-control-error *clrIfError="'required'">
-      {{ 'App.Validation.FieldIsRequired' | translate}}
-    </clr-control-error>
-  </clr-input-container>
-  <clr-input-container>
-    <label class="clr-required-mark">{{ 'App.Tenant.City' | translate }}</label>
-    <input clrInput formControlName="city" type="text" class="formControl" required>
-    <clr-control-error *clrIfError="'required'">
-      {{ 'App.Validation.FieldIsRequired' | translate}}
-    </clr-control-error>
-  </clr-input-container>
-  <clr-input-container>
-    <label class="clr-required-mark">{{ 'App.Tenant.Street' | translate }}</label>
-    <input clrInput formControlName="street" type="text" class="formControl" required>
-    <clr-control-error *clrIfError="'required'">
-      {{ 'App.Validation.FieldIsRequired' | translate}}
-    </clr-control-error>
-  </clr-input-container>
+<form nz-form [formGroup]="form">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="2">{{ 'App.Tenant.Id' | translate }}</nz-form-label>
+    <nz-form-control [nzSpan]="6">
+      <input nz-input formControlName="tenantId" type="text">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="2">{{ 'App.Tenant.Name' | translate }}</nz-form-label>
+    <nz-form-control [nzSpan]="6">
+      <input nz-input formControlName="name" type="text">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="2">{{ 'App.Tenant.Country' | translate }}</nz-form-label>
+    <nz-form-control [nzSpan]="6">
+      <input nz-input formControlName="country" type="text">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="2">{{ 'App.Tenant.Zip' | translate }}</nz-form-label>
+    <nz-form-control [nzSpan]="6">
+      <input nz-input formControlName="zip" type="text">
+    </nz-form-control>
+  </nz-form-item>
+
+<nz-form-item>
+  <nz-form-label [nzSpan]="2">{{ 'App.Tenant.City' | translate }}</nz-form-label>
+  <nz-form-control [nzSpan]="6">
+    <input nz-input formControlName="city" type="text">
+  </nz-form-control>
+</nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="2">{{ 'App.Tenant.Street' | translate }}</nz-form-label>
+    <nz-form-control [nzSpan]="6">
+      <input nz-input formControlName="street" type="text">
+    </nz-form-control>
+  </nz-form-item>
 
 </form>
-<button (click)="apply()" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate}}</button>
+<button nz-button nzType="primary" (click)="apply()" type="button">{{ 'App.Action.Ok' | translate}}</button>
