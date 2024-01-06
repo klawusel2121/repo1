@@ -1,20 +1,46 @@
 <section>
-  <form clrForm clrLayout="horizontal">
-    <app-tenant-select></app-tenant-select>
-    <clr-input-container>
-      <label class="clr-required-mark">{{ 'App.Authenticate.Username' | translate }}</label>
-      <input clrInput type="email" class="formControl" #userName required>
-    </clr-input-container>
-    <clr-password-container>
-      <label class="clr-required-mark">{{ 'App.Authenticate.Password' | translate }}</label>
-      <input clrPassword type="password" class="formControl" #userPassword required>
-    </clr-password-container>
+  <form nz-form [formGroup]="form">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4">{{ 'App.Authenticate.Tenant' | translate }}</nz-form-label>
+      <nz-form-control [nzSpan]="6">
+        <nz-select formControlName="tenantId">
+          <nz-option *ngFor="let tenant of authService.Tenants" [nzValue]="tenant.value"
+                     [nzLabel]="tenant.value"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4">{{ 'App.Authenticate.Username' | translate }}</nz-form-label>
+      <nz-form-control [nzSpan]="6">
+        <input nz-input formControlName="userName" type="email">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4">{{ 'App.Authenticate.Password' | translate }}</nz-form-label>
+      <nz-input-group [nzSuffix]="suffixTemplate">
+        <input
+          [type]="passwordVisible ? 'text' : 'password'"
+          nz-input
+          placeholder="input password"
+          formControlName="password"
+        />
+      </nz-input-group>
+      <ng-template #suffixTemplate>
+      <span
+        nz-icon
+        [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+        nzTheme="outline"
+        (click)="passwordVisible = !passwordVisible"
+      ></span>
+      </ng-template>
+    </nz-form-item>
+
   </form>
   <!--Redirectio to register components -->
   <div class="text-center text-lg-start mt-4 pt-2">
-    <p class="small mt-2 pt-1 mb-0">{{ 'App.Authenticate.ForgotPassword' | translate}}
+    <p class="small mt-2 pt-1 mb-0">{{ 'App.Authenticate.ForgotPassword' | translate }}
       <a routerLink="/forgot-password"
-         class="link-danger">{{ 'App.Authenticate.SendEmail' | translate}}</a></p>
+         class="link-danger">{{ 'App.Authenticate.SendEmail' | translate }}</a></p>
   </div>
   <!--Login Button -->
   <div class="text-center mt-4 pt-2">
@@ -22,16 +48,16 @@
       type="button"
       color="primary"
       class="btn btn-primary btn-lg btn-block"
-      (click)="onRegister(userName.value, userPassword.value)">
-      {{ 'App.Authenticate.Register' | translate}}
+      (click)="onRegister()">
+      {{ 'App.Authenticate.Register' | translate }}
     </button>
   </div>
   <!--Redirectio to register components -->
   <div class="text-center text-lg-start mt-4 pt-2">
-    <p class="small mt-2 pt-1 mb-0">{{ 'App.Authenticate.HaveAccount' | translate}}
+    <p class="small mt-2 pt-1 mb-0">{{ 'App.Authenticate.HaveAccount' | translate }}
       <a
         routerLink="/sign-in"
-        class="link-danger">{{ 'App.Authenticate.Login' | translate}}</a></p>
+        class="link-danger">{{ 'App.Authenticate.Login' | translate }}</a></p>
   </div>
 </section>
 

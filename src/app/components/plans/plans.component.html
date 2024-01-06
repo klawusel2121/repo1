@@ -1,32 +1,34 @@
-<button class="btn btn-primary" (click)="add()">{{ 'App.Action.Add' | translate}}</button>
+<button nz-button nzType="primary" (click)="add()">{{ 'App.Action.Add' | translate}}</button>
 
 <app-plan-edit (onApply)="onApply($event)" (onCancel)="onCancel()"></app-plan-edit>
 
-<clr-datagrid *ngIf="stateService.plans as plans">
-  <clr-dg-column>{{ 'App.Fields.Name' | translate}}</clr-dg-column>
-  <clr-dg-column>{{ 'App.Fields.Status' | translate}}</clr-dg-column>
-  <clr-dg-column>{{ 'App.Group.Group' | translate}}</clr-dg-column>
-  <clr-dg-column>{{ 'App.Lesson.Lessons' | translate}}</clr-dg-column>
-  <clr-dg-column>{{ 'App.Fields.From' | translate}}</clr-dg-column>
-  <clr-dg-column>{{ 'App.Fields.To' | translate}}</clr-dg-column>
-  <clr-dg-column>{{ 'App.Fields.Changed' | translate}}</clr-dg-column>
-  <clr-dg-column>{{ 'App.Fields.Created' | translate}}</clr-dg-column>
-  <clr-dg-row *ngFor="let item of plans" (dblclick)="edit(item)">
-    <clr-dg-cell>{{item.name}}</clr-dg-cell>
-    <clr-dg-cell>
+<nz-table #basicTable [nzData]="items" *ngIf="stateService.plans as items">
+  <thead>
+  <tr>
+    <th>{{ 'App.Fields.Name' | translate}}</th>
+    <th>{{ 'App.Fields.Status' | translate}}</th>
+    <th>{{ 'App.Group.Group' | translate}}</th>
+    <th>{{ 'App.Lesson.Lessons' | translate}}</th>
+    <th>{{ 'App.Fields.From' | translate}}</th>
+    <th>{{ 'App.Fields.To' | translate}}</th>
+    <th>{{ 'App.Fields.Changed' | translate}}</th>
+    <th>{{ 'App.Fields.Created' | translate}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of basicTable.data">
+    <td>{{item.name}}</td>
+    <td>
       {{ (item.active ? 'App.Status.Active' : 'App.Status.Inactive') | translate }}
-    </clr-dg-cell>
-    <clr-dg-cell>{{item.groupName}}</clr-dg-cell>
-    <clr-dg-cell>{{item.items.length}}</clr-dg-cell>
-    <clr-dg-cell>{{item.from | date: 'dd.MM.YYYY'}}</clr-dg-cell>
-    <clr-dg-cell>{{item.to | date: 'dd.MM.YYYY'}}</clr-dg-cell>
-    <clr-dg-cell>{{item.changedAt}}</clr-dg-cell>
-    <clr-dg-cell>{{item.createdAt}}</clr-dg-cell>
-    <clr-dg-action-overflow>
-      <button class="action-item" (click)="edit(item)">{{ 'App.Action.Edit' | translate}}</button>
-      <button class="action-item" (click)="remove(item)">{{ 'App.Action.Delete' | translate}}</button>
-    </clr-dg-action-overflow>
-  </clr-dg-row>
-
-  <clr-dg-footer>{{plans.length}}  {{ 'App.Plan.Plans' | translate }}</clr-dg-footer>
-</clr-datagrid>
+    </td>
+    <td>{{item.groupName}}</td>
+    <td>{{item.items.length}}</td>
+    <td>{{item.from | date: 'dd.MM.YYYY'}}</td>
+    <td>{{item.to | date: 'dd.MM.YYYY'}}</td>
+    <td>{{item.changedAt}}</td>
+    <td>{{item.createdAt}}</td>
+    <td><span (click)="edit(item)" nz-icon nzType="edit" nzTheme="outline"></span></td>
+    <td><span nz-popconfirm nzPopconfirmTitle="{{ 'App.Message.ConfirmRemove' | translate}}" (nzOnConfirm)="remove(item)" nz-icon nzType="delete" nzTheme="outline"></span></td>
+  </tr>
+  </tbody>
+</nz-table>

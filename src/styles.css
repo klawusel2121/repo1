@@ -13,3 +13,10 @@
 @media screen {
   .no-screen {display: none !important;}
 }
+
+.commmand-col {
+  width: 30px !important;
+  display: flex  !important;
+  flex-direction: row !important;
+  gap: 8px !important;
+}

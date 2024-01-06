@@ -1,28 +1,30 @@
-<button class="btn btn-primary" (click)="add()">{{ 'App.Action.Add' | translate}}</button>
+<button nz-button nzType="primary" (click)="add()">{{ 'App.Action.Add' | translate}}</button>
 
 <app-lesson-edit (onApply)="onApply($event)" (onCancel)="onCancel()"></app-lesson-edit>
 
-<clr-datagrid *ngIf="stateService.lessons as lessons">
-  <clr-dg-column>{{ 'App.Fields.Position' | translate}}</clr-dg-column>
-  <clr-dg-column>{{ 'App.Fields.Name' | translate}}</clr-dg-column>
-  <clr-dg-column>{{ 'App.Fields.From' | translate}}</clr-dg-column>
-  <clr-dg-column>{{ 'App.Fields.To' | translate}}</clr-dg-column>
-  <clr-dg-column>{{ 'App.Fields.Type' | translate}}</clr-dg-column>
-  <clr-dg-column>{{ 'App.Fields.Changed' | translate}}</clr-dg-column>
-  <clr-dg-column>{{ 'App.Fields.Created' | translate}}</clr-dg-column>
-  <clr-dg-row *ngFor="let item of lessons" (dblclick)="edit(item)">
-    <clr-dg-cell>{{item.position}}</clr-dg-cell>
-    <clr-dg-cell>{{item.name}}</clr-dg-cell>
-    <clr-dg-cell>{{item.from}}</clr-dg-cell>
-    <clr-dg-cell>{{item.to}}</clr-dg-cell>
-    <clr-dg-cell>{{ 'App.Lesson.Types.' + item.type | translate }}</clr-dg-cell>
-    <clr-dg-cell>{{item.changedAt}}</clr-dg-cell>
-    <clr-dg-cell>{{item.createdAt}}</clr-dg-cell>
-    <clr-dg-action-overflow>
-      <button class="action-item" (click)="edit(item)">{{ 'App.Action.Edit' | translate}}</button>
-      <button class="action-item" (click)="remove(item)">{{ 'App.Action.Delete' | translate}}</button>
-    </clr-dg-action-overflow>
-  </clr-dg-row>
-
-  <clr-dg-footer>{{lessons.length}}  {{ 'App.Lesson.Lessons' | translate }}</clr-dg-footer>
-</clr-datagrid>
+<nz-table #basicTable [nzData]="items" *ngIf="stateService.lessons as items">
+  <thead>
+  <tr>
+    <th>{{ 'App.Fields.Position' | translate}}</th>
+    <th>{{ 'App.Fields.Name' | translate}}</th>
+    <th>{{ 'App.Fields.From' | translate}}</th>
+    <th>{{ 'App.Fields.To' | translate}}</th>
+    <th>{{ 'App.Fields.Type' | translate}}</th>
+    <th>{{ 'App.Fields.Changed' | translate}}</th>
+    <th>{{ 'App.Fields.Created' | translate}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of basicTable.data">
+    <td>{{item.position}}</td>
+    <td>{{item.name}}</td>
+    <td>{{item.from}}</td>
+    <td>{{item.to}}</td>
+    <td>{{ 'App.Lesson.Types.' + item.type | translate }}</td>
+    <td>{{item.changedAt}}</td>
+    <td>{{item.createdAt}}</td>
+    <td><span (click)="edit(item)" nz-icon nzType="edit" nzTheme="outline"></span></td>
+    <td><span nz-popconfirm nzPopconfirmTitle="{{ 'App.Message.ConfirmRemove' | translate}}" (nzOnConfirm)="remove(item)" nz-icon nzType="delete" nzTheme="outline"></span></td>
+  </tr>
+  </tbody>
+</nz-table>

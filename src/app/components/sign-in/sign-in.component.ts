@@ -12,8 +12,7 @@ export class SignInComponent {
   passwordVisible = false;
   formBuilder = inject(FormBuilder);
   formHelper = inject(FormHelperService);
-
-  constructor(public authService: AuthService) { }
+  authService = inject(AuthService);
 
   form!: FormGroup;
 
@@ -26,7 +25,6 @@ export class SignInComponent {
   }
 
   onLogin() {
-
     this.authService.setTenant(this.form.get('tenantId')?.value);
     this.authService.Login(this.form.get('userName')?.value, this.form.get('password')?.value)
   }
