@@ -48,6 +48,8 @@ import {NzIconModule} from 'ng-zorro-antd/icon';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
+
 import {IconDefinition} from '@ant-design/icons-angular';
 import {
   AccountBookFill, AlertFill, AlertOutline,
@@ -57,6 +59,8 @@ import {
   from '@ant-design/icons-angular/icons';
 import { registerLocaleData } from '@angular/common';
 import de from '@angular/common/locales/de';
+
+
 registerLocaleData(de);
 
 /** config ng-zorro-antd i18n **/

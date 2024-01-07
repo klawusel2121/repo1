@@ -1,12 +1,12 @@
-<button nz-button nzType="primary" (click)="add()">{{ 'App.Action.Add' | translate}}</button>
 
 <app-room-edit (onApply)="onApply($event)" (onCancel)="onCancel()"></app-room-edit>
 
 <nz-table #basicTable [nzData]="items" *ngIf="stateService.rooms$ | async as items">
   <thead>
   <tr>
-    <th></th>
-    <th>{{ 'App.Fields.Name' | translate}}</th>
+    <th><button nz-button nzType="primary" (click)="add()">{{ 'App.Action.Add' | translate}}</button>
+    </th>
+    <th [nzSortOrder]="'ascend'" [nzSortFn]="compareName">{{ 'App.Fields.Name' | translate}}</th>
     <th>{{ 'App.Fields.Size' | translate}}</th>
     <th>{{ 'App.Fields.Changed' | translate}}</th>
     <th>{{ 'App.Fields.Created' | translate}}</th>
@@ -14,7 +14,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of basicTable.data">
-      <td class="commmand-col">
+      <td class="command-col">
         <span (click)="edit(item)" nz-icon nzType="edit" nzTheme="outline"></span>
         <span nz-popconfirm nzPopconfirmTitle="{{ 'App.Message.ConfirmRemove' | translate}}" (nzOnConfirm)="remove(item)" nz-icon nzType="delete" nzTheme="outline"></span>
       </td>

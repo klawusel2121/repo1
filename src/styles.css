@@ -14,9 +14,10 @@
   .no-screen {display: none !important;}
 }
 
-.commmand-col {
-  width: 30px !important;
+.command-col {
+  width: 50px !important;
   display: flex  !important;
   flex-direction: row !important;
-  gap: 8px !important;
+  gap: 16px !important;
+  margin-left: 8px;
 }

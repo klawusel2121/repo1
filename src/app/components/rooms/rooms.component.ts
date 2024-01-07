@@ -5,6 +5,8 @@ import {TranslateService} from "@ngx-translate/core";
 import {RoomEditComponent} from "./room-edit/room-edit.component";
 import {Room} from "../../models/room";
 import {StateService} from "../../services/state.service";
+import {add} from "lodash";
+import {NzTableSortOrder} from "ng-zorro-antd/table";
 
 @Component({
   selector: 'app-rooms',
@@ -17,6 +19,8 @@ export class RoomsComponent {
 
   @ViewChild(RoomEditComponent)
   modal: RoomEditComponent = new RoomEditComponent;
+  sortOrderDesc: NzTableSortOrder = 'ascend';
+  compareName: any = (a: any, b: any) => a.name.localeCompare(b.name);
 
   constructor(
     private fbs: FirebaseService,
@@ -24,6 +28,7 @@ export class RoomsComponent {
     public stateService: StateService
   ) {
   }
+
 
   ngOnInit(): void {
   }
