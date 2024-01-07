@@ -82,7 +82,8 @@ export class PlanCellEditComponent implements OnInit {
   removeCell(cell: Partial<Cell>) {
     this.cell.courseId = undefined;
     this.cell.roomId = undefined;
-    this.cell.teacherId = undefined;
+    this.cell.teacherIds = [];
+    this.checkValidity(cell);
     this.onRemoveCell.emit(cell);
   }
 
