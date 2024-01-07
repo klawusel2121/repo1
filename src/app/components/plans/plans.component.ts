@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, inject, ViewChild} from '@angular/core';
 import {FirebaseService} from "../../services/firebase.service";
 import {TranslateService} from "@ngx-translate/core";
 import {StateService} from "../../services/state.service";
@@ -12,19 +12,17 @@ import _ from "lodash";
   styleUrl: './plans.component.css'
 })
 export class PlansComponent {
+  fbs = inject(FirebaseService);
+  translate = inject(TranslateService);
+  stateService = inject(StateService);
+
   editItem: any;
+  messageId = '';
   source = 'plans';
 
   @ViewChild(PlanEditComponent)
   modal: PlanEditComponent = new PlanEditComponent;
 
-  constructor(
-    private fbs: FirebaseService,
-    private translate: TranslateService,
-    public stateService: StateService
-  ) {
-
-  }
 
   add() {
     const name = this.translate.instant('App.Plan.Plan')

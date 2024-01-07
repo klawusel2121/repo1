@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {StateService} from "../../../services/state.service";
 import {Plan} from "../../../models/plan";
 import _ from "lodash";
@@ -7,6 +7,8 @@ import {FormHelperService} from "../../../services/form-helper.service";
 import {Cell} from "../plan-cell-edit/plan-cell-edit.component";
 import {PlanItem} from "../../../models/plan-item";
 import {BehaviorSubject} from "rxjs";
+import {NzMessageService} from "ng-zorro-antd/message";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-plan-edit',
@@ -18,16 +20,17 @@ export class PlanEditComponent implements OnInit {
   stateService = inject(StateService);
   formBuilder = inject(FormBuilder);
   formHelper = inject(FormHelperService);
-
-  show = false;
-  form!: FormGroup;
+  message = inject(NzMessageService);
+  translate = inject(TranslateService);
 
   @Output() onApply: EventEmitter<any> = new EventEmitter<any>();
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
+
+  show = false;
+  form!: FormGroup;
+  messageId: string = '';
   cell!: Partial<Cell>;
   items: Array<Partial<PlanItem>> = [];
-  active: any;
-  inactive: any;
   active$ = new BehaviorSubject<boolean>(false)
 
   ngOnInit(): void {
@@ -50,17 +53,20 @@ export class PlanEditComponent implements OnInit {
   }
 
   open(item: Partial<Plan>) {
-    if (!('active' in item)) {
-      item.active = false;
-    }
-    this.inactive = !item.active;
-    this.active = item.active;
-    if (item.active) {
-      this.active$.next(true);
-    }
-    this.form.patchValue(_.cloneDeep(item));
-    this.items = _.cloneDeep(this.stateService.plans.find(p => p.id == item.id)?.items) ?? [];
-    this.show = true;
+    this.messageId = this.message.loading(this.translate.instant('App.Message.Loading'), { nzDuration: 0 }).messageId;
+
+    setTimeout(() => {
+      if (!('active' in item)) {
+        item.active = false;
+      }
+      if (item.active) {
+        this.active$.next(true);
+      }
+      this.form.patchValue(_.cloneDeep(item));
+      this.items = _.cloneDeep(this.stateService.plans.find(p => p.id == item.id)?.items) ?? [];
+      this.show = true;
+      this.message.remove(this.messageId);
+    })
   }
 
   apply() {
@@ -111,8 +117,6 @@ export class PlanEditComponent implements OnInit {
 
   onActiveChange(active: boolean) {
     this.form.get('active')?.setValue(active);
-    this.active = active;
-    this.inactive = !active;
     this.active$.next(active);
   }
 

@@ -52,6 +52,7 @@
   "App.Menu.Plans.Maintenance": "Pflege",
   "App.Message.ConfirmCancelEdit": "Bearbeitung abbrechen?",
   "App.Message.ConfirmRemove": "Löschen?",
+  "App.Message.Loading": "Daten werden geladen ...",
 	"App.Message.SuccessSave": "Speicherung erfolgreich",
 	"App.Plan.Plan": "Stundenplan",
 	"App.Plan.Plans": "Stundenpläne",

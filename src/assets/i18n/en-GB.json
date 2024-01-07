@@ -52,6 +52,7 @@
   "App.Menu.Plans.Maintenance": "Maintenance",
   "App.Message.ConfirmCancelEdit": "Cancel edit?",
   "App.Message.ConfirmRemove": "Remove?",
+  "App.Message.Loading": "Data is beeing loaded ...",
   "App.Message.SuccessSave": "Save successful",
 	"App.Plan.Plan": "Timetable",
 	"App.Plan.Plans": "Timetables",
