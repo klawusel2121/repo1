@@ -61,4 +61,8 @@ export class LessonEditComponent implements OnInit {
 
   protected readonly LessonType = LessonType;
   protected readonly object = object;
+
+  cancel() {
+    this.onCancel.emit();
+  }
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Output} from '@angular/core';
+import {Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
 import {Teacher} from "../../../models/teacher";
 import {StateService} from "../../../services/state.service";
 import {Guid} from "guid-typescript";
@@ -6,24 +6,38 @@ import {TeacherCourse} from "../../../models/teacherCourse";
 import {Course} from "../../../models/course";
 import {CoursePerWeek} from "../../../models/coursePerWeek";
 import _ from "lodash";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormHelperService} from "../../../services/form-helper.service";
 
 @Component({
   selector: 'app-teacher-edit',
   templateUrl: './teacher-edit.component.html',
   styleUrl: './teacher-edit.component.css'
 })
-export class TeacherEditComponent {
+export class TeacherEditComponent implements OnInit {
+  stateService = inject(StateService);
+  formBuilder = inject(FormBuilder);
+  formHelper = inject(FormHelperService);
+
   show = false;
+  form!: FormGroup;
   item!: Partial<Teacher>;
   courses: Array<Course> = [];
-  availableCourses: Array<Course> = [];
-  stateService = inject(StateService);
+
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      name: this.formBuilder.control(undefined),
+      short: this.formBuilder.control(undefined),
+    })
+    this.formHelper.addDefaultControls(this.form, this.formBuilder);
+  }
 
   @Output() onApply: EventEmitter<any> = new EventEmitter<any>();
   @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
 
   open(item: Partial<Teacher>) {
     this.item = _.cloneDeep(item);
+    this.form.patchValue(this.item);
     this.item.deleteCourses = [];
     const list = this.stateService.teacherCourses.filter(c => item.id === c.teacherId) ?? []
     this.item.courses = list;
@@ -45,13 +59,16 @@ export class TeacherEditComponent {
   }
 
   apply() {
-    if (this.item.name?.length === 0) {
+    if (this.form.get('name')?.value.length === 0) {
       return;
     }
-    if (this.item.short?.length === 0) {
+    if (this.form.get('short')?.value.length === 0) {
       return;
     }
     this.onApply.emit(this.item);
   }
 
+  cancel() {
+    this.onCancel.emit();
+  }
 }

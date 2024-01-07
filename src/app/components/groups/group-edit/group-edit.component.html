@@ -1,56 +1,32 @@
-<div class="modal" *ngIf="show">
-  <div class="modal-dialog" role="dialog" aria-hidden="true">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button aria-label="Close" class="close" type="button" (click)="onCancel.emit()">
-          <cds-icon shape="close"></cds-icon>
-        </button>
-      </div>
-      <h3 class="modal-title">{{ 'App.Action.Edit' | translate }}: {{ 'App.Group.Group' | translate }}</h3>
-      <div class="modal-body">
-        <form clrForm clrLayout="horizontal">
-          <clr-input-container>
-            <label class="clr-required-mark">{{ 'App.Fields.Name' | translate }}</label>
-            <input clrInput [(ngModel)]="item.name" type="text" class="formControl" #name name="name" required>
-            <clr-control-error *clrIfError="'required'">
-              {{ 'App.Validation.FieldIsRequired' | translate}}
-            </clr-control-error>
-          </clr-input-container>
-          <clr-input-container>
-            <label>{{ 'App.Grade.Grade' | translate }}</label>
-            <input clrInput [(ngModel)]="item.level" type="number" class="formControl" name="level" required>
-          </clr-input-container>
-          <clr-select-container>
-            <label>{{ 'App.Teacher.Teacher' | translate }}</label>
-            <select clrSelect [(ngModel)]="item.teacherId" name="teacherId">
-              <option
-                *ngFor="let item of stateService.teachers"
-                [value]="item.id"
-              >
-                {{item.short}}
-              </option>
-            </select>
-          </clr-select-container>
-          <clr-select-container>
-            <label>{{ 'App.Room.Room' | translate }}</label>
-            <select clrSelect [(ngModel)]="item.roomId" name="roomId">
-              <option
-                *ngFor="let item of stateService.rooms"
-                [value]="item.id"
-              >
-                {{item.name}}
-              </option>
-            </select>
-          </clr-select-container>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate }}
-        </button>
-        <button (click)="apply()" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate }}
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal-backdrop" aria-hidden="true" *ngIf="show"></div>
+<nz-modal (nzOnCancel)="cancel()" (nzOnOk)="apply()" [(nzVisible)]="show" [nzTitle]="('App.Action.Edit' | translate) + ':' + ('App.Room.Room' | translate)">
+  <form *nzModalContent nz-form [formGroup]="form">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4">{{ 'App.Fields.Name' | translate }}</nz-form-label>
+      <nz-form-control [nzSpan]="6">
+        <input nz-input formControlName="name" type="text">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4">{{ 'App.Grade.Grade' | translate }}</nz-form-label>
+      <nz-form-control [nzSpan]="6">
+        <input nz-input formControlName="level" type="number">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4">{{ 'App.Teacher.Teacher' | translate }}</nz-form-label>
+      <nz-form-control [nzSpan]="6">
+        <nz-select formControlName="teacherId">
+          <nz-option *ngFor="let item of stateService.teachers" [nzValue]="item.id" [nzLabel]="item.short"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="4">{{ 'App.Room.Room' | translate }}</nz-form-label>
+      <nz-form-control [nzSpan]="6">
+        <nz-select formControlName="roomId">
+          <nz-option *ngFor="let item of stateService.rooms" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>

@@ -50,6 +50,7 @@
 	"App.Menu.MasterData": "Stammdaten",
   "App.Menu.Plans": "Stundenpläne",
   "App.Menu.Plans.Maintenance": "Pflege",
+  "App.Message.ConfirmCancelEdit": "Bearbeitung abbrechen?",
   "App.Message.ConfirmRemove": "Löschen?",
 	"App.Message.SuccessSave": "Speicherung erfolgreich",
 	"App.Plan.Plan": "Stundenplan",

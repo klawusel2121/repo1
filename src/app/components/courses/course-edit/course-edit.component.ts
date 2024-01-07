@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
 import {Course} from "../../../models/course";
 import {CoursePerWeek} from "../../../models/coursePerWeek";
 import {StateService} from "../../../services/state.service";
@@ -6,6 +6,7 @@ import { Guid } from 'guid-typescript';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FormHelperService} from "../../../services/form-helper.service";
 import _ from "lodash";
+import {Group} from "../../../models/group";
 
 @Component({
   selector: 'app-course-edit',
@@ -16,6 +17,7 @@ export class CourseEditComponent implements OnInit {
   stateService = inject(StateService);
   formBuilder = inject(FormBuilder);
   formHelper = inject(FormHelperService);
+  changeDetector = inject(ChangeDetectorRef);
 
   show = false;
   form!: FormGroup;
@@ -40,12 +42,19 @@ export class CourseEditComponent implements OnInit {
     if (!this.item.weeklyHours) {
       this.item.weeklyHours = [];
     }
+    this.item.weeklyHours.forEach(item => item.edit = false);
     this.show = true;
   }
 
   addHour() {
-    const newItem: Partial<CoursePerWeek> = {courseId: this.item.id, hours: 1, isNew: true, id: Guid.create().toString()}
-    this.item.weeklyHours?.push(newItem);
+    const newItem: Partial<CoursePerWeek> = {
+      courseId: this.item.id, hours: 1, isNew: true, id: Guid.create().toString(), edit: true
+    }
+    this.item.weeklyHours = [...this.item.weeklyHours!, newItem];
+  }
+
+  groupName(item: Partial<CoursePerWeek>) {
+    return this.stateService.groups.find(t => t.id === item.groupId)?.name ?? '';
   }
 
   removeHour(item: Partial<CoursePerWeek>): void {
@@ -64,5 +73,28 @@ export class CourseEditComponent implements OnInit {
     item.deleteHours = this.item.deleteHours;
     item.weeklyHours = this.item.weeklyHours;
     this.onApply.emit(item);
+  }
+
+  cancel(): void {
+    this.onCancel.emit();
+  }
+
+  editHour(item: Partial<CoursePerWeek>) {
+    item.backup = _.cloneDeep(item);
+    item.edit = true;
+    console.log('editHour', item)
+  }
+
+  cancelEditHour(item: Partial<CoursePerWeek>) {
+    item.edit = false;
+    item.groupId = item.backup?.groupId;
+    item.hours = item.backup?.hours;
+    item.backup = undefined;
+  }
+
+  saveEditHour(item: Partial<CoursePerWeek>) {
+    console.log('saveEditHour', _.cloneDeep(item))
+    item.backup = undefined;
+    item.edit = false;
   }
 }

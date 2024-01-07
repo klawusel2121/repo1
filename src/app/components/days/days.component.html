@@ -1,36 +1,33 @@
+<div class="days">
+  <nz-switch [(ngModel)]="active[1]"
+             [nzCheckedChildren]="'App.Day.1' | translate"
+             [nzUnCheckedChildren]="'App.Day.1' | translate"></nz-switch>
 
-  <div class="btn-group">
+  <nz-switch [(ngModel)]="active[2]"
+             [nzCheckedChildren]="'App.Day.2' | translate"
+             [nzUnCheckedChildren]="'App.Day.2' | translate"></nz-switch>
 
-    <div class="checkbox btn">
-      <input type="checkbox" id="btn-demo-check-1" [(ngModel)]="active[1]"/>
-      <label for="btn-demo-check-1">{{ 'App.Day.1' | translate}}</label>
-    </div>
-    <div class="checkbox btn">
-      <input type="checkbox" id="btn-demo-check-2" [(ngModel)]="active[2]"/>
-      <label for="btn-demo-check-2">{{ 'App.Day.2' | translate}}</label>
-    </div>
-    <div class="checkbox btn">
-      <input type="checkbox" id="btn-demo-check-3" [(ngModel)]="active[3]"/>
-      <label for="btn-demo-check-3">{{ 'App.Day.3' | translate}}</label>
-    </div>
-    <div class="checkbox btn">
-      <input type="checkbox" id="btn-demo-check-4" [(ngModel)]="active[4]"/>
-      <label for="btn-demo-check-4">{{ 'App.Day.4' | translate}}</label>
-    </div>
-    <div class="checkbox btn">
-      <input type="checkbox" id="btn-demo-check-5" [(ngModel)]="active[5]"/>
-      <label for="btn-demo-check-5">{{ 'App.Day.5' | translate}}</label>
-    </div>
-    <div class="checkbox btn">
-      <input type="checkbox" id="btn-demo-check-6" [(ngModel)]="active[6]"/>
-      <label for="btn-demo-check-6">{{ 'App.Day.6' | translate}}</label>
-    </div>
-    <div class="checkbox btn">
-      <input type="checkbox" id="btn-demo-check-0" [(ngModel)]="active[0]"/>
-      <label for="btn-demo-check-0">{{ 'App.Day.0' | translate}}</label>
-    </div>
-  </div>
-  <hr style="color: transparent;">
-  <button (click)="apply()" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate}}</button>
+  <nz-switch [(ngModel)]="active[3]"
+             [nzCheckedChildren]="'App.Day.3' | translate"
+             [nzUnCheckedChildren]="'App.Day.3' | translate"></nz-switch>
+
+  <nz-switch [(ngModel)]="active[4]"
+             [nzCheckedChildren]="'App.Day.4' | translate"
+             [nzUnCheckedChildren]="'App.Day.4' | translate"></nz-switch>
+
+  <nz-switch [(ngModel)]="active[5]"
+             [nzCheckedChildren]="'App.Day.5' | translate"
+             [nzUnCheckedChildren]="'App.Day.5' | translate"></nz-switch>
+
+  <nz-switch [(ngModel)]="active[6]"
+             [nzCheckedChildren]="'App.Day.6' | translate"
+             [nzUnCheckedChildren]="'App.Day.6' | translate"></nz-switch>
+
+  <nz-switch [(ngModel)]="active[0]"
+             [nzCheckedChildren]="'App.Day.0' | translate"
+             [nzUnCheckedChildren]="'App.Day.0' | translate"></nz-switch>
+</div>
+<hr style="color: transparent;">
+<button nz-button nzType="primary" (click)="apply()">{{ 'App.Action.Ok' | translate }}</button>
 
 

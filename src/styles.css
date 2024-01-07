@@ -20,4 +20,29 @@
   flex-direction: row !important;
   gap: 16px !important;
   margin-left: 8px;
+  span {
+    cursor: pointer;
+  }
+}
+
+.days {
+  display: flex  !important;
+  flex-direction: row !important;
+  gap: 16px !important;
+}
+
+.w2 {
+  width: 50px;
+}
+
+.w4 {
+  width: 100px;
+}
+
+.w6 {
+  width: 150px;
+}
+
+.w8 {
+  width: 200px;
 }

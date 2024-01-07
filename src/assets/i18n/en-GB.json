@@ -50,6 +50,7 @@
   "App.Menu.MasterData": "Master data",
   "App.Menu.Plans": "Timetables",
   "App.Menu.Plans.Maintenance": "Maintenance",
+  "App.Message.ConfirmCancelEdit": "Cancel edit?",
   "App.Message.ConfirmRemove": "Remove?",
   "App.Message.SuccessSave": "Save successful",
 	"App.Plan.Plan": "Timetable",

@@ -8,4 +8,8 @@ export interface CoursePerWeek extends HasId, HasTenant, HasTimestamps, IsNew {
   courseId: string;
   level: number;
   hours: number;
+  groupName: string;
+  groupId: string;
+  edit?: boolean;
+  backup?: Partial<CoursePerWeek>;
 }

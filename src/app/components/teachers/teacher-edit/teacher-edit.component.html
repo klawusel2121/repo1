@@ -1,71 +1,19 @@
-<div class="modal" *ngIf="show">
-  <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button aria-label="Close" class="close" type="button" (click)="onCancel.emit()">
-          <cds-icon shape="close"></cds-icon>
-        </button>
-      </div>
-      <h3 class="modal-title">{{ 'App.Action.Edit' | translate}}: {{ 'App.Teacher.Teacher' | translate}}</h3>
-
-      <div class="modal-body">
-        <form clrForm clrLayout="horizontal">
-          <clr-input-container>
-            <label class="clr-required-mark">{{ 'App.Fields.Name' | translate }}</label>
-            <input clrInput [(ngModel)]="item.name" type="text" name="name" class="formControl" #desc required>
-            <clr-control-error *clrIfError="'required'">
-              {{ 'App.Validation.FieldIsRequired' | translate}}
-            </clr-control-error>
-          </clr-input-container>
-          <clr-input-container>
-            <label class="clr-required-mark">{{ 'App.Fields.Short' | translate }}</label>
-            <input clrInput [(ngModel)]="item.short" type="text" name="short" class="formControl" required>
-            <clr-control-error *clrIfError="'required'">
-              {{ 'App.Validation.FieldIsRequired' | translate}}
-            </clr-control-error>
-          </clr-input-container>
-        </form>
-<!--        <button class="btn btn-primary" (click)="addCourse()">{{ 'App.Action.Add' | translate }}</button>-->
-<!--        <clr-datagrid>-->
-<!--          <clr-dg-column>{{ 'App.Course.Course' | translate}}</clr-dg-column>-->
-<!--          <clr-dg-column>{{ 'App.Grade.Grades' | translate}}</clr-dg-column>-->
-<!--          <clr-dg-row class="compact-grid" *ngFor="let teacherCourse of item.courses">-->
-<!--            <clr-dg-cell>-->
-<!--              <clr-select-container>-->
-<!--                <select clrSelect [(ngModel)]="teacherCourse.courseId" name="groupId">-->
-<!--                  <option-->
-<!--                    *ngFor="let course of stateService.courses"-->
-<!--                    [value]="course.name"-->
-<!--                  >-->
-<!--                    {{course.name}}-->
-<!--                  </option>-->
-<!--                </select>-->
-<!--              </clr-select-container>-->
-<!--            </clr-dg-cell>-->
-<!--            <clr-dg-cell>-->
-<!--              <clr-combobox [(ngModel)]="teacherCourse.groupIds" name="multiSelect" clrMulti="true" required>-->
-<!--                <ng-container *clrOptionSelected="let selected">-->
-<!--                  {{ selected }}-->
-<!--                </ng-container>-->
-<!--                <clr-options>-->
-<!--                  <clr-option *clrOptionItems="let group of stateService.groups; field: 'level'" [clrValue]="group.id">-->
-<!--                    {{ group.name }}-->
-<!--                  </clr-option>-->
-<!--                </clr-options>-->
-<!--              </clr-combobox>-->
-<!--            </clr-dg-cell>-->
-<!--            <clr-dg-action-overflow>-->
-<!--              <button class="action-item" (click)="removeCourse(teacherCourse)">{{ 'App.Action.Delete' | translate}}</button>-->
-<!--            </clr-dg-action-overflow>-->
-<!--          </clr-dg-row>-->
-<!--        </clr-datagrid>-->
-
-      </div>
-      <div class="modal-footer">
-        <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate}}</button>
-        <button (click)="apply()" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate}}</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal-backdrop" aria-hidden="true" *ngIf="show"></div>
+<nz-modal (nzOnCancel)="cancel()" (nzOnOk)="apply()" [(nzVisible)]="show"
+          [nzTitle]="('App.Action.Edit' | translate) + ':' + ('App.Teacher.Teacher' | translate)">
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="form">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ 'App.Fields.Name' | translate }}</nz-form-label>
+        <nz-form-control [nzSpan]="6">
+          <input nz-input  formControlName="name" type="text">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ 'App.Fields.Short' | translate }}</nz-form-label>
+        <nz-form-control [nzSpan]="6">
+          <input nz-input  formControlName="short" type="text">
+        </nz-form-control>
+      </nz-form-item>
+   </form>
+  </ng-container>
+</nz-modal>

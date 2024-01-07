@@ -1,7 +1,11 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, inject} from '@angular/core';
 import {StateService} from "../../services/state.service";
 import {FirebaseService} from "../../services/firebase.service";
 import {Day} from "../../models/day";
+import {FormBuilder} from "@angular/forms";
+import {FormHelperService} from "../../services/form-helper.service";
+import {TranslateService} from "@ngx-translate/core";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'app-days',
@@ -9,6 +13,12 @@ import {Day} from "../../models/day";
   styleUrl: './days.component.css'
 })
 export class DaysComponent {
+  fbs = inject(FirebaseService);
+  formBuilder = inject(FormBuilder);
+  formHelper = inject(FormHelperService);
+  stateService = inject(StateService);
+  translate = inject(TranslateService);
+  message = inject(NzMessageService);
 
   items: Array<Day> = [];
   source = 'days';
@@ -19,8 +29,6 @@ export class DaysComponent {
   btn2: boolean = false;
 
   constructor(
-    private stateService: StateService,
-    private fbs: FirebaseService,
   ) {
     this.items = this.stateService.days[0]?.items ?? [];
     console.log('ctor', this.stateService.days, this.items)
@@ -46,7 +54,9 @@ export class DaysComponent {
       this.active.forEach((active, index) => {
         this.items[index].open = active;
       })
-      this.fbs.update(this.source, this.stateService.days[0], {items: this.items});
+      this.fbs.update(this.source, this.stateService.days[0], {items: this.items}).then(data => {
+        this.message.success(this.translate.instant('App.Message.SuccessSave'))
+      });
     }
 
   }

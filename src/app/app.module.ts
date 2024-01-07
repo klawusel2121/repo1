@@ -54,7 +54,7 @@ import {IconDefinition} from '@ant-design/icons-angular';
 import {
   AccountBookFill, AlertFill, AlertOutline,
   DashboardOutline, EyeFill, EyeOutline, EyeInvisibleOutline, EyeInvisibleFill,
-  MenuOutline, MenuFoldOutline
+  MenuOutline, MenuFoldOutline, SaveOutline
 }
   from '@ant-design/icons-angular/icons';
 import { registerLocaleData } from '@angular/common';
@@ -66,8 +66,13 @@ registerLocaleData(de);
 /** config ng-zorro-antd i18n **/
 import { provideNzI18n, de_DE} from 'ng-zorro-antd/i18n';
 import {NzModalComponent} from "ng-zorro-antd/modal";
+import {NzSwitchComponent} from "ng-zorro-antd/switch";
 
-const icons: IconDefinition[] = [AccountBookFill, AlertOutline, AlertFill, DashboardOutline, EyeFill, EyeOutline, EyeInvisibleOutline, EyeInvisibleFill, MenuOutline, MenuFoldOutline];
+const icons: IconDefinition[] = [
+  AccountBookFill, AlertOutline, AlertFill, DashboardOutline,
+  EyeFill, EyeOutline, EyeInvisibleOutline, EyeInvisibleFill,
+  MenuOutline, MenuFoldOutline, SaveOutline
+];
 
 @NgModule({
   declarations: [
@@ -124,7 +129,8 @@ const icons: IconDefinition[] = [AccountBookFill, AlertOutline, AlertFill, Dashb
     NzIconDirective,
     NzSelectComponent,
     NzOptionComponent,
-    NzModalComponent
+    NzModalComponent,
+    NzSwitchComponent
   ],
   providers: [CookieService, AuthService, provideNzI18n(de_DE)],
   bootstrap: [AppComponent]

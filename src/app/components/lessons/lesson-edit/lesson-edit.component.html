@@ -1,63 +1,40 @@
-<div class="modal" *ngIf="show">
-  <div class="modal-dialog" role="dialog" aria-hidden="true">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button aria-label="Close" class="close" type="button" (click)="onCancel.emit()">
-          <cds-icon shape="close"></cds-icon>
-        </button>
-      </div>
-      <h3 class="modal-title">{{ 'App.Action.Edit' | translate }}: {{ 'App.Lesson.Lesson' | translate }}</h3>
-      <div class="modal-body">
-        <form clrForm clrLayout="horizontal" [formGroup]="form">
-          <clr-input-container>
-            <label class="clr-required-mark">{{ 'App.Fields.Position' | translate }}</label>
-            <input clrInput formControlName="position" min="1" type="number" class="formControl" required>
-            <clr-control-error *clrIfError="'required'">
-              {{ 'App.Validation.FieldIsRequired' | translate}}
-            </clr-control-error>
-          </clr-input-container>
-          <clr-input-container>
-            <label class="clr-required-mark">{{ 'App.Fields.Name' | translate }}</label>
-            <input clrInput formControlName="name" type="text" class="formControl" required>
-            <clr-control-error *clrIfError="'required'">
-              {{ 'App.Validation.FieldIsRequired' | translate}}
-            </clr-control-error>
-          </clr-input-container>
-          <clr-select-container>
-            <label class="clr-required-mark">{{ 'App.Fields.Type' | translate }}</label>
-            <select clrSelect formControlName="type" required>
-              <option [value]="LessonType.normal">{{ 'App.Lesson.Types.normal' | translate }}</option>
-              <option [value]="LessonType.break">{{ 'App.Lesson.Types.break' | translate }}</option>
-            </select>
-            <clr-control-error *clrIfError="'required'">
-              {{ 'App.Validation.FieldIsRequired' | translate}}
-            </clr-control-error>
-          </clr-select-container>
-        </form>
-        <form clrForm clrLayout="horizontal" [formGroup]="form">
-          <clr-input-container>
-            <label class="clr-required-mark">{{ 'App.Fields.From' | translate }}</label>
-            <input clrInput formControlName="from" type="text" class="formControl" required>
-            <clr-control-error *clrIfError="'required'">
-              {{ 'App.Validation.FieldIsRequired' | translate}}
-            </clr-control-error>
-          </clr-input-container>
-          <clr-input-container>
-            <label class="clr-required-mark">{{ 'App.Fields.To' | translate }}</label>
-            <input clrInput formControlName="to" type="text" class="formControl" required>
-            <clr-control-error *clrIfError="'required'">
-              {{ 'App.Validation.FieldIsRequired' | translate}}
-            </clr-control-error>
-          </clr-input-container>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate }}
-        </button>
-        <button (click)="apply()" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate }}
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal-backdrop" aria-hidden="true" *ngIf="show"></div>
+<nz-modal (nzOnCancel)="cancel()" (nzOnOk)="apply()" [(nzVisible)]="show"
+          [nzTitle]="('App.Action.Edit' | translate) + ':' + ('App.Lesson.Lesson' | translate)">
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="form">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ 'App.Fields.Position' | translate }}</nz-form-label>
+        <nz-form-control [nzSpan]="6">
+          <input nz-input  formControlName="position" min="1" type="number">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ 'App.Fields.Name' | translate }}</nz-form-label>
+        <nz-form-control [nzSpan]="6">
+          <input nz-input  formControlName="name" type="text">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ 'App.Fields.Type' | translate }}</nz-form-label>
+        <nz-form-control [nzSpan]="6">
+          <nz-select formControlName="type">
+            <nz-option [nzValue]="LessonType.normal" [nzLabel]="'App.Lesson.Types.normal' | translate"></nz-option>
+            <nz-option [nzValue]="LessonType.break" [nzLabel]="'App.Lesson.Types.break' | translate"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ 'App.Fields.From' | translate }}</nz-form-label>
+        <nz-form-control [nzSpan]="6">
+          <input nz-input  formControlName="from" type="text">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ 'App.Fields.To' | translate }}</nz-form-label>
+        <nz-form-control [nzSpan]="6">
+          <input nz-input  formControlName="to" type="text">
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-modal>

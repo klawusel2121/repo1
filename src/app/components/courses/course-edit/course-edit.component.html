@@ -1,54 +1,56 @@
-<div class="modal" *ngIf="show">
-  <div class="modal-dialog" role="dialog" aria-hidden="true">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button aria-label="Close" class="close" type="button" (click)="onCancel.emit()">
-          <cds-icon shape="close"></cds-icon>
-        </button>
-      </div>
-      <h3 class="modal-title">{{ 'App.Action.Edit' | translate }}: {{ 'App.Course.Course' | translate }}</h3>
-      <div class="modal-body">
-        <form clrForm clrLayout="horizontal" [formGroup]="form">
-          <clr-input-container>
-            <label>{{ 'App.Fields.Name' | translate }}</label>
-            <input clrInput formControlName="name" type="text" class="formControl" required>
-            <clr-control-error *clrIfError="'required'">
-              {{ 'App.Validation.FieldIsRequired' | translate }}
-            </clr-control-error>
-          </clr-input-container>
-          <button class="btn btn-primary" (click)="addHour()">{{ 'App.Action.Add' | translate }}</button>
-        </form>
-        <clr-datagrid>
-          <clr-dg-column>{{ 'App.Fields.Level' | translate }}</clr-dg-column>
-          <clr-dg-column>{{ 'App.Fields.Hours' | translate }}</clr-dg-column>
-          <clr-dg-row class="compact-grid" *ngFor="let courseWeek of item.weeklyHours">
-            <clr-dg-cell>
-              <input clrInput [(ngModel)]="courseWeek.level" name="level" type="number" class="formControl">
-            </clr-dg-cell>
-            <clr-dg-cell>
-              <clr-input-container>
-                <input clrInput [(ngModel)]="courseWeek.hours" type="number" min="1" class="formControl" #name name="name"
-                       required>
+<nz-modal (nzOnCancel)="cancel()" (nzOnOk)="apply()" [(nzVisible)]="show"
+          [nzTitle]="('App.Action.Edit' | translate) + ':' + ('App.Room.Room' | translate)">
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="form">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ 'App.Fields.Name' | translate }}</nz-form-label>
+        <nz-form-control [nzSpan]="6">
+          <input nz-input formControlName="name" type="text">
+        </nz-form-control>
+      </nz-form-item>
+    </form>
 
-                <clr-control-error *clrIfError="'required'">
-                  {{ 'App.Validation.FieldIsRequired' | translate }}
-                </clr-control-error>
-              </clr-input-container>
-            </clr-dg-cell>
-            <clr-dg-action-overflow>
-              <button class="action-item" (click)="removeHour(courseWeek)">{{ 'App.Action.Delete' | translate }}
-              </button>
-            </clr-dg-action-overflow>
-          </clr-dg-row>
-        </clr-datagrid>
-      </div>
-      <div class="modal-footer">
-        <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate }}
-        </button>
-        <button (click)="apply()" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate }}
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal-backdrop" aria-hidden="true" *ngIf="show"></div>
+    <nz-table nzSize="small" #basicTable [nzData]="items" *ngIf="item.weeklyHours as items">
+      <thead>
+      <tr>
+        <th>
+          <button nz-button nzType="primary" (click)="addHour()">{{ 'App.Action.Add' | translate }}</button>
+        </th>
+        <th>{{ 'App.Group.Group' | translate }}</th>
+        <th>{{ 'App.Fields.Hours' | translate }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of basicTable.data">
+        <ng-container *ngIf="!item.edit">
+          <td class="command-col">
+            <span (click)="editHour(item)" nz-icon nzType="edit" nzTheme="outline"></span>
+            <span nz-popconfirm nzPopconfirmTitle="{{ 'App.Message.ConfirmRemove' | translate}}"
+                  (nzOnConfirm)="removeHour(item)"
+                  nz-icon nzType="delete" nzTheme="outline"></span>
+          </td>
+          <td class="w6">{{ groupName(item) }}</td>
+          <td class="w6">{{ item.hours }}</td>
+        </ng-container>
+        <ng-container *ngIf="item.edit">
+          <td class="command-col">
+            <span (click)="saveEditHour(item)" nz-icon nzType="save" nzTheme="outline"></span>
+            <span (click)="cancelEditHour(item)" nz-icon nzType="close" nzTheme="outline"></span>
+          </td>
+          <td class="w6">
+            <nz-select name="groupId" [(ngModel)]="item.groupId">
+              <nz-option *ngFor="let item of stateService.groups" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+            </nz-select>
+          </td>
+          <td class="w6">
+            <input nz-input name="hours" [(ngModel)]="item.hours" type="number">
+          </td>
+        </ng-container>
+      </tr>
+      </tbody>
+    </nz-table>
+
+  </ng-container>
+
+</nz-modal>
+
