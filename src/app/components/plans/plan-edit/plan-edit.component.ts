@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, inject, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {StateService} from "../../../services/state.service";
 import {Plan} from "../../../models/plan";
 import _ from "lodash";
@@ -11,7 +11,8 @@ import {BehaviorSubject} from "rxjs";
 @Component({
   selector: 'app-plan-edit',
   templateUrl: './plan-edit.component.html',
-  styleUrl: './plan-edit.component.css'
+  styleUrl: './plan-edit.component.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class PlanEditComponent implements OnInit {
   stateService = inject(StateService);
@@ -43,6 +44,9 @@ export class PlanEditComponent implements OnInit {
       this.form.get('groupName')?.setValue(this.stateService.groups
         .find(g => g.id === id)?.name);
     })
+    this.form.get('active')?.valueChanges.pipe().subscribe(value => {
+      this.active$.next(value);
+    })
   }
 
   open(item: Partial<Plan>) {
@@ -64,7 +68,7 @@ export class PlanEditComponent implements OnInit {
     if (this.items.filter(item => item.invalidTeacher || item.invalidRoom).length > 0) {
       return;
     }
-    item.items = this.items.filter(item => item.roomId && item.courseId && item.teacherId);
+    item.items = this.items.filter(item => item.roomId && item.courseId && item.teacherIds!.length > 0);
     item.items.forEach((item: any) => {
       delete item.invalidRoom;
       delete item.invalidTeacher;
@@ -93,7 +97,7 @@ export class PlanEditComponent implements OnInit {
     }
     item.courseId = cell.courseId;
     item.roomId = cell.roomId;
-    item.teacherId = cell.teacherId;
+    item.teacherIds = cell.teacherIds;
     item.invalidRoom = cell.invalidRoom;
     item.invalidTeacher = cell.invalidTeacher;
   }
@@ -120,5 +124,9 @@ export class PlanEditComponent implements OnInit {
     const tenant = this.stateService.tenants[0];
     return `${tenant.name} : ${tenant.street}, ${tenant.country}-${tenant.zip} ${tenant.city}`
 
+  }
+
+  cancel() {
+    this.onCancel.emit();
   }
 }

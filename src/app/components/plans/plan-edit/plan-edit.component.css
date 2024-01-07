@@ -1,9 +1,5 @@
-.clr-flex-row {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-}
-
-.btn-group {
-  margin-top: 30px !important;
+plan-edit.component {
+  nz-form-control, nz-form-label {
+    max-width: 250px !important;
+  }
 }

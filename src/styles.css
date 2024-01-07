@@ -25,7 +25,7 @@
   }
 }
 
-.days {
+.d-flex-row {
   display: flex  !important;
   flex-direction: row !important;
   gap: 16px !important;

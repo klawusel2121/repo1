@@ -1,34 +1,56 @@
 <div class="plan-cell-edit" >
-  <div class="clr-flex-row">
+  {{ cell.invalidRoom}}
+  <div class="">
     <div class="no-screen">{{ cell.courseName }}</div>
-    <select class="no-print" clrSelect (ngModelChange)="editCell({courseId: $event})" [(ngModel)]="cell.courseId" name="courseId">
-      <option
-        *ngFor="let course of stateService.courses"
-        [value]="course.id"
-      >
-        {{course.name}}
-      </option>
-    </select>
-    <cds-icon class="no-print" *ngIf="cell.teacherId || cell.courseId || cell.roomId" shape="times" (click)="removeCell(cell)"></cds-icon>
+    <nz-select
+      class="no-print"
+      style="width:140px;"
+      [nzPlaceHolder]="'App.Course.Course' | translate"
+      nzAllowClear
+      nzShowSearch
+      (ngModelChange)="editCell({courseId: $event})"
+      [(ngModel)]="cell.courseId"
+    >
+      <ng-container *ngFor="let course of stateService.courses">
+        <nz-option [nzValue]="course.id" [nzLabel]="course.name"></nz-option>
+      </ng-container>
+    </nz-select>
+
+    <cds-icon class="no-print" *ngIf="cell.teacherIds!.length > 0 || cell.courseId || cell.roomId" shape="times" (click)="removeCell(cell)"></cds-icon>
   </div>
-  <div class="clr-flex-row">
+  <div [ngClass]="{'invalid': cell.invalidTeacher}">
     <div class="no-screen">{{ cell.teacherShort }} {{ cell.roomName }}</div>
-    <select class="no-print" [ngClass]="{'invalid': cell.invalidTeacher}" clrSelect (ngModelChange)="editCell({teacherId: $event})" [(ngModel)]="cell.teacherId" name="teacherId">
-      <option
-        *ngFor="let teacher of stateService.teachers"
-        [value]="teacher.id"
-      >
-        {{teacher.short}}
-      </option>
-    </select>
-    <select class="no-print" [ngClass]="{'invalid': cell.invalidRoom}" clrSelect (ngModelChange)="editCell({roomId: $event})" [(ngModel)]="cell.roomId" name="roomId">
-      <option
-        *ngFor="let room of stateService.rooms"
-        [value]="room.id"
-      >
-        {{room.name}}
-      </option>
-    </select>
+    <nz-select
+      class="no-print"
+      style="width:180px;"
+      nzMode="multiple"
+      [nzStatus]="cell.invalidTeacher ? 'warning' : ''"
+      [nzPlaceHolder]="'App.Teacher.Teacher' | translate"
+      nzAllowClear
+      nzShowSearch
+      (ngModelChange)="editCell({teacherIds: $event})"
+      [(ngModel)]="cell.teacherIds"
+    >
+      <ng-container *ngFor="let teacher of stateService.teachers">
+        <nz-option [nzValue]="teacher.id" [nzLabel]="teacher.short"></nz-option>
+      </ng-container>
+    </nz-select>
+  </div>
+  <div [ngClass]="{'invalid': cell.invalidRoom}">
+    <nz-select
+      class="no-print"
+      style="width:180px;"
+      [nzStatus]="cell.invalidRoom ? 'warning' : ''"
+      [nzPlaceHolder]="'App.Room.Room' | translate"
+      nzAllowClear
+      nzShowSearch
+      (ngModelChange)="editCell({roomId: $event})"
+      [(ngModel)]="cell.roomId"
+    >
+      <ng-container *ngFor="let room of stateService.rooms">
+        <nz-option [nzValue]="room.id" [nzLabel]="room.name"></nz-option>
+      </ng-container>
+    </nz-select>
   </div>
 </div>
 

@@ -7,6 +7,7 @@ export interface Cell {
   day: number;
   lesson: number;
   teacherId: string;
+  teacherIds: Array<string>;
   teacherShort?: string;
   courseId: string;
   courseName?: string;
@@ -15,6 +16,7 @@ export interface Cell {
   invalidRoom: boolean;
   invalidTeacher: boolean;
 }
+
 
 @Component({
   selector: 'app-plan-cell-edit',
@@ -46,8 +48,8 @@ export class PlanCellEditComponent implements OnInit {
       roomName: this.stateService.rooms.find(r => r.id === item?.roomId)?.name,
       courseId: item?.courseId,
       courseName: this.stateService.courses.find(r => r.id === item?.courseId)?.name,
-      teacherId: item?.teacherId,
-      teacherShort: this.stateService.teachers.find(r => r.id === item?.teacherId)?.short,
+      teacherIds: item?.teacherIds ?? [],
+      teacherShort: this.stateService.teachers.filter(r => (item?.teacherIds ?? []).indexOf(r.id!) !== -1 ).map(i => i.short).join(','),
       invalidRoom: false,
       invalidTeacher: false,
     }
@@ -56,7 +58,7 @@ export class PlanCellEditComponent implements OnInit {
       .subscribe(active => this.checkValidity(this.cell))
   }
 
-  editCell(param: { courseId?: string, roomId?: string, teacherId?: string }) {
+  editCell(param: { courseId?: string, roomId?: string, teacherIds?: Array<string> }) {
     if (param.courseId) {
       this.cell.courseId = param.courseId;
       if (!this.cell.roomId) {
@@ -66,8 +68,8 @@ export class PlanCellEditComponent implements OnInit {
     if (param.roomId) {
       this.cell.roomId = param.roomId;
     }
-    if (param.teacherId) {
-      this.cell.teacherId = param.teacherId;
+    if (param.teacherIds) {
+      this.cell.teacherIds = param.teacherIds;
       if (!this.cell.roomId) {
         this.cell.roomId = this.stateService.groups.find(g => g.id === this.planEditComponent.form.get('groupId')?.value)?.roomId;
       }
@@ -90,7 +92,7 @@ export class PlanCellEditComponent implements OnInit {
     }
     const planId = this.planEditComponent.form.get('id')?.value;
     const active = this.planEditComponent.form.get('active')?.value;
-    console.log('checkValidity', active)
+    // console.log('checkValidity', active)
     cell.invalidRoom = false;
     cell.invalidTeacher = false;
     this.onEditCell.emit(cell);
@@ -104,16 +106,20 @@ export class PlanCellEditComponent implements OnInit {
           .filter(item => item.day === cell.day && item.lesson === cell.lesson)
           .forEach(item => {
             if (item.roomId == cell.roomId) {
-              console.warn('invalid room')
+              // console.warn('invalid room')
               cell.invalidRoom = true;
               this.onEditCell.emit(cell);
             }
-            if (item.teacherId == cell.teacherId) {
-              console.warn('invalid teacher')
+            if (this.intersect(item.teacherIds!, cell.teacherIds!).length > 0) {
+              // console.warn('invalid teacher')
               cell.invalidTeacher = true;
               this.onEditCell.emit(cell);
             }
         });
     });
+  }
+  private intersect(a: Array<string>, b: Array<string>) {
+    var setB = new Set(b);
+    return [...new Set(a)].filter(x => setB.has(x));
   }
 }

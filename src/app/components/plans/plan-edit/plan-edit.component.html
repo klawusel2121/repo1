@@ -1,76 +1,56 @@
-<div class="modal" *ngIf="show">
-  <h4 class="no-screen">{{ tenantInfo() }}</h4>
-  <div class="modal-dialog modal-xl clrModalClosable" role="dialog" aria-hidden="true">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button aria-label="Close" class="close" type="button" (click)="onCancel.emit()">
-          <cds-icon class="no-print" shape="close"></cds-icon>
-        </button>
+<nz-modal [nzCentered]="true" [nzWidth]="1200" (nzOnCancel)="cancel()" (nzOnOk)="apply()" [(nzVisible)]="show"
+          [nzTitle]="('App.Action.Edit' | translate) + ':' + ('App.Plan.Plan' | translate)">
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="form" class="d-flex-row">
+      <div nz-row [nzGutter]="24">
+        <div nz-col [nzSpan]="5">
+          <nz-form-item>
+            <nz-form-label>{{ 'App.Fields.Name' | translate }}</nz-form-label>
+            <nz-form-control >
+              <input nz-input formControlName="name" type="text">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="5">
+          <nz-form-item>
+            <nz-form-label>{{ 'App.Group.Group' | translate }}</nz-form-label>
+            <nz-form-control>
+              <nz-select formControlName="groupId">
+                <nz-option *ngFor="let item of stateService.groups" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="5">
+          <nz-form-item>
+            <nz-form-label>{{ 'App.Fields.From' | translate }}</nz-form-label>
+            <nz-form-control>
+              <input nz-input formControlName="from" type="date">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="5">
+          <nz-form-item>
+            <nz-form-label>{{ 'App.Fields.To' | translate }}</nz-form-label>
+            <nz-form-control>
+              <input nz-input formControlName="to" type="date">
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="4">
+          <nz-form-item>
+            <nz-switch formControlName="active"
+                       [nzCheckedChildren]="'App.Status.Active' | translate"
+                       [nzUnCheckedChildren]="'App.Status.Inactive' | translate"></nz-switch>
+          </nz-form-item>
+        </div>
       </div>
-      <h3 class="modal-title no-print">{{ 'App.Action.Edit' | translate }}: {{ 'App.Plan.Plan' | translate }}</h3>
-      <div class="modal-body">
-        <form class="clr-flex clr-flex-row"
-          [formGroup]="form">
-          <clr-input-container>
-            <label class="clr-required-mark">{{ 'App.Fields.Name' | translate }}</label>
-            <input clrInput formControlName="name" type="text" class="formControl" required>
-            <clr-control-error *clrIfError="'required'">
-              {{ 'App.Validation.FieldIsRequired' | translate}}
-            </clr-control-error>
-          </clr-input-container>
-
-          <clr-select-container>
-            <label class="clr-required-mark">{{ 'App.Group.Group' | translate }}</label>
-            <div class="no-screen">{{ groupName() }}</div>
-            <select clrSelect formControlName="groupId">
-              <option
-                *ngFor="let group of stateService.groups; let i = index"
-                [value]="group.id"
-              >
-                {{group.name}}
-              </option>
-            </select>
-          </clr-select-container>
-
-          <clr-input-container>
-            <label>{{ 'App.Fields.From' | translate }}</label>
-            <input clrInput formControlName="from" type="date" class="formControl">
-          </clr-input-container>
-
-          <clr-input-container>
-            <input style="display:none" clrInput formControlName="active" type="boolean" class="formControl">
-          </clr-input-container>
-
-          <div class="btn-group" class="no-print">
-            <div class="radio btn">
-              <input type="radio" [checked]="inactive" (change)="onActiveChange(false)" name="active" id="active-1" />
-              <label for="active-1">{{ 'App.Status.Inactive' | translate }}</label>
-            </div>
-            <div class="radio btn">
-              <input type="radio" [checked]="active" (change)="onActiveChange(true)" name="active" id="active-2" />
-              <label for="active-2">{{ 'App.Status.Active' | translate }}</label>
-            </div>
-          </div>
-
-          <div class="btn-group no-screen" >
-            {{ (active ? 'App.Status.Active' : 'App.Status.Inactive') | translate }}
-          </div>
-
-        </form>
-        <app-plan-cells-edit
-          (onEditCell)="onEditCell($event)"
-          (onRemoveCell)="onRemoveCell($event)"
-          [items]="items"
-          [planEditComponent]="this">
-        </app-plan-cells-edit>
-      </div>
-      <div class="modal-footer no-print">
-        <button (click)="onCancel.emit()" class="btn btn-outline" type="button">{{ 'App.Action.Cancel' | translate }}
-        </button>
-        <button (click)="apply()" class="btn btn-primary" type="button">{{ 'App.Action.Ok' | translate }}
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal-backdrop" aria-hidden="true" *ngIf="show"></div>
+    </form>
+    <app-plan-cells-edit
+      (onEditCell)="onEditCell($event)"
+      (onRemoveCell)="onRemoveCell($event)"
+      [items]="items"
+      [planEditComponent]="this">
+    </app-plan-cells-edit>
+  </ng-container>
+</nz-modal>

@@ -1,15 +1,4 @@
 .plan-cell-edit {
-  clr-select-container {
-    margin-top: 0 !important;
-  }
-
-  .clr-flex-row {
-    display: flex;
-    flex-direction: row;
-    justify-items: stretch;
-    gap: 8px;
-  }
-
   .invalid {
     background: lightsalmon !important;
   }
