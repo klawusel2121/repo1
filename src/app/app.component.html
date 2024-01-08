@@ -6,7 +6,7 @@
             [(nzCollapsed)]="isCollapsed"
             [nzTrigger]="null">
     <div class="sidebar-logo">
-      <h1>{{stateService.tenants[0]?.name}}/{{ authService.UserData?.email }}</h1>
+
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed" *ngIf="authService.isLoggedIn">
       <li nz-submenu nzOpen nzTitle="{{ 'App.Menu.MasterData' | translate}}" nzIcon="dashboard">
@@ -41,27 +41,24 @@
           </li>
         </ul>
       </li>
-      <li>
-        <ul>
-          <button nzBlock nzSize="large" class="btn btn-warning-outline" (click)="onLogout($event)">
-            <div>
-<!--              <div>-->
-<!--                {{ authService.UserData?.email }}-->
-<!--              </div>-->
-<!--              <div>-->
-<!--                {{ stateService.tenants[0].name }}-->
-<!--              </div>-->
-              <div>
-                {{ 	'App.Authenticate.Logout' | translate }}
-              </div>
-            </div>
-          </button>
-        </ul>
-      </li>
 
     </ul>
   </nz-sider>
   <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <div class="d-flex-row">
+          <div>{{stateService.tenants[0]?.name}}</div>
+          <div>/</div>
+          <div>{{ authService.UserData?.email }}</div>
+        </div>
+        <div>
+          <button nzBlock nzSize="large" class="btn btn-warning-outline" (click)="onLogout($event)">
+            {{ 	'App.Authenticate.Logout' | translate }}
+          </button>
+        </div>
+      </div>
+    </nz-header>
     <nz-content>
       <div class="inner-content">
         <router-outlet></router-outlet>
