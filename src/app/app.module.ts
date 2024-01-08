@@ -67,6 +67,7 @@ registerLocaleData(de);
 import { provideNzI18n, de_DE} from 'ng-zorro-antd/i18n';
 import {NzModalComponent} from "ng-zorro-antd/modal";
 import {NzSwitchComponent} from "ng-zorro-antd/switch";
+import {NzTimePickerComponent} from "ng-zorro-antd/time-picker";
 
 const icons: IconDefinition[] = [
   AccountBookFill, AlertOutline, AlertFill, DashboardOutline,
@@ -96,7 +97,7 @@ const icons: IconDefinition[] = [
     DaysComponent,
     PlanCellsEditComponent,
     PlanCellEditComponent,
-    TenantEditComponent
+    TenantEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -130,7 +131,8 @@ const icons: IconDefinition[] = [
     NzSelectComponent,
     NzOptionComponent,
     NzModalComponent,
-    NzSwitchComponent
+    NzSwitchComponent,
+    NzTimePickerComponent
   ],
   providers: [CookieService, AuthService, provideNzI18n(de_DE)],
   bootstrap: [AppComponent]

@@ -26,13 +26,13 @@
       <nz-form-item>
         <nz-form-label [nzSpan]="4">{{ 'App.Fields.From' | translate }}</nz-form-label>
         <nz-form-control [nzSpan]="6">
-          <input nz-input  formControlName="from" type="text">
+          <nz-time-picker formControlName="fromDate" [nzMinuteStep]="5" nzFormat="HH:mm"></nz-time-picker>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-label [nzSpan]="4">{{ 'App.Fields.To' | translate }}</nz-form-label>
         <nz-form-control [nzSpan]="6">
-          <input nz-input  formControlName="to" type="text">
+          <nz-time-picker formControlName="toDate" [nzMinuteStep]="5" nzFormat="HH:mm"></nz-time-picker>
         </nz-form-control>
       </nz-form-item>
     </form>

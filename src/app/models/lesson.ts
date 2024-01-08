@@ -8,6 +8,8 @@ export interface Lesson extends HasId, HasTenant, HasTimestamps, IsNew {
   position: number;
   name: string;
   from: string;
+  fromDate: Date;
   to: string;
+  toDate: Date;
   type: LessonType;
 }

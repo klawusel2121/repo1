@@ -27,35 +27,59 @@ export class LessonEditComponent implements OnInit {
     this.form = this.formBuilder.group({
       position: this.formBuilder.control(undefined),
       name: this.formBuilder.control(undefined),
-      from: this.formBuilder.control(undefined),
-      to: this.formBuilder.control(undefined),
+      fromDate: this.formBuilder.control(undefined),
+      toDate: this.formBuilder.control(undefined),
       type: this.formBuilder.control(undefined),
     })
     this.formHelper.addDefaultControls(this.form, this.formBuilder);
   }
 
   open(item: Partial<Lesson>) {
+
+    if (item.from?.indexOf(":")) {
+      let fromDate = new Date();
+      fromDate.setHours(+(item.from!.split(':')[0]))
+      fromDate.setMinutes(+(item.from!.split(':')[1]))
+      item.fromDate = fromDate;
+    }
+
+    if (item.to?.indexOf(":")) {
+      let toDate = new Date();
+      toDate.setHours(+(item.to!.split(':')[0]))
+      toDate.setMinutes(+(item.to!.split(':')[1]))
+      item.toDate = toDate;
+    }
+
     this.form.patchValue(_.cloneDeep(item));
     this.show = true;
   }
 
   apply() {
     const item = this.form.getRawValue();
-    if (item.name.length === 0) {
+    if (!item.name) {
       return;
     }
     if (!item.position) {
       return;
     }
-    if (!item.from) {
-      return;
-    }
-    if (!item.to) {
-      return;
-    }
     if (!item.type) {
       return;
     }
+    if (item.fromDate) {
+      item.from = String(item.fromDate.getHours()).padStart(2, '0')
+        + ':' + String(item.fromDate.getMinutes()).padStart(2, '0');
+    } else {
+      return;
+    }
+    if (item.toDate) {
+      item.to = String(item.toDate.getHours()).padStart(2, '0')
+        + ':' + String(item.toDate.getMinutes()).padStart(2, '0');
+    } else {
+      return;
+    }
+    delete item.fromDate;
+    delete item.toDate;
+
     this.onApply.emit(item);
   }
 
