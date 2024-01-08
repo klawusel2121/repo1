@@ -41,7 +41,6 @@ export class AppComponent implements OnInit {
       if (email && password) {
         this.authService.Login(email, password).then(() => {
           console.warn('logged in')
-          this.readData()
         });
       }
     }
@@ -68,66 +67,5 @@ export class AppComponent implements OnInit {
   changeLanguage(country: any) {
     this.translate.use(country.lang)
   }
-  readData(): void {
 
-    let items$ = this.fbs.getCollection('courses');
-    items$.pipe().subscribe(items => {
-      this.stateService.courses = _.sortBy(items, 'name');
-      this.stateService.courses$.next(this.stateService.courses);
-    })
-
-    items$ = this.fbs.getCollection('groups');
-    items$.pipe().subscribe(items => {
-      this.stateService.groups = _.sortBy(items, 'name');
-      this.stateService.groups$.next(this.stateService.groups);
-    })
-
-    items$ = this.fbs.getCollection('rooms');
-    items$.pipe().subscribe(items => {
-      this.stateService.rooms = _.sortBy(items, 'name');
-      this.stateService.rooms$.next(this.stateService.rooms);
-    })
-
-    items$ = this.fbs.getCollection('teachers');
-    items$.pipe().subscribe(items => {
-      this.stateService.teachers = _.sortBy(items, 'short');
-      this.stateService.teachers$.next(this.stateService.teachers);
-    })
-
-    items$ = this.fbs.getCollection('coursesPerWeek');
-    items$.pipe().subscribe(items => {
-      this.stateService.coursesPerWeek = items;
-      this.stateService.coursesPerWeek$.next(this.stateService.coursesPerWeek);
-    })
-
-    items$ = this.fbs.getCollection('teacherCourse');
-    items$.pipe().subscribe(items => {
-      this.stateService.teacherCourses = items;
-      this.stateService.teacherCourses$.next(this.stateService.teacherCourses);
-    })
-
-    items$ = this.fbs.getCollection('lessons');
-    items$.pipe().subscribe(items => {
-      this.stateService.lessons = items.sort((a, b) => a.position - b.position);
-      this.stateService.lessons$.next(this.stateService.lessons);
-    })
-
-    items$ = this.fbs.getCollection('plans');
-    items$.pipe().subscribe(items => {
-      this.stateService.plans = items;
-      this.stateService.plans$.next(this.stateService.plans);
-    })
-
-    items$ = this.fbs.getCollection('days');
-    items$.pipe().subscribe(items => {
-      this.stateService.days = items;
-      this.stateService.days$.next(this.stateService.days);
-    })
-
-    items$ = this.fbs.getCollection('tenants');
-    items$.pipe().subscribe(items => {
-      this.stateService.tenants = items;
-      this.stateService.tenants$.next(this.stateService.tenants);
-    })
-  }
 }
