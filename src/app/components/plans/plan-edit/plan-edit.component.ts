@@ -31,7 +31,6 @@ export class PlanEditComponent implements OnInit {
   messageId: string = '';
   cell!: Partial<Cell>;
   items: Array<Partial<PlanItem>> = [];
-  items$: Observable<Array<Partial<PlanItem>>> = of([]);
   active$ = new BehaviorSubject<boolean>(false)
 
   ngOnInit(): void {
@@ -58,9 +57,7 @@ export class PlanEditComponent implements OnInit {
     this.messageId = this.message.loading(this.translate.instant('App.Message.Loading'), { nzDuration: 0 }).messageId;
     this.form.patchValue(_.cloneDeep(item));
     this.items = _.cloneDeep(this.stateService.plans.find(p => p.id == item.id)?.items) ?? [];
-    this.items$ = of(this.items);
 
-    console.log('plan open ', item.id, this.items)
     setTimeout(() => {
       if (!('active' in item)) {
         item.active = false;
@@ -99,7 +96,6 @@ export class PlanEditComponent implements OnInit {
   }
 
   onEditCell(cell: Partial<Cell>) {
-    console.log('cell', cell)
     this.cell = cell;
     let item = this.items.find(i => i.day == cell.day && i.lesson == cell.lesson);
     if (!item) {
