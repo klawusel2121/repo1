@@ -1,9 +1,9 @@
 <div class="plan-cell-edit" >
   <div class="">
-    <div class="no-screen">{{ cell.courseName }}</div>
     <nz-select
       class="no-print"
       style="width:140px;"
+      [nzSize]="'small'"
       [nzPlaceHolder]="'App.Course.Course' | translate"
       nzAllowClear
       nzShowSearch
@@ -18,10 +18,10 @@
     <cds-icon class="no-print" *ngIf="cell.teacherIds!.length > 0 || cell.courseId || cell.roomId" shape="times" (click)="removeCell(cell)"></cds-icon>
   </div>
   <div [ngClass]="{'invalid': cell.invalidTeacher}">
-    <div class="no-screen">{{ cell.teacherShort }} {{ cell.roomName }}</div>
     <nz-select
       class="no-print"
       style="width:180px;"
+      [nzSize]="'small'"
       nzMode="multiple"
       [nzStatus]="cell.invalidTeacher ? 'warning' : ''"
       [nzPlaceHolder]="'App.Teacher.Teacher' | translate"
@@ -39,6 +39,7 @@
     <nz-select
       class="no-print"
       style="width:180px;"
+      [nzSize]="'small'"
       [nzStatus]="cell.invalidRoom ? 'warning' : ''"
       [nzPlaceHolder]="'App.Room.Room' | translate"
       nzAllowClear
