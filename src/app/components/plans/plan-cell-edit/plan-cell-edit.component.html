@@ -14,8 +14,7 @@
         <nz-option [nzValue]="course.id" [nzLabel]="course.name"></nz-option>
       </ng-container>
     </nz-select>
-
-    <cds-icon class="no-print" *ngIf="cell.teacherIds!.length > 0 || cell.courseId || cell.roomId" shape="times" (click)="removeCell(cell)"></cds-icon>
+    <span nz-icon class="no-print" *ngIf="cell.teacherIds!.length > 0 || cell.courseId || cell.roomId" nzType="close" (click)="removeCell(cell)"></span>
   </div>
   <div [ngClass]="{'invalid': cell.invalidTeacher}">
     <nz-select
@@ -38,7 +37,7 @@
   <div [ngClass]="{'invalid': cell.invalidRoom}">
     <nz-select
       class="no-print"
-      style="width:180px;"
+      style="width:100px;"
       [nzSize]="'small'"
       [nzStatus]="cell.invalidRoom ? 'warning' : ''"
       [nzPlaceHolder]="'App.Room.Room' | translate"

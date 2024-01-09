@@ -7,7 +7,6 @@ import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import {getFirestore, provideFirestore} from '@angular/fire/firestore';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ClarityModule} from "@clr/angular";
 import {CookieService} from "ngx-cookie-service";
 import {provideAuth} from "@angular/fire/auth";
 import {getAuth} from "firebase/auth";
@@ -123,7 +122,6 @@ const icons: IconDefinition[] = [
     }),
     AppRoutingModule,
     BrowserAnimationsModule,
-    ClarityModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
