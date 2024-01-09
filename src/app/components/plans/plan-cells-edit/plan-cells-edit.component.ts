@@ -13,7 +13,6 @@ export class PlanCellsEditComponent {
   stateService = inject(StateService);
 
   @Input()  planEditComponent!: PlanEditComponent;
-  @Input()  items!: Array<Partial<PlanItem>>;
   @Output() onEditCell: EventEmitter<Partial<Cell>> = new EventEmitter<Partial<Cell>>();
   @Output() onRemoveCell = new EventEmitter<Partial<Cell>>();
 

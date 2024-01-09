@@ -6,7 +6,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {FormHelperService} from "../../../services/form-helper.service";
 import {Cell} from "../plan-cell-edit/plan-cell-edit.component";
 import {PlanItem} from "../../../models/plan-item";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable, of} from "rxjs";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {TranslateService} from "@ngx-translate/core";
 
@@ -31,6 +31,7 @@ export class PlanEditComponent implements OnInit {
   messageId: string = '';
   cell!: Partial<Cell>;
   items: Array<Partial<PlanItem>> = [];
+  items$: Observable<Array<Partial<PlanItem>>> = of([]);
   active$ = new BehaviorSubject<boolean>(false)
 
   ngOnInit(): void {
@@ -53,8 +54,13 @@ export class PlanEditComponent implements OnInit {
   }
 
   open(item: Partial<Plan>) {
-    this.messageId = this.message.loading(this.translate.instant('App.Message.Loading'), { nzDuration: 0 }).messageId;
 
+    this.messageId = this.message.loading(this.translate.instant('App.Message.Loading'), { nzDuration: 0 }).messageId;
+    this.form.patchValue(_.cloneDeep(item));
+    this.items = _.cloneDeep(this.stateService.plans.find(p => p.id == item.id)?.items) ?? [];
+    this.items$ = of(this.items);
+
+    console.log('plan open ', item.id, this.items)
     setTimeout(() => {
       if (!('active' in item)) {
         item.active = false;
@@ -62,8 +68,7 @@ export class PlanEditComponent implements OnInit {
       if (item.active) {
         this.active$.next(true);
       }
-      this.form.patchValue(_.cloneDeep(item));
-      this.items = _.cloneDeep(this.stateService.plans.find(p => p.id == item.id)?.items) ?? [];
+
       this.show = true;
       this.message.remove(this.messageId);
     })

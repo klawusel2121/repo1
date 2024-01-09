@@ -28,7 +28,6 @@ export class PlanCellEditComponent implements OnInit {
   stateService = inject(StateService);
   @Input() c!: number;
   @Input() r!: number;
-  @Input() items!: Array<Partial<PlanItem>>;
   @Input() planEditComponent!: PlanEditComponent;
   @Output() onEditCell: EventEmitter<Partial<Cell>> = new EventEmitter<Partial<Cell>>();
   @Output() onRemoveCell = new EventEmitter<Partial<Cell>>();
@@ -39,7 +38,8 @@ export class PlanCellEditComponent implements OnInit {
   ngOnInit(): void {
     const room = this.stateService.rooms
       .find(r => r.id === this.planEditComponent.form.get('groupId')?.value);
-    const item = this.items.find(i => i.day === this.c && i.lesson === this.r);
+    const planId = this.planEditComponent.form.get('id')?.value;
+    const item = this.stateService.plans.find(p => p.id === planId)!.items.find(i => i.day === this.c && i.lesson === this.r)
 
     this.cell = {
       day: this.c,
@@ -53,7 +53,6 @@ export class PlanCellEditComponent implements OnInit {
       invalidRoom: false,
       invalidTeacher: false,
     }
-
     this.planEditComponent.active$
       .subscribe(active => this.checkValidity(this.cell))
   }
