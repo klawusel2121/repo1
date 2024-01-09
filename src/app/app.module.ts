@@ -68,6 +68,7 @@ import { provideNzI18n, de_DE} from 'ng-zorro-antd/i18n';
 import {NzModalComponent} from "ng-zorro-antd/modal";
 import {NzSwitchComponent} from "ng-zorro-antd/switch";
 import {NzTimePickerComponent} from "ng-zorro-antd/time-picker";
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 const icons: IconDefinition[] = [
   AccountBookFill, AlertOutline, AlertFill, DashboardOutline,
@@ -98,6 +99,7 @@ const icons: IconDefinition[] = [
     PlanCellsEditComponent,
     PlanCellEditComponent,
     TenantEditComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,8 +8,8 @@
     <div class="sidebar-logo">
 
     </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed" *ngIf="authService.isLoggedIn">
-      <li nz-submenu nzOpen nzTitle="{{ 'App.Menu.MasterData' | translate}}" nzIcon="dashboard">
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed" >
+      <li nz-submenu nzOpen nzTitle="{{ 'App.Menu.MasterData' | translate}}" nzIcon="dashboard" *ngIf="authService.isLoggedIn">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="tenant">{{ 'App.Tenant.Name' | translate }}</a>
@@ -34,10 +34,23 @@
           </li>
         </ul>
       </li>
-      <li nz-submenu nzOpen nzTitle="{{ 'App.Menu.Plans' | translate}}" nzIcon="dashboard">
+      <li nz-submenu nzOpen nzTitle="{{ 'App.Menu.Plans' | translate}}" nzIcon="dashboard" *ngIf="authService.isLoggedIn">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="plans">{{ 'App.Menu.Plans.Maintenance' | translate }}</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="{{ 'App.Authenticate.Authentication' | translate}}" nzIcon="dashboard" *ngIf="!authService.isLoggedIn">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="sign-in">{{ 'App.Authenticate.Login' | translate }}</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="register-user">{{ 'App.Authenticate.Register' | translate }}</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="forgot-password">{{ 'App.Authenticate.ForgotPassword' | translate }}</a>
           </li>
         </ul>
       </li>
@@ -45,7 +58,7 @@
     </ul>
   </nz-sider>
   <nz-layout>
-    <nz-header>
+    <nz-header *ngIf="authService.isLoggedIn">
       <div class="app-header">
         <div class="d-flex-row">
           <div>{{stateService.tenants[0]?.name}}</div>

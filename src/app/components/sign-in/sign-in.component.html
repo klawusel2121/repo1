@@ -1,22 +1,23 @@
-<section>
-  <form nz-form [formGroup]="form">
-    <nz-form-item>
-      <nz-form-label [nzSpan]="4">{{ 'App.Authenticate.Tenant' | translate }}</nz-form-label>
-      <nz-form-control [nzSpan]="6">
-        <nz-select formControlName="tenantId">
-          <nz-option *ngFor="let tenant of authService.Tenants" [nzValue]="tenant.value" [nzLabel]="tenant.value"></nz-option>
-        </nz-select>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSpan]="4">{{ 'App.Authenticate.Username' | translate }}</nz-form-label>
-      <nz-form-control [nzSpan]="6">
-        <input nz-input formControlName="userName" type="email">
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSpan]="4">{{ 'App.Authenticate.Password' | translate }}</nz-form-label>
-      <nz-input-group [nzSuffix]="suffixTemplate">
+<form nz-form [formGroup]="form">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ 'App.Authenticate.Tenant' | translate }}</nz-form-label>
+    <nz-form-control [nzSpan]="6">
+      <nz-select formControlName="tenantId">
+        <nz-option *ngFor="let tenant of authService.Tenants" [nzValue]="tenant.value"
+                   [nzLabel]="tenant.value"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ 'App.Authenticate.Username' | translate }}</nz-form-label>
+    <nz-form-control [nzSpan]="6">
+      <input nz-input formControlName="userName" type="email">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">{{ 'App.Authenticate.Password' | translate }}</nz-form-label>
+    <nz-form-control [nzSpan]="6">
+      <nz-input-group  [nzSuffix]="suffixTemplate">
         <input
           [type]="passwordVisible ? 'text' : 'password'"
           nz-input
@@ -32,29 +33,12 @@
         (click)="passwordVisible = !passwordVisible"
       ></span>
       </ng-template>
-    </nz-form-item>
-  </form>
-  <!--Redirectio to register components -->
-  <div class="text-center text-lg-start mt-4 pt-2">
-    <p class="small mt-2 pt-1 mb-0">{{ 'App.Authenticate.ForgotPassword' | translate}}
-      <a routerLink="/forgot-password"
-         class="link-danger">{{ 'App.Authenticate.SendEmail' | translate}}</a></p>
-  </div>
-  <!--Login Button -->
-  <div class="text-center mt-4 pt-2">
-    <button
-      type="button"
-      color="primary"
-      class="btn btn-primary btn-lg btn-block"
-      (click)="onLogin()">
-      {{ 'App.Authenticate.Login' | translate}}
-    </button>
-  </div>
-  <!--Redirectio to register components -->
-  <div class="text-center text-lg-start mt-4 pt-2">
-    <p class="small mt-2 pt-1 mb-0">{{ 'App.Authenticate.NoAccount' | translate}}
-      <a
-        routerLink="/register-user"
-        class="link-danger">{{ 'App.Authenticate.Register' | translate}}</a></p>
-  </div>
-</section>
+    </nz-form-control>
+
+  </nz-form-item>
+</form>
+
+<button nz-button nzType="primary"
+        (click)="onLogin()"
+        type="button">{{ 'App.Authenticate.Login' | translate }}
+</button>

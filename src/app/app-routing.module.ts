@@ -13,9 +13,11 @@ import {LessonsComponent} from "./components/lessons/lessons.component";
 import {PlansComponent} from "./components/plans/plans.component";
 import {DaysComponent} from "./components/days/days.component";
 import {TenantEditComponent} from "./components/tenant-edit/tenant-edit.component";
+import {ForgotPasswordComponent} from "./components/forgot-password/forgot-password.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'register-user', component: RegisterUserComponent },
   { path: 'dashboard', component: DashboardComponent , canActivate: [AuthGuard]},
