@@ -10,7 +10,7 @@
       </nz-form-item>
     </form>
 
-    <nz-table nzSize="small" #basicTable [nzData]="items" *ngIf="item.weeklyHours as items">
+    <nz-table [nzShowPagination]="false"  nzSize="small" #basicTable [nzData]="items" *ngIf="item.weeklyHours as items">
       <thead>
       <tr>
         <th>

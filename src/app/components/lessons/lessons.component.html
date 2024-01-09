@@ -1,6 +1,6 @@
 <app-lesson-edit (onApply)="onApply($event)" (onCancel)="onCancel()"></app-lesson-edit>
 
-<nz-table #basicTable [nzData]="items" *ngIf="stateService.lessons as items">
+<nz-table #basicTable [nzShowPagination]="false" [nzData]="items" *ngIf="stateService.lessons as items">
   <thead>
   <tr>
     <th><button nz-button nzType="primary" (click)="add()">{{ 'App.Action.Add' | translate}}</button>
