@@ -6,7 +6,7 @@
             [(nzCollapsed)]="isCollapsed"
             [nzTrigger]="null">
     <div class="sidebar-logo">
-
+      <img style="margin-top:20px;margin-left:60px;background:white;" src="../assets/icons/monthly-calendar-svgrepo-com.svg">
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed" >
       <li nz-submenu nzOpen nzTitle="{{ 'App.Menu.MasterData' | translate}}" nzIcon="dashboard" *ngIf="authService.isLoggedIn">
@@ -34,7 +34,7 @@
           </li>
         </ul>
       </li>
-      <li nz-submenu nzOpen nzTitle="{{ 'App.Menu.Plans' | translate}}" nzIcon="dashboard" *ngIf="authService.isLoggedIn">
+      <li nz-submenu nzOpen nzTitle="{{ 'App.Menu.Plans' | translate}}" nzIcon="table" *ngIf="authService.isLoggedIn">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="plans">{{ 'App.Menu.Plans.Maintenance' | translate }}</a>
@@ -66,7 +66,7 @@
           <div>{{ authService.UserData?.email }}</div>
         </div>
         <div>
-          <button nzBlock nzSize="large" class="btn btn-warning-outline" (click)="onLogout($event)">
+          <button nz-button nzType="primary" nzDanger nzGhost (click)="onLogout($event)">
             {{ 	'App.Authenticate.Logout' | translate }}
           </button>
         </div>

@@ -53,7 +53,7 @@ import {IconDefinition} from '@ant-design/icons-angular';
 import {
   AccountBookFill, AlertFill, AlertOutline,
   DashboardOutline, EyeFill, EyeOutline, EyeInvisibleOutline, EyeInvisibleFill,
-  MenuOutline, MenuFoldOutline, SaveOutline
+  MenuOutline, MenuFoldOutline, SaveOutline, TableOutline
 }
   from '@ant-design/icons-angular/icons';
 import { registerLocaleData } from '@angular/common';
@@ -72,7 +72,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 const icons: IconDefinition[] = [
   AccountBookFill, AlertOutline, AlertFill, DashboardOutline,
   EyeFill, EyeOutline, EyeInvisibleOutline, EyeInvisibleFill,
-  MenuOutline, MenuFoldOutline, SaveOutline
+  MenuOutline, MenuFoldOutline, SaveOutline, TableOutline
 ];
 
 @NgModule({
