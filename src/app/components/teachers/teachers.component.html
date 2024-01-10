@@ -1,6 +1,6 @@
 <app-teacher-edit (onApply)="onApply($event)" (onCancel)="onCancel()"></app-teacher-edit>
 
-<nz-table #basicTable [nzShowPagination]="false" [nzData]="items" *ngIf="stateService.teachers$ | async as items">
+<nz-table #basicTable [nzShowPagination]="false" [nzFrontPagination]="false" [nzData]="items" *ngIf="stateService.teachers$ | async as items">
   <thead>
   <tr>
     <th>

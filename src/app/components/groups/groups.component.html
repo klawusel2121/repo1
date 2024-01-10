@@ -1,6 +1,6 @@
 <app-group-edit (onApply)="onApply($event)" (onCancel)="onCancel()"></app-group-edit>
 
-<nz-table #basicTable [nzShowPagination]="false" [nzData]="items" *ngIf="stateService.groups$ | async as items">
+<nz-table #basicTable [nzShowPagination]="false" [nzFrontPagination]="false" [nzData]="items" *ngIf="stateService.groups$ | async as items">
   <thead>
   <tr>
     <th><button nz-button nzType="primary" (click)="add()">{{ 'App.Action.Add' | translate}}</button>

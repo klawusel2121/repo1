@@ -1,6 +1,6 @@
 <app-plan-edit (onApply)="onApply($event)" (onCancel)="onCancel()"></app-plan-edit>
 
-<nz-table #basicTable [nzShowPagination]="false" [nzData]="items" *ngIf="stateService.plans as items">
+<nz-table #basicTable [nzShowPagination]="false" [nzFrontPagination]="false" [nzData]="items" *ngIf="stateService.plans as items">
   <thead>
   <tr>
     <th><button nz-button nzType="primary" (click)="add()">{{ 'App.Action.Add' | translate}}</button>
