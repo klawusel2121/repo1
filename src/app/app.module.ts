@@ -47,8 +47,7 @@ import {NzIconModule} from 'ng-zorro-antd/icon';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-import { NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
-
+import {DragDropModule} from '@angular/cdk/drag-drop'
 import {IconDefinition} from '@ant-design/icons-angular';
 import {
   AccountBookFill, AlertFill, AlertOutline,
@@ -110,6 +109,7 @@ const icons: IconDefinition[] = [
     NzTableModule,
     NzPopconfirmModule,
     NzModalModule,
+    DragDropModule,
     // ngx-translate and the loader module
     HttpClientModule,
     NzIconModule.forRoot(icons),

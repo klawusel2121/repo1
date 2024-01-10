@@ -55,6 +55,7 @@
   "App.Message.ConfirmCancelEdit": "Cancel edit?",
   "App.Message.ConfirmRemove": "Remove?",
   "App.Message.Loading": "Data is beeing loaded ...",
+  "App.Message.ReorderLessons": "Lesson order can be changed by moving the entries.",
   "App.Message.ResetPassword": "Please enter your email address to request a password reset.",
   "App.Message.SuccessSave": "Save successful",
 	"App.Plan.Plan": "Timetable",
