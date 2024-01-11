@@ -1,5 +1,5 @@
 <div class="plan-cell-edit" >
-  <div class="">
+  <div class="first-row">
     <nz-select
       class="no-print"
       style="width:140px;"
@@ -14,9 +14,9 @@
         <nz-option [nzValue]="course.id" [nzLabel]="course.name"></nz-option>
       </ng-container>
     </nz-select>
-    <span nz-icon class="no-print" *ngIf="cell.teacherIds!.length > 0 || cell.courseId || cell.roomId" nzType="close" (click)="removeCell(cell)"></span>
+    <span nz-icon class="no-print remove-cell" *ngIf="cell?.teacherIds!.length > 0 || cell?.courseId || cell?.roomId" nzType="close" (click)="removeCell(cell)"></span>
   </div>
-  <div [ngClass]="{'invalid': cell.invalidTeacher}">
+  <div [ngClass]="{'invalid': cell?.invalidTeacher}">
     <nz-select
       class="no-print"
       style="width:180px;"
@@ -37,7 +37,7 @@
   <div [ngClass]="{'invalid': cell.invalidRoom}">
     <nz-select
       class="no-print"
-      style="width:100px;"
+      style="width:180px;"
       [nzSize]="'small'"
       [nzStatus]="cell.invalidRoom ? 'warning' : ''"
       [nzPlaceHolder]="'App.Room.Room' | translate"

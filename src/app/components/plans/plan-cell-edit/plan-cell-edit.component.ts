@@ -39,7 +39,9 @@ export class PlanCellEditComponent implements OnInit {
     const room = this.stateService.rooms
       .find(r => r.id === this.planEditComponent.form.get('groupId')?.value);
     const planId = this.planEditComponent.form.get('id')?.value;
-    const item = this.stateService.plans.find(p => p.id === planId)!.items.find(i => i.day === this.c && i.lesson === this.r)
+    const item = planId
+      ? this.stateService.plans.find(p => p.id === planId)!.items.find(i => i.day === this.c && i.lesson === this.r)
+      : {};
 
     this.cell = {
       day: this.c,

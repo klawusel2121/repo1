@@ -41,7 +41,9 @@ export class PlansComponent {
     if (!('isNew' in item)) {
       item.isNew = false;
       // @ts-ignore
-      item = this.stateService.plans.find(p => p.id == item.id);
+    }
+    if (!item.isNew) {
+      item = this.stateService.plans.find(p => p.id == item.id)!;
     }
     this.editItem = _.cloneDeep(item);
     this.modal.open(item);
@@ -60,6 +62,7 @@ export class PlansComponent {
     } else {
       this.fbs.update(this.source, this.editItem, patch);
     }
+
     this.modal.show = false;
   }
 

@@ -34,6 +34,12 @@ export class PlanEditComponent implements OnInit {
   active$ = new BehaviorSubject<boolean>(false)
 
   ngOnInit(): void {
+    console.log('oninit')
+
+  }
+
+  initForm(): void {
+    console.log('initform')
     this.form = this.formBuilder.group({
       name: this.formBuilder.control(undefined),
       active: this.formBuilder.control(undefined),
@@ -51,9 +57,9 @@ export class PlanEditComponent implements OnInit {
       this.active$.next(value);
     })
   }
-
   open(item: Partial<Plan>) {
-
+    this.initForm();
+    console.log('open with item', item);
     this.messageId = this.message.loading(this.translate.instant('App.Message.Loading'), { nzDuration: 0 }).messageId;
     this.form.patchValue(_.cloneDeep(item));
     this.items = _.cloneDeep(this.stateService.plans.find(p => p.id == item.id)?.items) ?? [];
@@ -91,7 +97,6 @@ export class PlanEditComponent implements OnInit {
       this.form.get('groupId')?.setValue(group.id) ;
       this.form.get('groupName')?.setValue(group.name) ;
     }
-
     this.onApply.emit(item);
   }
 

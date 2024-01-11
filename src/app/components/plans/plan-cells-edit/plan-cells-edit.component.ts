@@ -2,7 +2,6 @@ import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {StateService} from "../../../services/state.service";
 import {PlanEditComponent} from "../plan-edit/plan-edit.component";
 import {Cell} from "../plan-cell-edit/plan-cell-edit.component";
-import {PlanItem} from "../../../models/plan-item";
 
 @Component({
   selector: 'app-plan-cells-edit',
