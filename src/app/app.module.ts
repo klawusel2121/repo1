@@ -67,6 +67,9 @@ import {NzModalComponent} from "ng-zorro-antd/modal";
 import {NzSwitchComponent} from "ng-zorro-antd/switch";
 import {NzTimePickerComponent} from "ng-zorro-antd/time-picker";
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { BrowserComponent } from './components/browser/browser.component';
+import { BrowserCellsComponent } from './components/browser/browser-cells/browser-cells.component';
+import { BrowserCellComponent } from './components/browser/browser-cell/browser-cell.component';
 
 const icons: IconDefinition[] = [
   AccountBookFill, AlertOutline, AlertFill, DashboardOutline,
@@ -98,6 +101,9 @@ const icons: IconDefinition[] = [
     PlanCellEditComponent,
     TenantEditComponent,
     ForgotPasswordComponent,
+    BrowserComponent,
+    BrowserCellsComponent,
+    BrowserCellComponent,
   ],
   imports: [
     BrowserModule,

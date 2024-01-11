@@ -39,6 +39,9 @@
           <li nz-menu-item nzMatchRouter>
             <a routerLink="plans">{{ 'App.Menu.Plans.Maintenance' | translate }}</a>
           </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="browser">{{ 'App.Menu.Plans.Browser' | translate }}</a>
+          </li>
         </ul>
       </li>
       <li nz-submenu nzOpen nzTitle="{{ 'App.Authenticate.Authentication' | translate}}" nzIcon="dashboard" *ngIf="!authService.isLoggedIn">

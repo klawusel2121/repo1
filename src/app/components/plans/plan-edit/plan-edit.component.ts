@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, inject, Output, ViewEncapsulation} from '@angular/core';
 import {StateService} from "../../../services/state.service";
 import {Plan} from "../../../models/plan";
 import _ from "lodash";
@@ -16,7 +16,7 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrl: './plan-edit.component.css',
   encapsulation: ViewEncapsulation.None
 })
-export class PlanEditComponent implements OnInit {
+export class PlanEditComponent {
   stateService = inject(StateService);
   formBuilder = inject(FormBuilder);
   formHelper = inject(FormHelperService);
@@ -32,11 +32,6 @@ export class PlanEditComponent implements OnInit {
   cell!: Partial<Cell>;
   items: Array<Partial<PlanItem>> = [];
   active$ = new BehaviorSubject<boolean>(false)
-
-  ngOnInit(): void {
-    console.log('oninit')
-
-  }
 
   initForm(): void {
     console.log('initform')

@@ -1,0 +1,30 @@
+
+<nz-table #basicTable [nzShowPagination]="false" [nzFrontPagination]="false" [nzData]="items" *ngIf="stateService.plans as items">
+  <thead>
+  <tr>
+    <th></th>
+    <th *ngFor="let day of openDays; let c = index">{{ 'App.Day.' + day.number | translate }}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let lesson of lessons; let r = index">
+    <td>
+      <div>
+        <div>
+          {{ lesson.name }}
+        </div>
+        <div>
+          {{ lesson.from }}-{{ lesson.to}}
+        </div>
+      </div>
+    </td>
+    <td *ngFor="let day of openDays; let c = index">
+      <app-browser-cell id="{{ day.number }}-{{ lesson.position }}"
+                          [browserComponent]="browserComponent"
+                          [c]="day.number" [r]="lesson.position">
+      </app-browser-cell>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
