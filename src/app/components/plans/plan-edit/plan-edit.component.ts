@@ -52,10 +52,11 @@ export class PlanEditComponent {
       this.active$.next(value);
     })
   }
+
   open(item: Partial<Plan>) {
     this.initForm();
     console.log('open with item', item);
-    this.messageId = this.message.loading(this.translate.instant('App.Message.Loading'), { nzDuration: 0 }).messageId;
+    this.messageId = this.message.loading(this.translate.instant('App.Message.Loading'), {nzDuration: 0}).messageId;
     this.form.patchValue(_.cloneDeep(item));
     this.items = _.cloneDeep(this.stateService.plans.find(p => p.id == item.id)?.items) ?? [];
 
@@ -74,9 +75,26 @@ export class PlanEditComponent {
 
   apply() {
     const item = this.form.getRawValue();
-    if (this.items.filter(item => item.invalidTeacher || item.invalidRoom).length > 0) {
+    const invalids = this.items.filter(item => item.invalidTeacher || item.invalidRoom);
+    if (invalids.length > 0) {
+      let text = this.translate.instant('App.Message.ErrorInvalidTeacherOrRoom') + ':';
+      invalids.forEach(t => {
+        text += this.translate.instant('App.Day.' + t.day?.toString()) + '[' + t.lesson + ']'
+      })
+      this.message.error(text)
       return;
     }
+
+    const incompletes = this.items.filter(item => (item.roomId || item.courseId || item.teacherIds!.length > 0) && !(item.roomId && item.courseId && item.teacherIds!.length > 0))
+    if (incompletes.length > 0) {
+      let text = this.translate.instant('App.Message.ErrorIncompleteCell') + ':';
+      incompletes.forEach(t => {
+        text += this.translate.instant('App.Day.' + t.day?.toString()) + '[' + t.lesson + ']'
+      })
+      this.message.error(text)
+      return;
+    }
+
     item.items = this.items.filter(item => item.roomId && item.courseId && item.teacherIds!.length > 0);
     item.items.forEach((item: any) => {
       delete item.invalidRoom;
@@ -84,13 +102,20 @@ export class PlanEditComponent {
     })
     console.log('edit apply', item)
 
-    if (item.name?.length === 0) {
+    if (!item.name) {
+      this.formHelper.missingFieldMessage('App.Fields.Name')
       return;
     }
+
+    if (!item.groupId) {
+      this.formHelper.missingFieldMessage('App.Group.Group')
+      return;
+    }
+
     const group = this.stateService.groups.find(g => g.id === item.groupId);
     if (group) {
-      this.form.get('groupId')?.setValue(group.id) ;
-      this.form.get('groupName')?.setValue(group.name) ;
+      this.form.get('groupId')?.setValue(group.id);
+      this.form.get('groupName')?.setValue(group.name);
     }
     this.onApply.emit(item);
   }
@@ -99,7 +124,7 @@ export class PlanEditComponent {
     this.cell = cell;
     let item = this.items.find(i => i.day == cell.day && i.lesson == cell.lesson);
     if (!item) {
-      item = { day: cell.day, lesson: cell.lesson};
+      item = {day: cell.day, lesson: cell.lesson};
       this.items.push(item);
     }
     item.courseId = cell.courseId;

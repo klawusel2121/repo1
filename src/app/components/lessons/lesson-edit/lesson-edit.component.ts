@@ -57,24 +57,30 @@ export class LessonEditComponent implements OnInit {
   apply() {
     const item = this.form.getRawValue();
     if (!item.name) {
+      this.formHelper.missingFieldMessage('App.Fields.Name')
       return;
     }
     if (!item.position) {
+      this.formHelper.missingFieldMessage('App.Fields.Position')
       return;
     }
     if (!item.type) {
+      this.formHelper.missingFieldMessage('App.Fields.Type')
       return;
     }
+
     if (item.fromDate) {
       item.from = String(item.fromDate.getHours()).padStart(2, '0')
         + ':' + String(item.fromDate.getMinutes()).padStart(2, '0');
     } else {
+      this.formHelper.missingFieldMessage('App.Fields.From')
       return;
     }
     if (item.toDate) {
       item.to = String(item.toDate.getHours()).padStart(2, '0')
         + ':' + String(item.toDate.getMinutes()).padStart(2, '0');
     } else {
+      this.formHelper.missingFieldMessage('App.Fields.To')
       return;
     }
     delete item.fromDate;

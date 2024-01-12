@@ -67,7 +67,9 @@ export class CourseEditComponent implements OnInit {
 
   apply() {
     const item = this.form.getRawValue();
-    if (item.name.length === 0) {
+
+    if (!item.name) {
+      this.formHelper.missingFieldMessage('App.Fields.Name')
       return;
     }
     item.deleteHours = this.item.deleteHours;

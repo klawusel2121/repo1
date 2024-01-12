@@ -60,13 +60,14 @@ export class PlanCellEditComponent implements OnInit {
   }
 
   editCell(param: { courseId?: string, roomId?: string, teacherIds?: Array<string> }) {
-    if (param.courseId) {
+    console.log('editCell', param)
+    if (param.courseId !== undefined) {
       this.cell.courseId = param.courseId;
       if (!this.cell.roomId) {
         this.cell.roomId = this.stateService.groups.find(g => g.id === this.planEditComponent.form.get('groupId')?.value)?.roomId;
       }
     }
-    if (param.roomId) {
+    if (param.roomId !== undefined) {
       this.cell.roomId = param.roomId;
     }
     if (param.teacherIds) {

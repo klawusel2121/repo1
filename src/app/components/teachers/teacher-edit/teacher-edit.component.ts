@@ -59,13 +59,18 @@ export class TeacherEditComponent implements OnInit {
   }
 
   apply() {
-    if (this.form.get('name')?.value.length === 0) {
+    const item = this.form.getRawValue();
+
+    if (!item.name) {
+      this.formHelper.missingFieldMessage('App.Fields.Name')
       return;
     }
-    if (this.form.get('short')?.value.length === 0) {
+    if (!item.short) {
+      this.formHelper.missingFieldMessage('App.Fields.Short')
       return;
     }
-    this.onApply.emit(this.item);
+
+    this.onApply.emit(item);
   }
 
   cancel() {

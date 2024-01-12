@@ -34,10 +34,12 @@ export class RoomEditComponent implements OnInit {
 
   apply() {
     const item = this.form.getRawValue();
-    if (item.name.length === 0) {
+    if (!item.name) {
+      this.formHelper.missingFieldMessage('App.Fields.Name')
       return;
     }
     if (!item.size) {
+      this.formHelper.missingFieldMessage('App.Fields.Size')
       return;
     }
     this.onApply.emit(item);

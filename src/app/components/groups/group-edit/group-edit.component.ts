@@ -38,13 +38,16 @@ export class GroupEditComponent implements OnInit {
   }
 
   apply() {
-    if (this.form.get('name')?.value.length === 0) {
+    const item = this.form.getRawValue();
+    if (!item.name) {
+      this.formHelper.missingFieldMessage('App.Fields.Name')
       return;
     }
-    if (!this.form.get('level')?.value) {
+    if (!item.level) {
+      this.formHelper.missingFieldMessage('App.Fields.Level')
       return;
     }
-    this.onApply.emit(this.form.getRawValue());
+    this.onApply.emit(item);
   }
 
   cancel(): void {
