@@ -15,6 +15,7 @@ import {DaysComponent} from "./components/days/days.component";
 import {TenantEditComponent} from "./components/tenant-edit/tenant-edit.component";
 import {ForgotPasswordComponent} from "./components/forgot-password/forgot-password.component";
 import {BrowserComponent} from "./components/browser/browser.component";
+import {EvaluationComponent} from "./components/evaluation/evaluation.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'days', component: DaysComponent },
   { path: 'tenant', component: TenantEditComponent },
   { path: 'browser', component: BrowserComponent },
+  { path: 'evaluation', component: EvaluationComponent },
 ];
 
 @NgModule({

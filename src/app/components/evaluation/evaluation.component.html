@@ -1,1 +1,23 @@
-<p>evaluation works!</p>
+<nz-table #basicTable [nzShowPagination]="false" [nzFrontPagination]="false" [nzData]="items" *ngIf="stateService.plans as items">
+  <thead>
+  <tr>
+    <th></th>
+    <th *ngFor="let teacher of stateService.teachers">{{ teacher.short }}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let course of stateService.courses">
+    <td>
+      <div>
+        <div>
+          {{ course.name }}
+        </div>
+      </div>
+    </td>
+    <td *ngFor="let teacher of stateService.teachers">
+      {{ course | courseTeacher : course.id!: teacher.id! }}
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+

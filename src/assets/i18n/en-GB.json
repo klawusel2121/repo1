@@ -58,6 +58,7 @@
   "App.Menu.MasterData": "Master data",
   "App.Menu.Plans": "Timetables",
   "App.Menu.Plans.Browser": "Browser",
+  "App.Menu.Plans.Evaluation": "Evaluation",
   "App.Menu.Plans.Maintenance": "Maintenance",
   "App.Message.ConfirmCancelEdit": "Cancel edit?",
   "App.Message.ConfirmRemove": "Remove?",
