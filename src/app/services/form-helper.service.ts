@@ -15,4 +15,6 @@ export class FormHelperService {
     form.addControl('isNew', formBuilder.control(null))
     form.addControl('tenantId', formBuilder.control(null))
   }
+
+  dateFormat = 'dd.MM.yyyy'
 }

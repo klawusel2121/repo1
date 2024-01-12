@@ -1,4 +1,5 @@
 <div class="plan-cell-edit" >
+  <div class="no-screen">{{ cell.courseName }}</div>
   <div class="first-row">
     <nz-select
       class="no-print"
@@ -16,6 +17,7 @@
     </nz-select>
     <span nz-icon class="no-print remove-cell" *ngIf="cell?.teacherIds!.length > 0 || cell?.courseId || cell?.roomId" nzType="close" (click)="removeCell(cell)"></span>
   </div>
+  <div class="no-screen">{{ cell.teacherShort }}</div>
   <div [ngClass]="{'invalid': cell?.invalidTeacher}">
     <nz-select
       class="no-print"
@@ -34,6 +36,7 @@
       </ng-container>
     </nz-select>
   </div>
+  <div class="no-screen">{{ cell.roomName }}</div>
   <div [ngClass]="{'invalid': cell.invalidRoom}">
     <nz-select
       class="no-print"

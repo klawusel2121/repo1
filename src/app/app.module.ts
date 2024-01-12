@@ -70,6 +70,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { BrowserComponent } from './components/browser/browser.component';
 import { BrowserCellsComponent } from './components/browser/browser-cells/browser-cells.component';
 import { BrowserCellComponent } from './components/browser/browser-cell/browser-cell.component';
+import {NzDatePickerComponent} from "ng-zorro-antd/date-picker";
 
 const icons: IconDefinition[] = [
   AccountBookFill, AlertOutline, AlertFill, DashboardOutline,
@@ -105,41 +106,42 @@ const icons: IconDefinition[] = [
     BrowserCellsComponent,
     BrowserCellComponent,
   ],
-  imports: [
-    BrowserModule,
-    NzButtonModule,
-    NzInputModule,
-    NzFormModule,
-    NzLayoutModule,
-    NzMenuModule,
-    NzTableModule,
-    NzPopconfirmModule,
-    NzModalModule,
-    DragDropModule,
-    // ngx-translate and the loader module
-    HttpClientModule,
-    NzIconModule.forRoot(icons),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    ReactiveFormsModule,
-    FormsModule,
-    NzIconDirective,
-    NzSelectComponent,
-    NzOptionComponent,
-    NzModalComponent,
-    NzSwitchComponent,
-    NzTimePickerComponent
-  ],
+    imports: [
+        BrowserModule,
+        NzButtonModule,
+        NzInputModule,
+        NzFormModule,
+        NzLayoutModule,
+        NzMenuModule,
+        NzTableModule,
+        NzPopconfirmModule,
+        NzModalModule,
+        DragDropModule,
+        // ngx-translate and the loader module
+        HttpClientModule,
+        NzIconModule.forRoot(icons),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideAuth(() => getAuth()),
+        provideFirestore(() => getFirestore()),
+        ReactiveFormsModule,
+        FormsModule,
+        NzIconDirective,
+        NzSelectComponent,
+        NzOptionComponent,
+        NzModalComponent,
+        NzSwitchComponent,
+        NzTimePickerComponent,
+        NzDatePickerComponent
+    ],
   providers: [CookieService, AuthService, provideNzI18n(de_DE)],
   bootstrap: [AppComponent]
 })

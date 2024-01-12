@@ -1,5 +1,10 @@
 <form nz-form [formGroup]="form" class="d-flex-row">
   <div style="display:flex;flex-direction:row;gap:8px;margin-bottom:4px;">
+    <nz-form-label>{{ 'App.Browser.Date' | translate }}</nz-form-label>
+    <nz-date-picker formControlName="date" [nzFormat]="formHelper.dateFormat">
+
+    </nz-date-picker>
+
     <nz-select formControlName="mode">
       <nz-option [nzValue]="Modes.teacher" [nzLabel]="'App.Browser.Modes.Teacher' | translate"></nz-option>
       <nz-option [nzValue]="Modes.room" [nzLabel]="'App.Browser.Modes.Room' | translate"></nz-option>

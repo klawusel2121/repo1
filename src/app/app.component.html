@@ -1,5 +1,5 @@
 <nz-layout class="app-layout" *ngIf="true">
-  <nz-sider class="menu-sidebar"
+  <nz-sider class="menu-sidebar no-print"
             nzCollapsible
             nzWidth="256px"
             nzBreakpoint="md"
@@ -62,7 +62,7 @@
   </nz-sider>
   <nz-layout>
     <nz-header *ngIf="authService.isLoggedIn">
-      <div class="app-header">
+      <div class="app-header no-print">
         <div class="d-flex-row">
           <div>{{stateService.tenants[0]?.name}}</div>
           <div>/</div>
