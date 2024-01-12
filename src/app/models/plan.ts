@@ -8,8 +8,6 @@ export interface Plan extends HasId, HasTenant, HasTimestamps, IsNew {
   name: string;
   groupId: string;
   groupName: string;
-  from: string;
-  to: string;
   active: boolean;
   items: Array<Partial<PlanItem>>;
 }

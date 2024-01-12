@@ -53,7 +53,7 @@ export class PlansComponent {
     console.log('onApply', item)
     const patch = {
       name: item.name, groupName: item.groupName,
-      groupId: item.groupId, from: item.from, to: item.to, items: item.items,
+      groupId: item.groupId, items: item.items,
       active: item.active
     };
     if (this.editItem.isNew) {

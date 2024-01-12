@@ -3,7 +3,7 @@
   <ng-container *nzModalContent>
     <form nz-form [formGroup]="form" class="d-flex-row">
       <div nz-row [nzGutter]="24">
-        <div nz-col [nzSpan]="5">
+        <div nz-col [nzSpan]="10">
           <nz-form-item>
             <nz-form-label>{{ 'App.Fields.Name' | translate }}</nz-form-label>
             <nz-form-control >
@@ -11,29 +11,13 @@
             </nz-form-control>
           </nz-form-item>
         </div>
-        <div nz-col [nzSpan]="5">
+        <div nz-col [nzSpan]="10">
           <nz-form-item>
             <nz-form-label>{{ 'App.Group.Group' | translate }}</nz-form-label>
             <nz-form-control>
               <nz-select formControlName="groupId">
                 <nz-option *ngFor="let item of stateService.groups" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
               </nz-select>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col [nzSpan]="5">
-          <nz-form-item>
-            <nz-form-label>{{ 'App.Fields.From' | translate }}</nz-form-label>
-            <nz-form-control>
-              <input nz-input formControlName="from" type="date">
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div nz-col [nzSpan]="5">
-          <nz-form-item>
-            <nz-form-label>{{ 'App.Fields.To' | translate }}</nz-form-label>
-            <nz-form-control>
-              <input nz-input formControlName="to" type="date">
             </nz-form-control>
           </nz-form-item>
         </div>

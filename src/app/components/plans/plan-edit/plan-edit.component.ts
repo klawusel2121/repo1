@@ -40,8 +40,6 @@ export class PlanEditComponent {
       active: this.formBuilder.control(undefined),
       groupId: this.formBuilder.control(undefined),
       groupName: this.formBuilder.control(undefined),
-      from: this.formBuilder.control(undefined),
-      to: this.formBuilder.control(undefined),
     })
     this.formHelper.addDefaultControls(this.form, this.formBuilder);
     this.form.get('groupId')?.valueChanges.pipe().subscribe(id => {
@@ -74,7 +72,7 @@ export class PlanEditComponent {
   }
 
   apply() {
-    const item = this.form.getRawValue();
+    const formValue = this.form.getRawValue();
     const invalids = this.items.filter(item => item.invalidTeacher || item.invalidRoom);
     if (invalids.length > 0) {
       let text = this.translate.instant('App.Message.ErrorInvalidTeacherOrRoom') + ':';
@@ -95,29 +93,29 @@ export class PlanEditComponent {
       return;
     }
 
-    item.items = this.items.filter(item => item.roomId && item.courseId && item.teacherIds!.length > 0);
-    item.items.forEach((item: any) => {
+    formValue.items = this.items.filter(item => item.roomId && item.courseId && item.teacherIds!.length > 0);
+    formValue.items.forEach((item: any) => {
       delete item.invalidRoom;
       delete item.invalidTeacher;
     })
-    console.log('edit apply', item)
+    console.log('edit apply', formValue)
 
-    if (!item.name) {
+    if (!formValue.name) {
       this.formHelper.missingFieldMessage('App.Fields.Name')
       return;
     }
 
-    if (!item.groupId) {
+    if (!formValue.groupId) {
       this.formHelper.missingFieldMessage('App.Group.Group')
       return;
     }
 
-    const group = this.stateService.groups.find(g => g.id === item.groupId);
+    const group = this.stateService.groups.find(g => g.id === formValue.groupId);
     if (group) {
       this.form.get('groupId')?.setValue(group.id);
       this.form.get('groupName')?.setValue(group.name);
     }
-    this.onApply.emit(item);
+    this.onApply.emit(formValue);
   }
 
   onEditCell(cell: Partial<Cell>) {

@@ -109,11 +109,6 @@ export class BrowserCellComponent implements OnInit {
   activePlans(browserDate: string): Array<Plan> {
     const items =  this.stateService.plans
       .filter(plan => plan.active)
-      .filter(plan => (!plan.from && !plan.to
-        ? true
-        : plan.from && !plan.to
-          ? plan.from >= browserDate
-      : plan.from && plan.to ? plan.from >= browserDate && plan.to <= browserDate : false))
     return items;
   }
 

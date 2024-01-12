@@ -9,8 +9,6 @@
     <th>{{ 'App.Fields.Status' | translate}}</th>
     <th>{{ 'App.Group.Group' | translate}}</th>
     <th>{{ 'App.Lesson.Lessons' | translate}}</th>
-    <th>{{ 'App.Fields.From' | translate}}</th>
-    <th>{{ 'App.Fields.To' | translate}}</th>
     <th>{{ 'App.Fields.Changed' | translate}}</th>
     <th>{{ 'App.Fields.Created' | translate}}</th>
   </tr>
@@ -28,8 +26,6 @@
     </td>
     <td>{{item.groupName}}</td>
     <td>{{item.items.length}}</td>
-    <td>{{item.from | date: 'dd.MM.YYYY'}}</td>
-    <td>{{item.to | date: 'dd.MM.YYYY'}}</td>
     <td>{{item.changedAt}}</td>
     <td>{{item.createdAt}}</td>
   </tr>

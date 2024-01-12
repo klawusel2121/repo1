@@ -71,6 +71,7 @@ import { BrowserComponent } from './components/browser/browser.component';
 import { BrowserCellsComponent } from './components/browser/browser-cells/browser-cells.component';
 import { BrowserCellComponent } from './components/browser/browser-cell/browser-cell.component';
 import {NzDatePickerComponent} from "ng-zorro-antd/date-picker";
+import { EvaluationComponent } from './components/evaluation/evaluation.component';
 
 const icons: IconDefinition[] = [
   AccountBookFill, AlertOutline, AlertFill, DashboardOutline,
@@ -105,6 +106,7 @@ const icons: IconDefinition[] = [
     BrowserComponent,
     BrowserCellsComponent,
     BrowserCellComponent,
+    EvaluationComponent,
   ],
     imports: [
         BrowserModule,
