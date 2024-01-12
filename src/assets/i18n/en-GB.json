@@ -36,6 +36,7 @@
 	"App.Fields.From": "From",
 	"App.Fields.Hours": "Hours",
 	"App.Fields.Level": "Level",
+  "App.Fields.Items": "Items",
 	"App.Fields.Name": "Name",
 	"App.Fields.Position": "Position",
 	"App.Fields.Short": "Shortcut",

@@ -1,46 +1,24 @@
 <form nz-form [formGroup]="form" class="d-flex-row">
-  <div nz-row [nzGutter]="24">
-    <div nz-col [nzSpan]="12">
-      <nz-form-item>
-        <nz-form-control >
-          <nz-select formControlName="mode">
-            <nz-option [nzValue]="Modes.teacher" [nzLabel]="'App.Browser.Modes.Teacher' | translate"></nz-option>
-            <nz-option [nzValue]="Modes.room" [nzLabel]="'App.Browser.Modes.Room' | translate"></nz-option>
-            <nz-option [nzValue]="Modes.group" [nzLabel]="'App.Browser.Modes.Group' | translate"></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-    <div nz-col [nzSpan]="12" *ngIf="form.value.mode === Modes.group">
-      <nz-form-item>
-        <nz-form-label>{{ 'App.Group.Group' | translate }}</nz-form-label>
-        <nz-form-control>
-          <nz-select style="width:200px" formControlName="groupId">
-            <nz-option *ngFor="let item of stateService.groups" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-    <div nz-col [nzSpan]="12" *ngIf="form.value.mode === Modes.teacher">
-      <nz-form-item>
-        <nz-form-label>{{ 'App.Teacher.Teacher' | translate }}</nz-form-label>
-        <nz-form-control>
-          <nz-select style="width:200px" formControlName="teacherId">
-            <nz-option *ngFor="let item of stateService.teachers" [nzValue]="item.id" [nzLabel]="item.short"></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-    <div nz-col [nzSpan]="12" *ngIf="form.value.mode === Modes.room">
-      <nz-form-item>
-        <nz-form-label>{{ 'App.Room.Room' | translate }}</nz-form-label>
-        <nz-form-control>
-          <nz-select style="width:200px" formControlName="roomId">
-            <nz-option *ngFor="let item of stateService.rooms" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
-    </div>
+  <div style="display:flex;flex-direction:row;gap:8px;margin-bottom:4px;">
+    <nz-select formControlName="mode">
+      <nz-option [nzValue]="Modes.teacher" [nzLabel]="'App.Browser.Modes.Teacher' | translate"></nz-option>
+      <nz-option [nzValue]="Modes.room" [nzLabel]="'App.Browser.Modes.Room' | translate"></nz-option>
+      <nz-option [nzValue]="Modes.group" [nzLabel]="'App.Browser.Modes.Group' | translate"></nz-option>
+    </nz-select>
+
+    <nz-select style="width:200px" formControlName="groupId" *ngIf="form.value.mode === Modes.group">
+      <nz-option *ngFor="let item of stateService.groups" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+    </nz-select>
+
+    <nz-select style="width:200px" formControlName="teacherId" *ngIf="form.value.mode === Modes.teacher">
+      <nz-option *ngFor="let item of stateService.teachers" [nzValue]="item.id" [nzLabel]="item.short"></nz-option>
+    </nz-select>
+
+    <nz-select style="width:200px" formControlName="roomId" *ngIf="form.value.mode === Modes.room">
+      <nz-option *ngFor="let item of stateService.rooms" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+    </nz-select>
+
+    <div  *ngIf="itemCount > 0">{{ 'App.Fields.Items' | translate }}: {{itemCount}}</div>
   </div>
 </form>
 <app-browser-cells [browserComponent]="this"></app-browser-cells>

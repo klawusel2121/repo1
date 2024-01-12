@@ -41,6 +41,7 @@ export class BrowserCellComponent implements OnInit {
           matching.forEach(match => (match as any).groupId = plan.groupId)
           items.push(...matching);
           if (items[0]) {
+            this.browserComponent.itemCount++;
             this.cell = {
               row1: this.courseName(items[0]?.courseId as string),
               row2: this.translate.instant('App.Group.Group') + ' ' + this.groupName((items[0] as any)?.groupId),
@@ -58,6 +59,7 @@ export class BrowserCellComponent implements OnInit {
           matching.forEach(match => (match as any).groupId = plan.groupId)
           items.push(...matching);
           if (items[0]) {
+            this.browserComponent.itemCount++;
             this.cell = {
               row1: this.courseName(items[0]?.courseId as string),
               row2: this.translate.instant('App.Group.Group') + ' ' + this.groupName((items[0] as any)?.groupId),
@@ -75,6 +77,7 @@ export class BrowserCellComponent implements OnInit {
           matching.forEach(match => (match as any).groupId = plan.groupId)
           items.push(...matching);
           if (items[0]) {
+            this.browserComponent.itemCount++;
             this.cell = {
               row1: this.courseName(items[0]?.courseId as string),
               row2: this.translate.instant('App.Room.Room') + ' ' + this.roomName((items[0] as any)?.roomId),

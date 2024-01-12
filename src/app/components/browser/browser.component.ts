@@ -28,6 +28,7 @@ export class BrowserComponent implements OnInit {
 
   id$: BehaviorSubject<string> = new BehaviorSubject<string>('')
   form!: FormGroup;
+  itemCount = 0;
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -37,8 +38,17 @@ export class BrowserComponent implements OnInit {
       roomId: this.formBuilder.control(undefined),
     })
     this.form.patchValue({ mode : BrowserModes.teacher})
-    this.form.get('teacherId')?.valueChanges?.subscribe(value => this.id$.next(value));
-    this.form.get('groupId')?.valueChanges?.subscribe(value => this.id$.next(value));
-    this.form.get('roomId')?.valueChanges?.subscribe(value => this.id$.next(value));
+    this.form.get('teacherId')?.valueChanges?.subscribe(value => {
+      this.itemCount = 0;
+      this.id$.next(value);
+    });
+    this.form.get('groupId')?.valueChanges?.subscribe(value => {
+      this.itemCount = 0;
+      this.id$.next(value);
+    });
+    this.form.get('roomId')?.valueChanges?.subscribe(value => {
+      this.itemCount = 0;
+      this.id$.next(value);
+    });
   }
 }
