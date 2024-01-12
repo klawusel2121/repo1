@@ -1,7 +1,7 @@
 <form nz-form [formGroup]="form" class="d-flex-row">
   <div style="display:flex;flex-direction:row;gap:8px;margin-bottom:4px;">
     <nz-form-label>{{ 'App.Browser.Date' | translate }}</nz-form-label>
-    <nz-date-picker formControlName="date" [nzFormat]="formHelper.dateFormat">
+    <nz-date-picker [nzAllowClear]="false" formControlName="date" [nzFormat]="formHelper.dateFormat">
 
     </nz-date-picker>
 
