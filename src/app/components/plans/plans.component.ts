@@ -70,4 +70,13 @@ export class PlansComponent {
     this.modal.show = false;
   }
 
+  copy(item: Plan) {
+    const updatePatch = { };
+    this.fbs.update(this.source, item, updatePatch);
+
+    delete item.id;
+    const copy = _.cloneDeep(item);
+    const copyPatch = { name: this.translate.instant('App.Message.CopyOf') + item.name };
+    this.fbs.add(this.source, {...item, ...copyPatch});
+  }
 }

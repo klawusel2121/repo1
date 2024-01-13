@@ -50,7 +50,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import {DragDropModule} from '@angular/cdk/drag-drop'
 import {IconDefinition} from '@ant-design/icons-angular';
 import {
-  AccountBookFill, AlertFill, AlertOutline,
+  AccountBookFill, AlertFill, AlertOutline, CopyOutline,
   DashboardOutline, EyeFill, EyeOutline, EyeInvisibleOutline, EyeInvisibleFill,
   MenuOutline, MenuFoldOutline, SaveOutline, TableOutline
 }
@@ -77,7 +77,7 @@ import { SumTeacherPipe } from './pipes/sum-teacher.pipe';
 import {NzRadioButtonDirective, NzRadioComponent, NzRadioGroupComponent} from "ng-zorro-antd/radio";
 
 const icons: IconDefinition[] = [
-  AccountBookFill, AlertOutline, AlertFill, DashboardOutline,
+  AccountBookFill, AlertOutline, AlertFill, CopyOutline, DashboardOutline,
   EyeFill, EyeOutline, EyeInvisibleOutline, EyeInvisibleFill,
   MenuOutline, MenuFoldOutline, SaveOutline, TableOutline
 ];

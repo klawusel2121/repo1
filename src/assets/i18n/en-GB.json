@@ -63,6 +63,8 @@
   "App.Menu.Plans.Maintenance": "Maintenance",
   "App.Message.ConfirmCancelEdit": "Cancel edit?",
   "App.Message.ConfirmRemove": "Remove?",
+  "App.Message.ConfirmCopy": "Create copy?",
+  "App.Message.CopyOf": "Copy of ",
   "App.Message.ErrorFieldMissing": "Please fill the field '{{field}}'",
   "App.Message.ErrorIncompleteCell": "Please check the following cells and set course, teachers and room",
   "App.Message.ErrorInvalidTeacherOrRoom": "Please check the following entries for room/teacher",

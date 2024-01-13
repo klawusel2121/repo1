@@ -19,6 +19,8 @@
       <span (click)="edit(item)" nz-icon nzType="edit" nzTheme="outline"></span>
       <span nz-popconfirm nzPopconfirmTitle="{{ 'App.Message.ConfirmRemove' | translate}}" (nzOnConfirm)="remove(item)"
             nz-icon nzType="delete" nzTheme="outline"></span>
+      <span nz-popconfirm nzPopconfirmTitle="{{ 'App.Message.ConfirmCopy' | translate}}" (nzOnConfirm)="copy(item)"
+            nz-icon nzType="copy" nzTheme="outline"></span>
     </td>
     <td>{{item.name}}</td>
     <td>
