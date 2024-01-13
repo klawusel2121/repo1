@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {LessonType} from "../../models/lesson-type";
 import {Teacher} from "../../models/teacher";
 import {Course} from "../../models/course";
+import {Plan} from "../../models/plan";
 
 @Component({
   selector: 'app-evaluation',
@@ -55,4 +56,17 @@ export class EvaluationComponent implements OnInit {
     return this.stateService.courses
       .filter(t => this.form.get('courseIds')!.value.indexOf(t.id) !== -1);
   }
-}
+
+  plans(): Array<Plan> {
+    return this.stateService.plans
+      .filter(t => this.form.get('planIds')!.value.indexOf(t.id) !== -1);
+  }
+
+  courseNames(): string {
+    return this.courses().map(c => c.name).join(',');
+  }
+
+  planNames(): string {
+    return this.plans().map(c => c.name).join(',');
+  }
+ }

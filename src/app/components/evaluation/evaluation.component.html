@@ -3,10 +3,11 @@
     <div nz-col>
       <nz-form-item>
         <nz-form-label>{{ 'App.Course.Courses' | translate }}</nz-form-label>
+        <div class="no-screen">{{ courseNames() }}</div>
         <nz-form-control>
           <nz-select
             class="no-print"
-            style="width:640px;font-weight:bold;"
+            style="width:640px;font-weight:bold;margin-right: 20px;"
             nzMode="multiple"
             [nzSize]="'small'"
             [nzPlaceHolder]="'App.Course.Courses' | translate"
@@ -23,7 +24,8 @@
     </div>
     <div nz-col>
       <nz-form-item>
-        <nz-form-label style="margin-left:20px;">{{ 'App.Plan.Plans' | translate }}</nz-form-label>
+        <nz-form-label>{{ 'App.Plan.Plans' | translate }}</nz-form-label>
+        <div class="no-screen">{{ planNames() }}</div>
         <nz-form-control>
           <nz-select
             class="no-print"
