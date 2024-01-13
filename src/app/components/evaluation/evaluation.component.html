@@ -1,12 +1,63 @@
-<nz-table #basicTable [nzShowPagination]="false" [nzFrontPagination]="false" [nzData]="items" *ngIf="stateService.plans as items">
+<form nz-form [formGroup]="form" class="d-flex-row">
+  <div nz-row>
+    <div nz-col>
+      <nz-form-item>
+        <nz-form-label>{{ 'App.Course.Courses' | translate }}</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            class="no-print"
+            style="width:640px;font-weight:bold;"
+            nzMode="multiple"
+            [nzSize]="'small'"
+            [nzPlaceHolder]="'App.Course.Courses' | translate"
+            nzAllowClear
+            nzShowSearch
+            formControlName="courseIds"
+          >
+            <ng-container *ngFor="let course of stateService.courses">
+              <nz-option [nzValue]="course.id" [nzLabel]="course.name"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col>
+      <nz-form-item>
+        <nz-form-label style="margin-left:20px;">{{ 'App.Plan.Plans' | translate }}</nz-form-label>
+        <nz-form-control>
+          <nz-select
+            class="no-print"
+            style="width:240px;font-weight:bold;"
+            nzMode="multiple"
+            [nzSize]="'small'"
+            [nzPlaceHolder]="'App.Plan.Plans' | translate"
+            nzAllowClear
+            nzShowSearch
+            formControlName="planIds"
+          >
+            <ng-container *ngFor="let course of activePlans">
+              <nz-option [nzValue]="course.id" [nzLabel]="course.name"></nz-option>
+            </ng-container>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>
+<nz-table #basicTable nzSize="small" [nzShowPagination]="false" [nzFrontPagination]="false" [nzData]="items"
+          *ngIf="stateService.plans as items">
   <thead>
   <tr>
     <th></th>
     <th *ngFor="let teacher of stateService.teachers">{{ teacher.short }}</th>
   </tr>
+  <tr>
+    <th></th>
+    <th *ngFor="let teacher of stateService.teachers">{{ teacher.id! | sumTeacher : planIds() }}</th>
+  </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let course of stateService.courses">
+  <tr *ngFor="let course of courses()">
     <td>
       <div>
         <div>
@@ -15,7 +66,7 @@
       </div>
     </td>
     <td *ngFor="let teacher of stateService.teachers">
-      {{ course | courseTeacher : course.id!: teacher.id! }}
+      {{ course.id! | countCourseTeacher : teacher.id!: planIds() }}
     </td>
   </tr>
   </tbody>

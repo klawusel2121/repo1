@@ -1,11 +1,20 @@
 <nz-modal (nzOnCancel)="cancel()" (nzOnOk)="apply()" [(nzVisible)]="show"
-          [nzTitle]="('App.Action.Edit' | translate) + ':' + ('App.Room.Room' | translate)">
+          [nzTitle]="('App.Action.Edit' | translate) + ':' + ('App.Course.Course' | translate)">
   <ng-container *nzModalContent>
     <form nz-form [formGroup]="form">
       <nz-form-item>
         <nz-form-label [nzSpan]="4">{{ 'App.Fields.Name' | translate }}</nz-form-label>
         <nz-form-control [nzSpan]="6">
           <input nz-input formControlName="name" type="text">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ 'App.Fields.Type' | translate }}</nz-form-label>
+        <nz-form-control [nzSpan]="6">
+          <nz-select formControlName="type">
+            <nz-option [nzValue]="LessonType.normal" [nzLabel]="'App.Lesson.Types.normal' | translate"></nz-option>
+            <nz-option [nzValue]="LessonType.break" [nzLabel]="'App.Lesson.Types.break' | translate"></nz-option>
+          </nz-select>
         </nz-form-control>
       </nz-form-item>
     </form>

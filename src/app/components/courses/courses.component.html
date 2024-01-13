@@ -7,6 +7,7 @@
       <button nz-button nzType="primary" (click)="add()">{{ 'App.Action.Add' | translate }}</button>
     </th>
     <th>{{ 'App.Fields.Name' | translate }}</th>
+    <th>{{ 'App.Fields.Type' | translate}}</th>
     <th>{{ 'App.Fields.Changed' | translate }}</th>
     <th>{{ 'App.Fields.Created' | translate }}</th>
   </tr>
@@ -19,6 +20,7 @@
             nz-icon nzType="delete" nzTheme="outline"></span>
     </td>
     <td>{{ item.name }}</td>
+    <td>{{ 'App.Lesson.Types.' + item.type | translate }}</td>
     <td>{{ item.changedAt }}</td>
     <td>{{ item.createdAt }}</td>
   </tr>

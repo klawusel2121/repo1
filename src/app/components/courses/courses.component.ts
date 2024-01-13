@@ -48,7 +48,7 @@ export class CoursesComponent {
 
   onApply(item: Course) {
     console.log('onApply', item)
-    const patch = {name: item.name};
+    const patch = {name: item.name, type: item.type};
     if (this.editItem.isNew) {
       this.editItem.isNew = false;
       this.fbs.add(this.source, {...this.editItem, ...patch}).then(

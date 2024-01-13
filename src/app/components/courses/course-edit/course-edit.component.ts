@@ -7,6 +7,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FormHelperService} from "../../../services/form-helper.service";
 import _ from "lodash";
 import {Group} from "../../../models/group";
+import {LessonType} from "../../../models/lesson-type";
 
 @Component({
   selector: 'app-course-edit',
@@ -29,6 +30,7 @@ export class CourseEditComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: this.formBuilder.control(undefined),
+      type: this.formBuilder.control(undefined),
     })
     this.formHelper.addDefaultControls(this.form, this.formBuilder);
   }
@@ -72,6 +74,11 @@ export class CourseEditComponent implements OnInit {
       this.formHelper.missingFieldMessage('App.Fields.Name')
       return;
     }
+    if (!item.type) {
+      this.formHelper.missingFieldMessage('App.Fields.Type')
+      return;
+    }
+
     item.deleteHours = this.item.deleteHours;
     item.weeklyHours = this.item.weeklyHours;
     this.onApply.emit(item);
@@ -99,4 +106,6 @@ export class CourseEditComponent implements OnInit {
     item.backup = undefined;
     item.edit = false;
   }
+
+  protected readonly LessonType = LessonType;
 }

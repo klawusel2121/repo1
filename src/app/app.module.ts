@@ -72,7 +72,8 @@ import { BrowserCellsComponent } from './components/browser/browser-cells/browse
 import { BrowserCellComponent } from './components/browser/browser-cell/browser-cell.component';
 import {NzDatePickerComponent} from "ng-zorro-antd/date-picker";
 import { EvaluationComponent } from './components/evaluation/evaluation.component';
-import { CourseTeacherPipe } from './pipes/course-teacher.pipe';
+import { CountCourseTeacherPipe } from './pipes/count-course-teacher.pipe';
+import { SumTeacherPipe } from './pipes/sum-teacher.pipe';
 
 const icons: IconDefinition[] = [
   AccountBookFill, AlertOutline, AlertFill, DashboardOutline,
@@ -108,7 +109,8 @@ const icons: IconDefinition[] = [
     BrowserCellsComponent,
     BrowserCellComponent,
     EvaluationComponent,
-    CourseTeacherPipe,
+    CountCourseTeacherPipe,
+    SumTeacherPipe,
   ],
     imports: [
         BrowserModule,
