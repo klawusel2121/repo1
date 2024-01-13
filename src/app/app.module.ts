@@ -74,6 +74,7 @@ import {NzDatePickerComponent} from "ng-zorro-antd/date-picker";
 import { EvaluationComponent } from './components/evaluation/evaluation.component';
 import { CountCourseTeacherPipe } from './pipes/count-course-teacher.pipe';
 import { SumTeacherPipe } from './pipes/sum-teacher.pipe';
+import {NzRadioButtonDirective, NzRadioComponent, NzRadioGroupComponent} from "ng-zorro-antd/radio";
 
 const icons: IconDefinition[] = [
   AccountBookFill, AlertOutline, AlertFill, DashboardOutline,
@@ -112,42 +113,45 @@ const icons: IconDefinition[] = [
     CountCourseTeacherPipe,
     SumTeacherPipe,
   ],
-    imports: [
-        BrowserModule,
-        NzButtonModule,
-        NzInputModule,
-        NzFormModule,
-        NzLayoutModule,
-        NzMenuModule,
-        NzTableModule,
-        NzPopconfirmModule,
-        NzModalModule,
-        DragDropModule,
-        // ngx-translate and the loader module
-        HttpClientModule,
-        NzIconModule.forRoot(icons),
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            }
-        }),
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        provideFirebaseApp(() => initializeApp(environment.firebase)),
-        provideAuth(() => getAuth()),
-        provideFirestore(() => getFirestore()),
-        ReactiveFormsModule,
-        FormsModule,
-        NzIconDirective,
-        NzSelectComponent,
-        NzOptionComponent,
-        NzModalComponent,
-        NzSwitchComponent,
-        NzTimePickerComponent,
-        NzDatePickerComponent
-    ],
+  imports: [
+    BrowserModule,
+    NzButtonModule,
+    NzInputModule,
+    NzFormModule,
+    NzLayoutModule,
+    NzMenuModule,
+    NzTableModule,
+    NzPopconfirmModule,
+    NzModalModule,
+    DragDropModule,
+    // ngx-translate and the loader module
+    HttpClientModule,
+    NzIconModule.forRoot(icons),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    ReactiveFormsModule,
+    FormsModule,
+    NzIconDirective,
+    NzSelectComponent,
+    NzOptionComponent,
+    NzModalComponent,
+    NzSwitchComponent,
+    NzTimePickerComponent,
+    NzDatePickerComponent,
+    NzRadioGroupComponent,
+    NzRadioButtonDirective,
+    NzRadioComponent
+  ],
   providers: [CookieService, AuthService, provideNzI18n(de_DE)],
   bootstrap: [AppComponent]
 })

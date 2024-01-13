@@ -53,6 +53,7 @@
 	"App.Group.Groups": "Klassen",
 	"App.Lesson.Lesson": "Stunde",
 	"App.Lesson.Lessons": "Stunden",
+	"App.Lesson.Types.all": "Alle",
 	"App.Lesson.Types.break": "Pause",
 	"App.Lesson.Types.normal": "Normal",
 	"App.Menu.MasterData": "Stammdaten",

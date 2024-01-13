@@ -53,6 +53,7 @@
 	"App.Group.Groups": "Groups",
 	"App.Lesson.Lesson": "Lesson",
 	"App.Lesson.Lessons": "Lessons",
+	"App.Lesson.Types.all": "All",
 	"App.Lesson.Types.break": "Break",
 	"App.Lesson.Types.normal": "Normal",
   "App.Menu.MasterData": "Master data",

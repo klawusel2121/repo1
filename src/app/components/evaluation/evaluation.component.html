@@ -3,11 +3,16 @@
     <div nz-col>
       <nz-form-item>
         <nz-form-label>{{ 'App.Course.Courses' | translate }}</nz-form-label>
+        <nz-radio-group class="no-print" formControlName="courseGroup" nzButtonStyle="solid">
+          <label nz-radio-button [nzValue]="LessonType.all">{{ 'App.Lesson.Types.all' | translate}}</label>
+          <label nz-radio-button [nzValue]="LessonType.normal">{{ 'App.Lesson.Types.normal' | translate}}</label>
+          <label nz-radio-button [nzValue]="LessonType.break">{{ 'App.Lesson.Types.break' | translate}}</label>
+        </nz-radio-group>
         <div class="no-screen">{{ courseNames() }}</div>
         <nz-form-control>
           <nz-select
             class="no-print"
-            style="width:640px;font-weight:bold;margin-right: 20px;"
+            style="margin-left: 20px;width:840px;font-weight:bold;margin-right: 20px;"
             nzMode="multiple"
             [nzSize]="'small'"
             [nzPlaceHolder]="'App.Course.Courses' | translate"
