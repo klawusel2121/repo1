@@ -6,7 +6,7 @@ import {IsNew} from "./is-new";
 import {CoursePerWeek} from "./coursePerWeek";
 import {LessonType} from "./lesson-type";
 
-export interface Course extends HasId, HasTenant, HasTimestamps, IsNew {
+export type Course = HasId & HasTenant & HasTimestamps & IsNew & {
   name: string;
   type: LessonType;
   weeklyHours: Array<Partial<CoursePerWeek>>;

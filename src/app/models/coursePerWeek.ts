@@ -4,7 +4,7 @@ import {HasTimestamps} from "./has-timestamps";
 import {IsNew} from "./is-new";
 import {Course} from "./course";
 
-export interface CoursePerWeek extends HasId, HasTenant, HasTimestamps, IsNew {
+export type CoursePerWeek  = HasId & HasTenant & HasTimestamps & IsNew & {
   courseId: string;
   level: number;
   hours: number;

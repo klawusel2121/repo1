@@ -4,7 +4,7 @@ import {HasTimestamps} from "./has-timestamps";
 import {IsNew} from "./is-new";
 import {TeacherCourse} from "./teacherCourse";
 
-export interface Tenant extends HasId, HasTenant, HasTimestamps {
+export type Tenant = HasId & HasTenant & HasTimestamps & IsNew & {
   name: string;
   country: string;
   zip: string;

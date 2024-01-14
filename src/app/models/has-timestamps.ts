@@ -1,4 +1,4 @@
-export interface HasTimestamps {
+export type HasTimestamps = {
   createdAt?: Date;
   changedAt?: Date;
 }

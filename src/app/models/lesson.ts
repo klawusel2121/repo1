@@ -4,7 +4,7 @@ import {HasTimestamps} from "./has-timestamps";
 import {IsNew} from "./is-new";
 import {LessonType} from "./lesson-type";
 
-export interface Lesson extends HasId, HasTenant, HasTimestamps, IsNew {
+export type Lesson = HasId & HasTenant & HasTimestamps & IsNew & {
   position: number;
   name: string;
   from: string;

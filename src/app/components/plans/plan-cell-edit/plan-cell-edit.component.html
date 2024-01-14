@@ -18,7 +18,7 @@
     <span nz-icon class="no-print remove-cell" *ngIf="cell?.teacherIds!.length > 0 || cell?.courseId || cell?.roomId" nzType="close" (click)="removeCell(cell)"></span>
   </div>
   <div class="no-screen">{{ cell.teacherShort }}</div>
-  <div [ngClass]="{'invalid': cell?.invalidTeacher}">
+  <div [ngClass]="{'invalid': cell.invalidTeacher}">
     <nz-select
       class="no-print"
       style="width:180px;"
@@ -55,4 +55,3 @@
     </nz-select>
   </div>
 </div>
-

@@ -1,3 +1,3 @@
-export interface IsNew {
+export type IsNew = {
   isNew: boolean;
 }
