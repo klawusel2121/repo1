@@ -20,12 +20,21 @@ export class SignInComponent {
     this.form = this.formBuilder.group({
       userName: this.formBuilder.control(undefined),
       password: this.formBuilder.control(undefined),
-      tenantId: this.formBuilder.control(undefined),
+      tenantId: this.formBuilder.control(localStorage.getItem('tenant')),
     })
   }
 
   onLogin() {
     this.authService.setTenant(this.form.get('tenantId')?.value);
     this.authService.Login(this.form.get('userName')?.value, this.form.get('password')?.value)
+  }
+
+  search(e: string) {
+    console.log('search', e)
+  }
+
+  enter(e: any) {
+    console.log('enter', e)
+    this.form.get('tenantId')?.setValue(e);
   }
 }

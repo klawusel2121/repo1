@@ -15,7 +15,6 @@ import {SignInComponent} from './components/sign-in/sign-in.component';
 import {RegisterUserComponent} from './components/register-user/register-user.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {environment} from "./environments/environment";
-import {TenantSelectComponent} from './components/tenant-select/tenant-select.component';
 import {TeachersComponent} from './components/teachers/teachers.component';
 import {CoursesComponent} from './components/courses/courses.component';
 import {CourseEditComponent} from './components/courses/course-edit/course-edit.component';
@@ -58,7 +57,6 @@ import {
 import { registerLocaleData } from '@angular/common';
 import de from '@angular/common/locales/de';
 
-
 registerLocaleData(de);
 
 /** config ng-zorro-antd i18n **/
@@ -88,7 +86,6 @@ const icons: IconDefinition[] = [
     SignInComponent,
     RegisterUserComponent,
     DashboardComponent,
-    TenantSelectComponent,
     TeachersComponent,
     CoursesComponent,
     CourseEditComponent,

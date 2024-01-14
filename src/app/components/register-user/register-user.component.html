@@ -2,10 +2,7 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ 'App.Authenticate.Tenant' | translate }}</nz-form-label>
     <nz-form-control [nzSpan]="6">
-      <nz-select formControlName="tenantId">
-        <nz-option *ngFor="let tenant of authService.Tenants" [nzValue]="tenant.value"
-                   [nzLabel]="tenant.value"></nz-option>
-      </nz-select>
+      <input formControlName="tenantId">
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>

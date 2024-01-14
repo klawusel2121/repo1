@@ -19,10 +19,7 @@ import {FirebaseService} from "./firebase.service";
 })
 export class AuthService {
   UserData : any;
-  Tenants = [
-    {value: 'TEST-57f99', label: 'TEST'},
-    {value: 'PROD-zs4ha', label: 'PROD'},
-  ]
+  Tenants = localStorage.getItem('tenant-list')
   TenantDetails: any;
 
   constructor(private auth: Auth,private router : Router, public ngZone: NgZone){
@@ -89,6 +86,11 @@ export class AuthService {
       .then((result: any) => {
         console.log('login', result)
         this.UserData = result.user;
+        let tenantList = localStorage.getItem('tenant-list') ?? '';
+        if (tenantList.split(',').indexOf(this.auth.tenantId!) === -1) {
+          tenantList += ',' + this.auth.tenantId!;
+          localStorage.setItem('tenant-list', tenantList);
+        }
         localStorage.setItem('email', email);
         localStorage.setItem('password', password);
         localStorage.setItem('lastLogin', new Date().toLocaleString());
@@ -104,7 +106,6 @@ export class AuthService {
   //Logout
   Logout() {
     this.auth.tenantId = null; //localStorage.getItem('tenant');
-    localStorage.setItem('tenant', '');
     signOut(this.auth).then(()=>this.router.navigate(['/sign-in']))
   }
 
