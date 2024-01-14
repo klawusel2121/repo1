@@ -4,8 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Installation
 
-Run 'npm install' inside the project directory to downlaod all needed stuff.
-Try 'npm install --force' when you run into problems regarding versions.
+Run `npm install` inside the project directory to downlaod all needed stuff.
+Try `npm install --force` when you run into problems regarding versions.
 Try running the commands in elevated mode ("run as administrator" under windows, "sudo" under mac/linux),
 when runninng into access rights issus.
 
