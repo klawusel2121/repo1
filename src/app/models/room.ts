@@ -3,7 +3,7 @@ import {HasTenant} from "./has-tenant";
 import {HasTimestamps} from "./has-timestamps";
 import {IsNew} from "./is-new";
 
-export type Room  = HasId & HasTenant & HasTimestamps & IsNew & {
+export interface Room extends HasId, HasTenant, HasTimestamps , IsNew{
   name: string;
   size: number;
 }

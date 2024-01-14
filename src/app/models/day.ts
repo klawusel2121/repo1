@@ -3,11 +3,11 @@ import {HasTenant} from "./has-tenant";
 import {HasTimestamps} from "./has-timestamps";
 import {IsNew} from "./is-new";
 
-export type Day = {
+export interface Day {
   number: number;
   open: boolean;
 }
 
-export type Days  = HasId & HasTenant & HasTimestamps & IsNew & {
+export interface Days extends HasId, HasTenant, HasTimestamps, IsNew {
   items: Array<Day>;
 }

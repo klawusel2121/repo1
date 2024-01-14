@@ -1,3 +1,3 @@
-export type HasTenant = {
+export interface HasTenant {
   tenantId: string;
 }

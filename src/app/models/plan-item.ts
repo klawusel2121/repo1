@@ -1,6 +1,6 @@
 import {IsNew} from "./is-new";
 
-export type PlanItem = IsNew & {
+export interface PlanItem extends IsNew {
   day: number;
   lesson: number;
   courseId: string;

@@ -5,7 +5,7 @@ import {IsNew} from "./is-new";
 import {Course} from "./course";
 import {Teacher} from "./teacher";
 
-export type TeacherCourse = HasId & HasTenant & HasTimestamps & IsNew & {
+export interface TeacherCourse extends HasId, HasTenant, HasTimestamps, IsNew {
   teacherId: string;
   courseId: string;
   courseName: string;

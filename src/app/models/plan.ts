@@ -4,7 +4,7 @@ import {HasTimestamps} from "./has-timestamps";
 import {IsNew} from "./is-new";
 import {PlanItem} from "./plan-item";
 
-export type Plan  = HasId & HasTenant & HasTimestamps & IsNew & {
+export interface Plan extends HasId, HasTenant, HasTimestamps, IsNew {
   name: string;
   groupId: string;
   groupName: string;
