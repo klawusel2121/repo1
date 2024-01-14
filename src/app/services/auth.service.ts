@@ -70,7 +70,7 @@ export class AuthService {
           /* Call the SendVerificaitonMail() function when new user sign
        up and returns promise */
           this.sendEmailVerification()
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/profile']);
         });
       })
       .catch((error) => {
@@ -95,7 +95,7 @@ export class AuthService {
         localStorage.setItem('password', password);
         localStorage.setItem('lastLogin', new Date().toLocaleString());
         this.ngZone.run(() => {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/profile']);
         });
       })
       .catch((error) => {
@@ -126,7 +126,7 @@ export class AuthService {
   loginWithPopup(provider :any) {
     this.auth.tenantId = localStorage.getItem('tenant');
     return signInWithPopup(this.auth,provider).then(() => {
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['profile']);
     });
   }
 

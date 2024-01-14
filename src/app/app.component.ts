@@ -25,10 +25,11 @@ export class AppComponent implements OnInit {
     public router: Router,
     private translate: TranslateService
   ) {
-    translate.setDefaultLang(this.stateService.countries[0].lang);
-    translate.use(this.stateService.countries[0].lang);
+    const lang: string = localStorage.getItem('lang') ?? 'de-DE';
+    this.translate.use(lang);
+    translate.setDefaultLang(lang);
+    translate.use(lang);
     this.tenantId = localStorage.getItem('tenant') as string
-    this.changeLanguage(this.stateService.countries[0]);
   }
 
   ngOnInit(): void {
@@ -62,10 +63,6 @@ export class AppComponent implements OnInit {
     event.preventDefault();
     this.authService.Logout();
     this.router.navigate(['sign-in']);
-  }
-
-  changeLanguage(country: any) {
-    this.translate.use(country.lang)
   }
 
 }

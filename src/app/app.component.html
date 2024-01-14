@@ -12,6 +12,9 @@
       <li nz-submenu nzOpen nzTitle="{{ 'App.Menu.MasterData' | translate}}" nzIcon="dashboard" *ngIf="authService.isLoggedIn">
         <ul>
           <li nz-menu-item nzMatchRouter>
+            <a routerLink="profile">{{ 'App.Profile.Profile' | translate }}</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
             <a routerLink="tenant">{{ 'App.Tenant.Name' | translate }}</a>
           </li>
           <li nz-menu-item nzMatchRouter>
@@ -60,7 +63,6 @@
           </li>
         </ul>
       </li>
-
     </ul>
   </nz-sider>
   <nz-layout>

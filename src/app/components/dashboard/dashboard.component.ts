@@ -6,6 +6,7 @@ import {StateService} from "../../services/state.service";
 import {FirebaseService} from "../../services/firebase.service";
 import {LessonType} from "../../models/lesson-type";
 import {TranslateService} from "@ngx-translate/core";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-dashboard',
@@ -16,6 +17,9 @@ export class DashboardComponent {
   stateService: StateService = inject(StateService);
   fbs: FirebaseService = inject(FirebaseService);
   translate = inject(TranslateService);
+  formBuilder = inject(FormBuilder);
+
+  form!: FormGroup;
 
   protected readonly LessonType = LessonType;
 
@@ -25,11 +29,20 @@ export class DashboardComponent {
     public authService: AuthService,
     private router: Router
   ) {
-    this.translate.setDefaultLang('de-DE');
-    this.translate.use('de-DE');
+    // this.translate.setDefaultLang('de-DE');
+    // this.translate.use('de-DE');
   }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      email: this.formBuilder.control({ value: this.authService.UserData.email, disabled: true}),
+      uid: this.formBuilder.control({ value: this.authService.UserData.uid, disabled: true}),
+      lang: this.formBuilder.control(localStorage.getItem('lang')),
+    })
+    this.form.get('lang')?.valueChanges.subscribe(lang => {
+      localStorage.setItem('lang', lang);
+      this.translate.use(lang);
+    })
     this.readData();
   }
 

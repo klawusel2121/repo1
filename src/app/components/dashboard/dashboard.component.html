@@ -1,34 +1,27 @@
-
-<div class="container-fluid">
-  <div class="row">
-    <!-- Main content -->
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div class="inner-adjust">
-        <div class="pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">User Profile</h1>
-        </div>
-        <!-- Show user data when logged in -->
-        <div class="row" *ngIf="authService.UserData as user">
-          <div class="col-md-12">
-            <div class="media">
-              <div class="media-body">
-                <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
-                <p>User ID: <strong>{{user.uid}}</strong></p>
-                <p>Email: <strong>{{user.email}}</strong></p>
-                <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
-<!--                <nz-select nzShowSearch (change)="changeLanguage($event)">-->
-<!--                  <nz-option nzCustomContent nzLabel="de" nzValue="de-DE">-->
-<!--                    <img height="16" [src]="'../assets/flags/de.svg'">-->
-<!--                  </nz-option>-->
-<!--                  <nz-option nzCustomContent nzLabel="en" nzValue="en-GB">-->
-<!--                    <img height="16" [src]="'../assets/flags/gb.svg'">-->
-<!--                  </nz-option>-->
-<!--                </nz-select>-->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
-</div>
+<form nz-form [formGroup]="form">
+  <nz-form-item>
+    <nz-form-label style="width:150px;">{{ 'App.Fields.Email' | translate }}</nz-form-label>
+    <nz-form-control >
+      <input nz-input style="width:300px;" formControlName="email" type="email">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label style="width:150px;">{{ 'App.Fields.Uid' | translate }}</nz-form-label>
+    <nz-form-control>
+      <input nz-input style="width:300px;" formControlName="uid" type="text">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label style="width:150px;">{{ 'App.Fields.Lang' | translate }}</nz-form-label>
+    <nz-form-control>
+      <nz-select formControlName="lang" style="width:300px;">
+        <nz-option nzCustomContent nzLabel="de-DE" nzValue="de-DE">
+          <img height="16" [src]="'../assets/flags/de.svg'" style="margin-right:4px">de-DE
+        </nz-option>
+        <nz-option nzCustomContent nzLabel="en-GB" nzValue="en-GB">
+          <img height="16" [src]="'../assets/flags/gb.svg'" style="margin-right:4px">en-GB
+        </nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+</form>

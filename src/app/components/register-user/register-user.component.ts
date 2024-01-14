@@ -20,7 +20,7 @@ export class RegisterUserComponent {
     this.form = this.formBuilder.group({
       userName: this.formBuilder.control(undefined),
       password: this.formBuilder.control(undefined),
-      tenantId: this.formBuilder.control(undefined),
+      tenantId: this.formBuilder.control(localStorage.getItem('tenant')),
     })
   }
 

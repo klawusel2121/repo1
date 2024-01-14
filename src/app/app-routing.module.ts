@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'register-user', component: RegisterUserComponent },
-  { path: 'dashboard', component: DashboardComponent , canActivate: [AuthGuard]},
+  { path: 'profile', component: DashboardComponent , canActivate: [AuthGuard]},
   { path: 'courses', component: CoursesComponent },
   { path: 'teachers', component: TeachersComponent },
   { path: 'groups', component: GroupsComponent },

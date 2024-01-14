@@ -56,11 +56,13 @@ import {
   from '@ant-design/icons-angular/icons';
 import { registerLocaleData } from '@angular/common';
 import de from '@angular/common/locales/de';
+import en from '@angular/common/locales/en';
 
 registerLocaleData(de);
+registerLocaleData(en);
 
 /** config ng-zorro-antd i18n **/
-import { provideNzI18n, de_DE} from 'ng-zorro-antd/i18n';
+import { provideNzI18n, de_DE, en_GB} from 'ng-zorro-antd/i18n';
 import {NzModalComponent} from "ng-zorro-antd/modal";
 import {NzSwitchComponent} from "ng-zorro-antd/switch";
 import {NzTimePickerComponent} from "ng-zorro-antd/time-picker";
@@ -149,7 +151,7 @@ const icons: IconDefinition[] = [
     NzRadioButtonDirective,
     NzRadioComponent
   ],
-  providers: [CookieService, AuthService, provideNzI18n(de_DE)],
+  providers: [CookieService, AuthService, provideNzI18n(de_DE), provideNzI18n(en_GB)],
   bootstrap: [AppComponent]
 })
 export class AppModule {
