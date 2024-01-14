@@ -13,7 +13,7 @@ import {getAuth} from "firebase/auth";
 import {AuthService} from "./services/auth.service";
 import {SignInComponent} from './components/sign-in/sign-in.component';
 import {RegisterUserComponent} from './components/register-user/register-user.component';
-import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {ProfileComponent} from './components/profile/profile.component';
 import {environment} from "./environments/environment";
 import {TeachersComponent} from './components/teachers/teachers.component';
 import {CoursesComponent} from './components/courses/courses.component';
@@ -87,7 +87,7 @@ const icons: IconDefinition[] = [
     AppComponent,
     SignInComponent,
     RegisterUserComponent,
-    DashboardComponent,
+    ProfileComponent,
     TeachersComponent,
     CoursesComponent,
     CourseEditComponent,

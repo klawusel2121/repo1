@@ -9,11 +9,11 @@ import {TranslateService} from "@ngx-translate/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.css'
 })
-export class DashboardComponent {
+export class ProfileComponent {
   stateService: StateService = inject(StateService);
   fbs: FirebaseService = inject(FirebaseService);
   translate = inject(TranslateService);
