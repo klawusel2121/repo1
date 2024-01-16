@@ -18,6 +18,7 @@ export class ProfileComponent {
   fbs: FirebaseService = inject(FirebaseService);
   translate = inject(TranslateService);
   formBuilder = inject(FormBuilder);
+  locales = [ 'de-DE', 'en-GB' ]
 
   form!: FormGroup;
 
@@ -115,5 +116,13 @@ export class ProfileComponent {
 
   changeLanguage(lang: any) {
     this.translate.use(lang)
+  }
+
+  lang(): string {
+    return this.form?.get('lang')?.value;
+  }
+
+  change(e: any) {
+    console.log('change',e)
   }
 }

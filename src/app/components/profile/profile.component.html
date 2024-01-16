@@ -14,14 +14,15 @@
   <nz-form-item>
     <nz-form-label style="width:150px;">{{ 'App.Fields.Lang' | translate }}</nz-form-label>
     <nz-form-control>
-      <nz-select formControlName="lang" style="width:300px;">
-        <nz-option nzCustomContent nzLabel="de-DE" nzValue="de-DE">
-          <img height="16" [src]="'../assets/flags/de.svg'" style="margin-right:4px">de-DE
-        </nz-option>
-        <nz-option nzCustomContent nzLabel="en-GB" nzValue="en-GB">
-          <img height="16" [src]="'../assets/flags/gb.svg'" style="margin-right:4px">en-GB
+      <nz-select (change)="change($event)" formControlName="lang" style="width:300px;" [nzCustomTemplate]="defaultTemplate">
+        <nz-option *ngFor="let locale of locales" nzCustomContent [nzValue]="locale">
+          <img height="16" [src]="'../assets/flags/' + locale + '.svg'" style="margin-right:4px">{{locale}}
         </nz-option>
       </nz-select>
+      <ng-template #defaultTemplate let-selected>
+        <img height="16" [src]="'../assets/flags/' + selected.nzValue + '.svg'" style="margin-right:4px">
+        {{ selected.nzValue}}
+      </ng-template>
     </nz-form-control>
   </nz-form-item>
 </form>
