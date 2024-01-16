@@ -75,6 +75,7 @@ import { EvaluationComponent } from './components/evaluation/evaluation.componen
 import { CountCourseTeacherPipe } from './pipes/count-course-teacher.pipe';
 import { SumTeacherPipe } from './pipes/sum-teacher.pipe';
 import {NzRadioButtonDirective, NzRadioComponent, NzRadioGroupComponent} from "ng-zorro-antd/radio";
+import {NzDividerComponent} from "ng-zorro-antd/divider";
 
 const icons: IconDefinition[] = [
   AccountBookFill, AlertOutline, AlertFill, CopyOutline, DashboardOutline,
@@ -149,7 +150,8 @@ const icons: IconDefinition[] = [
     NzDatePickerComponent,
     NzRadioGroupComponent,
     NzRadioButtonDirective,
-    NzRadioComponent
+    NzRadioComponent,
+    NzDividerComponent
   ],
   providers: [CookieService, AuthService, provideNzI18n(de_DE), provideNzI18n(en_GB)],
   bootstrap: [AppComponent]

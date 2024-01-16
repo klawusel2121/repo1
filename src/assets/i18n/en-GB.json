@@ -1,5 +1,6 @@
 {
 	"App.Action.Add": "New",
+  "App.Action.AddEntry": "Add entry",
 	"App.Action.Cancel": "Cancel",
 	"App.Action.Remove": "Remove>",
 	"App.Action.Edit": "Edit",

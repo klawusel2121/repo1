@@ -14,7 +14,9 @@ export class SignInComponent {
   formHelper = inject(FormHelperService);
   authService = inject(AuthService);
 
+  tenantIds: Array<string> = [];
   form!: FormGroup;
+  index = 0;
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -22,6 +24,10 @@ export class SignInComponent {
       password: this.formBuilder.control(undefined),
       tenantId: this.formBuilder.control(localStorage.getItem('tenant')),
     })
+    const tenantIds = localStorage.getItem('tenant-list');
+    if (tenantIds) {
+      this.tenantIds = tenantIds.split(',');
+    }
   }
 
   onLogin() {
@@ -36,5 +42,12 @@ export class SignInComponent {
   enter(e: any) {
     console.log('enter', e)
     this.form.get('tenantId')?.setValue(e);
+  }
+
+  addTenant(input: HTMLInputElement): void {
+    const value = input.value;
+    if (this.tenantIds.indexOf(value) === -1) {
+      this.tenantIds = [...this.tenantIds, input.value || `New item ${this.index++}`];
+    }
   }
 }

@@ -2,8 +2,20 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ 'App.Authenticate.Tenant' | translate }}</nz-form-label>
     <nz-form-control [nzSpan]="6">
-      <input formControlName="tenantId">
+      <nz-select formControlName="tenantId" [nzDropdownRender]="renderTemplate" nzPlaceHolder="custom dropdown render">
+        <nz-option *ngFor="let item of tenantIds" [nzLabel]="item" [nzValue]="item"></nz-option>
+      </nz-select>
+      <ng-template #renderTemplate>
+        <div class="container">
+          <input type="text" nz-input #inputElement />
+          <a class="add-item" (click)="addTenant(inputElement)">
+            <span nz-icon nzType="plus"></span>
+            {{ 'App.Action.AddEntry' | translate }}
+          </a>
+        </div>
+      </ng-template>
     </nz-form-control>
+
   </nz-form-item>
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ 'App.Authenticate.Username' | translate }}</nz-form-label>

@@ -1,5 +1,6 @@
 {
 	"App.Action.Add": "Neu",
+	"App.Action.AddEntry": "Eintrag anlegen",
 	"App.Action.Cancel": "Abbrechen",
 	"App.Action.Remove": "Löschen",
 	"App.Action.Edit": "Bearbeiten",
