@@ -18,6 +18,7 @@ export class ProfileComponent {
   fbs: FirebaseService = inject(FirebaseService);
   translate = inject(TranslateService);
   formBuilder = inject(FormBuilder);
+  authService = inject(AuthService);
   locales = [ 'de-DE', 'en-GB' ]
 
   form!: FormGroup;
@@ -27,7 +28,6 @@ export class ProfileComponent {
   countries = [{name: 'DE', lang: 'de-DE'}, {name:'GB', lang: 'en-GB'}]
 
   constructor(
-    public authService: AuthService,
     private router: Router
   ) {
     // this.translate.setDefaultLang('de-DE');

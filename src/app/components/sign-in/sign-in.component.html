@@ -2,7 +2,7 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="4">{{ 'App.Authenticate.Tenant' | translate }}</nz-form-label>
     <nz-form-control [nzSpan]="6">
-      <nz-select formControlName="tenantId" [nzDropdownRender]="renderTemplate" nzPlaceHolder="custom dropdown render">
+      <nz-select formControlName="tenantId" [nzDropdownRender]="renderTemplate">
         <nz-option *ngFor="let item of tenantIds" [nzLabel]="item" [nzValue]="item"></nz-option>
       </nz-select>
       <ng-template #renderTemplate>

@@ -5,6 +5,7 @@ import {StateService} from "../../services/state.service";
 import {FirebaseService} from "../../services/firebase.service";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {TranslateService} from "@ngx-translate/core";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-tenant-edit',
@@ -18,13 +19,15 @@ export class TenantEditComponent implements OnInit {
   stateService = inject(StateService);
   translate = inject(TranslateService);
   message = inject(NzMessageService);
+  authService = inject(AuthService);
 
   show = false;
   form!: FormGroup;
 
   ngOnInit(): void {
     console.log('state', this.stateService)
-    const tenant = this.stateService.tenants[0];
+    const tenant = {...this.stateService.tenants[0], tenantId: localStorage.getItem('tenant')};
+
     this.form = this.formBuilder.group({
       name: this.formBuilder.control(undefined),
       country: this.formBuilder.control(undefined),
@@ -39,8 +42,19 @@ export class TenantEditComponent implements OnInit {
 
   apply() {
     const tenant = this.form.getRawValue();
-    this.fbs.update('tenants', this.stateService.tenants[0], tenant).then(data => {
-      this.message.success(this.translate.instant('App.Message.SuccessSave'))
-    });
+    if (tenant.id) {
+      this.fbs.update('tenants', this.stateService.tenants[0], tenant).then(data => {
+        this.message.success(this.translate.instant('App.Message.SuccessSave'))
+      });
+    } else {
+      this.fbs.add('tenants', tenant).then(data => {
+        const items$ = this.fbs.getCollection('tenants');
+        items$.pipe().subscribe(items => {
+          this.stateService.tenants = items;
+          this.stateService.tenants$.next(this.stateService.tenants);
+        })
+      })
+    }
+
   }
 }
