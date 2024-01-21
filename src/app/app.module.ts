@@ -51,7 +51,7 @@ import {IconDefinition} from '@ant-design/icons-angular';
 import {
   AccountBookFill, AlertFill, AlertOutline, CopyOutline,
   DashboardOutline, EyeFill, EyeOutline, EyeInvisibleOutline, EyeInvisibleFill,
-  MenuOutline, MenuFoldOutline, SaveOutline, TableOutline
+  MenuOutline, MenuFoldOutline, SaveOutline, SettingOutline, TableOutline
 }
   from '@ant-design/icons-angular/icons';
 import { registerLocaleData } from '@angular/common';
@@ -76,11 +76,13 @@ import { CountCourseTeacherPipe } from './pipes/count-course-teacher.pipe';
 import { SumTeacherPipe } from './pipes/sum-teacher.pipe';
 import {NzRadioButtonDirective, NzRadioComponent, NzRadioGroupComponent} from "ng-zorro-antd/radio";
 import {NzDividerComponent} from "ng-zorro-antd/divider";
+import { UsersComponent } from './components/users/users.component';
+import { UserEditComponent } from './components/users/user-edit/user-edit.component';
 
 const icons: IconDefinition[] = [
   AccountBookFill, AlertOutline, AlertFill, CopyOutline, DashboardOutline,
   EyeFill, EyeOutline, EyeInvisibleOutline, EyeInvisibleFill,
-  MenuOutline, MenuFoldOutline, SaveOutline, TableOutline
+  MenuOutline, MenuFoldOutline, SaveOutline, SettingOutline, TableOutline
 ];
 
 @NgModule({
@@ -112,6 +114,8 @@ const icons: IconDefinition[] = [
     EvaluationComponent,
     CountCourseTeacherPipe,
     SumTeacherPipe,
+    UsersComponent,
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,

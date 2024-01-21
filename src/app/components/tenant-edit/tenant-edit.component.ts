@@ -25,7 +25,7 @@ export class TenantEditComponent implements OnInit {
   form!: FormGroup;
 
   ngOnInit(): void {
-    console.log('state', this.stateService)
+    console.log('state', this.stateService, this.authService.UserData)
     const tenant = {...this.stateService.tenants[0], tenantId: localStorage.getItem('tenant')};
 
     this.form = this.formBuilder.group({
@@ -35,6 +35,7 @@ export class TenantEditComponent implements OnInit {
       city: this.formBuilder.control(undefined),
       street: this.formBuilder.control(undefined),
       tenantId: this.formBuilder.control({value: undefined, disabled: true}),
+      email: this.formBuilder.control({value: this.authService.UserData.email, disabled: true}),
     })
     this.formHelper.addDefaultControls(this.form, this.formBuilder);
     this.form.patchValue(tenant);

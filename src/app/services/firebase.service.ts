@@ -15,6 +15,7 @@ import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} fro
 import {CookieService} from "ngx-cookie-service";
 import {AuthService} from "./auth.service";
 import {HasTenant} from "../models/has-tenant";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ import {HasTenant} from "../models/has-tenant";
 export class FirebaseService {
   firestore: Firestore = inject(Firestore);
   authService: AuthService = inject(AuthService);
-
+  messageService= inject(NzMessageService);
 
   userCredential: any;
   userCredential$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);

@@ -1,0 +1,22 @@
+<nz-modal (nzOnCancel)="cancel()" (nzOnOk)="apply()" [(nzVisible)]="show"
+          [nzTitle]="('App.Action.Edit' | translate) + ':' + ('App.User.User' | translate)">
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="form">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ 'App.Fields.Name' | translate }}</nz-form-label>
+        <nz-form-control [nzSpan]="6">
+          <input nz-input  formControlName="name" type="text">
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="4">{{ 'App.Fields.Role' | translate }}</nz-form-label>
+        <nz-form-control [nzSpan]="6">
+          <nz-select formControlName="role" style="width:300px;">
+            <nz-option [nzValue]="'ADMIN'" [nzLabel]="'App.Roles.ADMIN' | translate"></nz-option>
+            <nz-option [nzValue]="'USER'" [nzLabel]="'App.Roles.USER' | translate"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-modal>

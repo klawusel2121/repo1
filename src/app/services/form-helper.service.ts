@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {NzMessageService} from "ng-zorro-antd/message";
+import {NzMessageDataOptions, NzMessageService} from "ng-zorro-antd/message";
 import {TranslateService} from "@ngx-translate/core";
 
 @Injectable({

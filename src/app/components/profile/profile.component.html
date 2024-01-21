@@ -12,9 +12,24 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
+    <nz-form-label style="width:150px;">{{ 'App.Fields.Name' | translate }}</nz-form-label>
+    <nz-form-control >
+      <input nz-input style="width:300px;" formControlName="name" type="string">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label style="width:150px;">{{ 'App.Fields.Role' | translate }}</nz-form-label>
+    <nz-form-control>
+      <nz-select formControlName="role" style="width:300px;">
+        <nz-option [nzValue]="'ADMIN'" [nzLabel]="'App.Roles.ADMIN' | translate"></nz-option>
+        <nz-option [nzValue]="'USER'" [nzLabel]="'App.Roles.USER' | translate"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
     <nz-form-label style="width:150px;">{{ 'App.Fields.Lang' | translate }}</nz-form-label>
     <nz-form-control>
-      <nz-select (change)="change($event)" formControlName="lang" style="width:300px;" [nzCustomTemplate]="defaultTemplate">
+      <nz-select formControlName="lang" style="width:300px;" [nzCustomTemplate]="defaultTemplate">
         <nz-option *ngFor="let locale of locales" nzCustomContent [nzValue]="locale">
           <img height="16" [src]="'../assets/flags/' + locale + '.svg'" style="margin-right:4px">{{locale}}
         </nz-option>
@@ -26,3 +41,4 @@
     </nz-form-control>
   </nz-form-item>
 </form>
+<button nz-button nzType="primary" (click)="apply()" type="button">{{ 'App.Action.Ok' | translate}}</button>

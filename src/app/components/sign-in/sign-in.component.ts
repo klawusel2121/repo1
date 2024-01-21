@@ -2,6 +2,9 @@ import {Component, inject} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {FormHelperService} from "../../services/form-helper.service";
+import {StateService} from "../../services/state.service";
+import {FirebaseService} from "../../services/firebase.service";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-sign-in',
@@ -13,6 +16,8 @@ export class SignInComponent {
   formBuilder = inject(FormBuilder);
   formHelper = inject(FormHelperService);
   authService = inject(AuthService);
+  fbs = inject(FirebaseService);
+  stateService = inject(StateService);
 
   tenantIds: Array<string> = [];
   form!: FormGroup;
@@ -31,8 +36,11 @@ export class SignInComponent {
   }
 
   onLogin() {
+    const email = this.form.get('userName')?.value;
     this.authService.setTenant(this.form.get('tenantId')?.value);
-    this.authService.Login(this.form.get('userName')?.value, this.form.get('password')?.value)
+    this.authService.Login(email, this.form.get('password')?.value).then(data => {
+
+    })
   }
 
   search(e: string) {

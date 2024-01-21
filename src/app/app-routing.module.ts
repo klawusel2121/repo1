@@ -16,6 +16,7 @@ import {TenantEditComponent} from "./components/tenant-edit/tenant-edit.componen
 import {ForgotPasswordComponent} from "./components/forgot-password/forgot-password.component";
 import {BrowserComponent} from "./components/browser/browser.component";
 import {EvaluationComponent} from "./components/evaluation/evaluation.component";
+import {UsersComponent} from "./components/users/users.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'tenant', component: TenantEditComponent },
   { path: 'browser', component: BrowserComponent },
   { path: 'evaluation', component: EvaluationComponent },
+  { path: 'users', component: UsersComponent },
 ];
 
 @NgModule({

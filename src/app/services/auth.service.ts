@@ -14,6 +14,7 @@ import {
 import { Router } from '@angular/router';
 import {StateService} from "./state.service";
 import {FirebaseService} from "./firebase.service";
+import {BehaviorSubject} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +22,7 @@ export class AuthService {
   UserData : any;
   Tenants = localStorage.getItem('tenant-list')
   TenantDetails: any;
+  loginChanged$ = new BehaviorSubject<any>(undefined);
 
   constructor(private auth: Auth,private router : Router, public ngZone: NgZone){
     onAuthStateChanged(this.auth,(user: any)=>{
@@ -28,9 +30,14 @@ export class AuthService {
         this.UserData = user;
         localStorage.setItem('user', JSON.stringify(this.UserData));
         JSON.parse(localStorage.getItem('user')!);
+        console.log('onAuthStateChanged user logged in')
+        this.loginChanged$.next(true);
       } else {
+        this.UserData = undefined;
         localStorage.setItem('user', 'null');
         JSON.parse(localStorage.getItem('user')!);
+        console.log('onAuthStateChanged user logged out')
+        this.loginChanged$.next(false);
       }
     })
   }
@@ -94,6 +101,7 @@ export class AuthService {
         localStorage.setItem('email', email);
         localStorage.setItem('password', password);
         localStorage.setItem('lastLogin', new Date().toLocaleString());
+
         this.ngZone.run(() => {
           this.router.navigate(['/profile']);
         });

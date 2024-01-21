@@ -63,6 +63,13 @@
           </li>
         </ul>
       </li>
+      <li nz-submenu nzOpen nzTitle="{{ 'App.Administration.Administration' | translate}}" nzIcon="setting" *ngIf="authService.isLoggedIn && isAdmin">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="users">{{ 'App.Administration.Users' | translate }}</a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </nz-sider>
   <nz-layout>

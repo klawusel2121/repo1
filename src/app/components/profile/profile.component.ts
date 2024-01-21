@@ -7,6 +7,8 @@ import {FirebaseService} from "../../services/firebase.service";
 import {LessonType} from "../../models/lesson-type";
 import {TranslateService} from "@ngx-translate/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {User} from "../../models/user";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'app-profile',
@@ -19,99 +21,38 @@ export class ProfileComponent {
   translate = inject(TranslateService);
   formBuilder = inject(FormBuilder);
   authService = inject(AuthService);
-  locales = [ 'de-DE', 'en-GB' ]
+  message = inject(NzMessageService);
+  router = inject(Router);
 
+  locales = [ 'de-DE', 'en-GB' ]
   form!: FormGroup;
+  user: Partial<User> | undefined = {};
 
   protected readonly LessonType = LessonType;
-
-  countries = [{name: 'DE', lang: 'de-DE'}, {name:'GB', lang: 'en-GB'}]
-
-  constructor(
-    private router: Router
-  ) {
-    // this.translate.setDefaultLang('de-DE');
-    // this.translate.use('de-DE');
-  }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       email: this.formBuilder.control({ value: this.authService.UserData.email, disabled: true}),
       uid: this.formBuilder.control({ value: this.authService.UserData.uid, disabled: true}),
       lang: this.formBuilder.control(localStorage.getItem('lang')),
+      role: this.formBuilder.control({ value: this.user?.role, disabled: true}),
+      name: this.formBuilder.control(this.user?.name),
+      id: this.formBuilder.control(this.user?.id),
     })
     this.form.get('lang')?.valueChanges.subscribe(lang => {
       localStorage.setItem('lang', lang);
       this.translate.use(lang);
     })
-    this.readData();
+    this.fbs.getCollection('users').subscribe(users => {
+      this.user = users.find(u => u.email === this.authService.UserData.email);
+      console.log('user', this.user, users);
+      this.form.get('role')?.setValue(this.user?.role);
+      this.form.get('name')?.setValue(this.user?.name);
+    })
   }
 
   showItems() {
     this.router.navigate(['items'])
-  }
-
-  readData(): void {
-    console.log('readData', localStorage.getItem('tenant'))
-    let items$ = this.fbs.getCollection('courses');
-    items$.pipe().subscribe(items => {
-      this.stateService.courses = _.sortBy(items, 'name');
-      this.stateService.courses$.next(this.stateService.courses);
-    })
-
-    items$ = this.fbs.getCollection('groups');
-    items$.pipe().subscribe(items => {
-      this.stateService.groups = _.sortBy(items, 'name');
-      this.stateService.groups$.next(this.stateService.groups);
-    })
-
-    items$ = this.fbs.getCollection('rooms');
-    items$.pipe().subscribe(items => {
-      this.stateService.rooms = _.sortBy(items, 'name');
-      this.stateService.rooms$.next(this.stateService.rooms);
-    })
-
-    items$ = this.fbs.getCollection('teachers');
-    items$.pipe().subscribe(items => {
-      this.stateService.teachers = _.sortBy(items, 'short');
-      this.stateService.teachers$.next(this.stateService.teachers);
-    })
-
-    items$ = this.fbs.getCollection('coursesPerWeek');
-    items$.pipe().subscribe(items => {
-      this.stateService.coursesPerWeek = items;
-      this.stateService.coursesPerWeek$.next(this.stateService.coursesPerWeek);
-    })
-
-    items$ = this.fbs.getCollection('teacherCourse');
-    items$.pipe().subscribe(items => {
-      this.stateService.teacherCourses = items;
-      this.stateService.teacherCourses$.next(this.stateService.teacherCourses);
-    })
-
-    items$ = this.fbs.getCollection('lessons');
-    items$.pipe().subscribe(items => {
-      this.stateService.lessons = items.sort((a, b) => a.position - b.position);
-      this.stateService.lessons$.next(this.stateService.lessons);
-    })
-
-    items$ = this.fbs.getCollection('plans');
-    items$.pipe().subscribe(items => {
-      this.stateService.plans = items;
-      this.stateService.plans$.next(this.stateService.plans);
-    })
-
-    items$ = this.fbs.getCollection('days');
-    items$.pipe().subscribe(items => {
-      this.stateService.days = items;
-      this.stateService.days$.next(this.stateService.days);
-    })
-
-    items$ = this.fbs.getCollection('tenants');
-    items$.pipe().subscribe(items => {
-      this.stateService.tenants = items;
-      this.stateService.tenants$.next(this.stateService.tenants);
-    })
   }
 
   changeLanguage(lang: any) {
@@ -122,7 +63,10 @@ export class ProfileComponent {
     return this.form?.get('lang')?.value;
   }
 
-  change(e: any) {
-    console.log('change',e)
+  apply() {
+    console.log('user apply', this.user)
+    this.fbs.update('users', this.user, { name: this.form.get('name')?.value}).then(data => {
+      this.message.success(this.translate.instant('App.Message.SuccessSave'))
+    });
   }
 }

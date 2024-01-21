@@ -6,6 +6,12 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
+    <nz-form-label [nzSpan]="2">{{ 'App.Fields.Email' | translate }}</nz-form-label>
+    <nz-form-control [nzSpan]="6">
+      <input nz-input formControlName="email" type="text">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
     <nz-form-label [nzSpan]="2">{{ 'App.Tenant.Name' | translate }}</nz-form-label>
     <nz-form-control [nzSpan]="6">
       <input nz-input formControlName="name" type="text">

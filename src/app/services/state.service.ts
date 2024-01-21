@@ -10,6 +10,7 @@ import {Lesson} from "../models/lesson";
 import {Plan} from "../models/plan";
 import {Days} from "../models/day";
 import {Tenant} from "../models/tenant";
+import {User} from "../models/user";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,7 @@ export class StateService {
   plans: Array<Plan> = [];
   days: Array<Days> = [];
   tenants: Array<Tenant> = [];
+  users: Array<User> = [];
 
   courses$: BehaviorSubject<Array<Course>> = new BehaviorSubject<Array<Course>>(this.courses);
   rooms$: BehaviorSubject<Array<Room>> = new BehaviorSubject<Array<Room>>(this.rooms);
@@ -39,6 +41,8 @@ export class StateService {
   plans$: BehaviorSubject<Array<Plan>> = new BehaviorSubject<Array<Plan>>(this.plans);
   days$: BehaviorSubject<Array<Days>> = new BehaviorSubject<Array<Days>>(this.days);
   tenants$: BehaviorSubject<Array<Tenant>> = new BehaviorSubject<Array<Tenant>>(this.tenants);
+  users$: BehaviorSubject<Array<User>> = new BehaviorSubject<Array<User>>(this.users);
 
   constructor() { }
+
 }
